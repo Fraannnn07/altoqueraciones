@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ':*)",
+      "Bash(winget install:*)",
+      "Bash(export PATH=\"/c/Users/Franco/AppData/Local/Programs/Python/Python312:/c/Users/Franco/AppData/Local/Programs/Python/Python312/Scripts:$PATH\")",
+      "Bash(python -m pip install openpyxl pandas --quiet)",
+      "Bash(export PYTHONIOENCODING=utf-8)"
+    ]
+  }
+}

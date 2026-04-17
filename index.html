@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al Toque Raciones — Alimento para Perros y Gatos | Envío Gratis en Uruguay</title>
+  <meta name="description" content="Raciones para perros y gatos con envío gratis a domicilio. Las mejores marcas: BioFresh, Equilibrio, Frost, Pro Plan y más. Atención personalizada y entrega rápida. Al Toque Raciones Uruguay.">
+  <meta name="keywords" content="raciones perros, raciones gatos, alimento mascotas, envío gratis, Uruguay, BioFresh, Equilibrio, Frost, Pro Plan">
+  <meta property="og:title" content="Al Toque Raciones — Alimento de calidad para tus mascotas">
+  <meta property="og:description" content="Raciones para perros y gatos con envío gratis. Las mejores marcas al mejor precio con entrega rápida.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       CSS CUSTOM PROPERTIES
+       ======================================== */
+    :root {
+      --orange-500: #F5891F;
+      --orange-600: #E07A15;
+      --orange-100: #FFF3E6;
+      --green-500: #4CAF50;
+      --green-600: #3D8B40;
+      --green-700: #2E7D32;
+      --green-100: #E8F5E9;
+      --yellow-400: #FFC107;
+      --yellow-100: #FFF8E1;
+      --warm-white: #FFFAF5;
+      --warm-gray: #FFF8F0;
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #EEEEEE;
+      --gray-300: #E0E0E0;
+      --gray-500: #9E9E9E;
+      --gray-600: #757575;
+      --gray-700: #616161;
+      --gray-800: #424242;
+      --gray-900: #2D2D2D;
+      --white: #FFFFFF;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+      --shadow-xl: 0 12px 40px rgba(0,0,0,0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --font-primary: 'Nunito', sans-serif;
+      --font-secondary: 'Quicksand', sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--gray-900);
+      background: var(--warm-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ========================================
+       HEADER
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: var(--transition);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header__logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .header__logo-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--green-700);
+    }
+
+    .header__logo-text span {
+      color: var(--orange-500);
+    }
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .header__nav a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--gray-700);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .header__nav a:hover {
+      color: var(--orange-500);
+    }
+
+    .header__nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange-500);
+      transition: var(--transition);
+    }
+
+    .header__nav a:hover::after {
+      width: 100%;
+    }
+
+    .header__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-500);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .header__cta:hover {
+      background: var(--green-600);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .header__mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .header__mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gray-800);
+      margin: 6px 0;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, var(--warm-white) 0%, var(--orange-100) 50%, var(--green-100) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(245, 137, 31, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__content {
+      max-width: 560px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-100);
+      color: var(--green-700);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border: 1px solid rgba(76, 175, 80, 0.2);
+    }
+
+    .hero__title {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: var(--gray-900);
+    }
+
+    .hero__title span {
+      color: var(--orange-500);
+    }
+
+    .hero__title .green {
+      color: var(--green-600);
+    }
+
+    .hero__subtitle {
+      font-size: 1.15rem;
+      color: var(--gray-600);
+      margin-bottom: 32px;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: var(--font-primary);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      text-align: center;
+    }
+
+    .btn--primary {
+      background: var(--orange-500);
+      color: var(--white);
+      border-color: var(--orange-500);
+    }
+
+    .btn--primary:hover {
+      background: var(--orange-600);
+      border-color: var(--orange-600);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 137, 31, 0.35);
+    }
+
+    .btn--secondary {
+      background: var(--white);
+      color: var(--green-700);
+      border-color: var(--green-500);
+    }
+
+    .btn--secondary:hover {
+      background: var(--green-100);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn--whatsapp {
+      background: #25D366;
+      color: var(--white);
+      border-color: #25D366;
+    }
+
+    .btn--whatsapp:hover {
+      background: #20BD5A;
+      border-color: #20BD5A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+    }
+
+    .hero__trust {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero__trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      font-weight: 600;
+    }
+
+    .hero__trust-item svg {
+      color: var(--green-500);
+      flex-shrink: 0;
+    }
+
+    .hero__image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero__image-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .hero__image-main {
+      width: 100%;
+      border-radius: var(--radius-xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__image-blob {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(ellipse, rgba(245, 137, 31, 0.1) 0%, transparent 60%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero__floating-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      box-shadow: var(--shadow-lg);
+      z-index: 2;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero__floating-card--delivery {
+      bottom: 20px;
+      left: -20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero__floating-card--rating {
+      top: 40px;
+      right: -10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero__floating-card .icon {
+      font-size: 1.5rem;
+    }
+
+    .hero__floating-card .text-sm {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    .hero__floating-card .text-bold {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--gray-900);
+    }
+
+    .hero__floating-card .stars {
+      color: var(--yellow-400);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ========================================
+       TRUST BAR
+       ======================================== */
+    .trust-bar {
+      background: var(--white);
+      padding: 28px 0;
+      border-bottom: 1px solid var(--gray-200);
+      position: relative;
+      z-index: 2;
+    }
+
+    .trust-bar .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .trust-bar__item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0;
+    }
+
+    .trust-bar__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .trust-bar__icon--green {
+      background: var(--green-100);
+      color: var(--green-600);
+    }
+
+    .trust-bar__icon--orange {
+      background: var(--orange-100);
+      color: var(--orange-500);
+    }
+
+    .trust-bar__icon--yellow {
+      background: var(--yellow-100);
+      color: #F59E0B;
+    }
+
+    .trust-bar__title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--gray-900);
+      margin-bottom: 2px;
+    }
+
+    .trust-bar__text {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    /* ========================================
+       SECTION COMMON
+       ======================================== */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section--gray {
+      background: var(--gray-50);
+    }
+
+    .section--warm {
+      background: var(--warm-gray);
+    }
+
+    .section--green {
+      background: linear-gradient(135deg, var(--green-100) 0%, #F1F8E9 100%);
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--orange-100);
+      color: var(--orange-500);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section__tag--green {
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .section__title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gray-900);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .section__title span {
+      color: var(--orange-500);
+    }
+
+    .section__subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       CATEGORIES
+       ======================================== */
+    .categories__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .category-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .category-card--dog:hover {
+      border-color: var(--orange-500);
+    }
+
+    .category-card--cat:hover {
+      border-color: var(--green-500);
+    }
+
+    .category-card__visual {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-card--dog .category-card__visual {
+      background: linear-gradient(135deg, var(--orange-100) 0%, #FFE0B2 100%);
+    }
+
+    .category-card--cat .category-card__visual {
+      background: linear-gradient(135deg, var(--green-100) 0%, #C8E6C9 100%);
+    }
+
+    .category-card__emoji {
+      font-size: 6rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .category-card__visual::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+
+    .category-card--dog .category-card__visual::after {
+      background: var(--orange-500);
+      top: -40px;
+      right: -40px;
+    }
+
+    .category-card--cat .category-card__visual::after {
+      background: var(--green-500);
+      bottom: -40px;
+      left: -40px;
+    }
+
+    .category-card__content {
+      padding: 28px;
+      text-align: center;
+    }
+
+    .category-card__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .category-card__desc {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .category-card__count {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      font-weight: 600;
+    }
+
+    .category-card__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .category-card--dog .category-card__btn {
+      background: var(--orange-100);
+      color: var(--orange-600);
+    }
+
+    .category-card--dog .category-card__btn:hover {
+      background: var(--orange-500);
+      color: var(--white);
+    }
+
+    .category-card--cat .category-card__btn {
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .category-card--cat .category-card__btn:hover {
+      background: var(--green-500);
+      color: var(--white);
+    }
+
+    /* ========================================
+       FEATURED PRODUCTS
+       ======================================== */
+    .featured__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--gray-200);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--orange-500);
+    }
+
+    .product-card__badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .product-card__badge--popular {
+      background: var(--orange-500);
+      color: var(--white);
+    }
+
+    .product-card__badge--premium {
+      background: var(--green-500);
+      color: var(--white);
+    }
+
+    .product-card__badge--economico {
+      background: var(--yellow-400);
+      color: var(--gray-900);
+    }
+
+    .product-card__image {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+      font-size: 4rem;
+      position: relative;
+    }
+
+    .product-card__type-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2rem;
+      opacity: 0.6;
+    }
+
+    .product-card__info {
+      padding: 18px;
+    }
+
+    .product-card__brand {
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .product-card__name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .product-card__weight {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    .product-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-card__price {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--orange-500);
+    }
+
+    .product-card__price small {
+      font-size: 0.7rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .product-card__action {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--green-100);
+      color: var(--green-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .product-card__action:hover {
+      background: var(--green-500);
+      color: var(--white);
+    }
+
+    /* ========================================
+       CATALOG (TABS)
+       ======================================== */
+    .catalog__tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .catalog__tab {
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-primary);
+      color: var(--gray-600);
+    }
+
+    .catalog__tab:hover {
+      border-color: var(--orange-500);
+      color: var(--orange-500);
+    }
+
+    .catalog__tab.active {
+      background: var(--orange-500);
+      border-color: var(--orange-500);
+      color: var(--white);
+    }
+
+    .catalog__panel {
+      display: none;
+    }
+
+    .catalog__panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .catalog__table-wrapper {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+    }
+
+    .catalog__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .catalog__table thead {
+      background: var(--gray-900);
+      color: var(--white);
+    }
+
+    .catalog__table th {
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+    }
+
+    .catalog__table th:last-child {
+      text-align: right;
+    }
+
+    .catalog__table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 0.95rem;
+    }
+
+    .catalog__table td:last-child {
+      text-align: right;
+      font-weight: 800;
+      color: var(--orange-500);
+      font-size: 1.05rem;
+    }
+
+    .catalog__table tbody tr {
+      transition: var(--transition);
+    }
+
+    .catalog__table tbody tr:hover {
+      background: var(--orange-100);
+    }
+
+    .catalog__table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .catalog__table .product-name {
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .catalog__table .product-weight {
+      color: var(--gray-500);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .catalog__table .tier-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .tier-badge--premium {
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .tier-badge--standard {
+      background: var(--orange-100);
+      color: var(--orange-600);
+    }
+
+    .tier-badge--economico {
+      background: var(--yellow-100);
+      color: #B8860B;
+    }
+
+    .catalog__note {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      font-style: italic;
+    }
+
+    .catalog__cta {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    /* ========================================
+       HOW IT WORKS
+       ======================================== */
+    .steps__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      position: relative;
+    }
+
+    .steps__grid::before {
+      content: '';
+      position: absolute;
+      top: 45px;
+      left: 16%;
+      right: 16%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange-500), var(--green-500));
+      border-radius: 2px;
+    }
+
+    .step-card {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-card__number {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 22px;
+      font-size: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .step-card:nth-child(1) .step-card__number {
+      background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+      color: var(--white);
+    }
+
+    .step-card:nth-child(2) .step-card__number {
+      background: linear-gradient(135deg, var(--yellow-400), #FFB300);
+      color: var(--white);
+    }
+
+    .step-card:nth-child(3) .step-card__number {
+      background: linear-gradient(135deg, var(--green-500), var(--green-600));
+      color: var(--white);
+    }
+
+    .step-card__title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--gray-900);
+    }
+
+    .step-card__text {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    /* ========================================
+       WHY US
+       ======================================== */
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--gray-200);
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--orange-500);
+    }
+
+    .why-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .why-card__title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--gray-900);
+    }
+
+    .why-card__text {
+      font-size: 0.92rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       TESTIMONIALS
+       ======================================== */
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      position: relative;
+    }
+
+    .testimonial-card__stars {
+      color: var(--yellow-400);
+      font-size: 1rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-card__text {
+      font-size: 0.95rem;
+      color: var(--gray-700);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-card__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .testimonial-card:nth-child(1) .testimonial-card__avatar { background: var(--orange-500); }
+    .testimonial-card:nth-child(2) .testimonial-card__avatar { background: var(--green-500); }
+    .testimonial-card:nth-child(3) .testimonial-card__avatar { background: #7C4DFF; }
+
+    .testimonial-card__name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--gray-900);
+    }
+
+    .testimonial-card__pet {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+    }
+
+    .testimonial-card__quote {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 2.5rem;
+      color: var(--gray-200);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    /* ========================================
+       PROMO BANNER
+       ======================================== */
+    .promo-banner {
+      background: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-600) 50%, #E65100 100%);
+      padding: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 250px;
+      height: 250px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .promo-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .promo-banner .container {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-banner__icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .promo-banner__title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .promo-banner__text {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 28px;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .promo-banner .btn--whatsapp {
+      font-size: 1.1rem;
+      padding: 16px 40px;
+    }
+
+    /* ========================================
+       FAQ
+       ======================================== */
+    .faq__list {
+      max-width: 750px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item.open {
+      border-color: var(--orange-500);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-item__question {
+      width: 100%;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-align: left;
+      gap: 14px;
+    }
+
+    .faq-item__question:hover {
+      color: var(--orange-500);
+    }
+
+    .faq-item__icon {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--orange-500);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-item__icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-item__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-item__answer {
+      max-height: 300px;
+    }
+
+    .faq-item__answer-inner {
+      padding: 0 24px 18px;
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background: var(--gray-900);
+      color: var(--gray-300);
+      padding: 60px 0 0;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer__brand-name {
+      font-family: var(--font-secondary);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer__brand-name span {
+      color: var(--orange-500);
+    }
+
+    .footer__brand-desc {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: var(--gray-500);
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer__social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.08);
+      color: var(--gray-300);
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .footer__social-link:hover {
+      background: var(--orange-500);
+      color: var(--white);
+    }
+
+    .footer__heading {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      transition: var(--transition);
+    }
+
+    .footer__links a:hover {
+      color: var(--orange-500);
+    }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+    }
+
+    .footer__contact-item .icon {
+      font-size: 1.1rem;
+      margin-top: 2px;
+    }
+
+    .footer__payment {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .footer__payment-badge {
+      background: rgba(255,255,255,0.08);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray-300);
+    }
+
+    .footer__bottom {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+
+    /* ========================================
+       WHATSAPP FLOATING BUTTON
+       ======================================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .whatsapp-float__tooltip {
+      background: var(--white);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: var(--transition);
+      pointer-events: none;
+    }
+
+    .whatsapp-float:hover .whatsapp-float__tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .whatsapp-float__btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .whatsapp-float__btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float__pulse {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      animation: pulse 2s infinite;
+      right: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    /* ========================================
+       SCROLL TO TOP
+       ======================================== */
+    .scroll-top {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gray-900);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+      z-index: 999;
+      font-size: 1.2rem;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      background: var(--orange-500);
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero__content {
+        max-width: 100%;
+      }
+
+      .hero__subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero__actions {
+        justify-content: center;
+      }
+
+      .hero__trust {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero__image {
+        order: -1;
+      }
+
+      .hero__image-wrapper {
+        max-width: 350px;
+      }
+
+      .hero__floating-card--delivery { left: 10px; bottom: 10px; }
+      .hero__floating-card--rating { right: 10px; top: 20px; }
+
+      .featured__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header__nav { display: none; }
+      .header__cta.desktop { display: none; }
+      .header__mobile-toggle { display: block; }
+
+      .header__nav.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 20px;
+        box-shadow: var(--shadow-lg);
+        gap: 0;
+      }
+
+      .header__nav.mobile-open a {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--gray-100);
+        font-size: 1rem;
+      }
+
+      .header__nav.mobile-open .header__cta {
+        margin-top: 12px;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 100px 0 50px;
+      }
+
+      .hero__title {
+        font-size: 2.2rem;
+      }
+
+      .hero__subtitle {
+        font-size: 1rem;
+      }
+
+      .trust-bar .container {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .categories__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .category-card__visual {
+        height: 160px;
+      }
+
+      .featured__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .product-card__image {
+        height: 120px;
+        font-size: 3rem;
+      }
+
+      .product-card__info {
+        padding: 14px;
+      }
+
+      .steps__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .steps__grid::before {
+        display: none;
+      }
+
+      .why__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .testimonials__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .section {
+        padding: 50px 0;
+      }
+
+      .section__title {
+        font-size: 1.7rem;
+      }
+
+      .promo-banner__title {
+        font-size: 1.5rem;
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .footer__social {
+        justify-content: center;
+      }
+
+      .footer__payment {
+        justify-content: center;
+      }
+
+      .catalog__table th,
+      .catalog__table td {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+      }
+
+      .catalog__table td:last-child {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__title {
+        font-size: 1.8rem;
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .trust-bar .container {
+        grid-template-columns: 1fr;
+      }
+
+      .featured__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__trust {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .hero__floating-card {
+        display: none;
+      }
+
+      .catalog__tab {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* ========================================
+       UTILITIES
+       ======================================== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ========================================
+       VET & SANITARIOS HIGHLIGHT
+       ======================================== */
+    .catalog__tab--vet {
+      background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+      border-color: var(--green-500);
+      color: var(--green-700);
+      position: relative;
+    }
+
+    .catalog__tab--vet::after {
+      content: 'NUEVO';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #FF5722;
+      color: white;
+      font-size: 0.6rem;
+      padding: 2px 6px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+    }
+
+    .catalog__tab--vet.active {
+      background: var(--green-600);
+      border-color: var(--green-600);
+      color: var(--white);
+    }
+
+    .vet-highlight {
+      background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 30%, #E8F5E9 100%);
+      border: 2px solid var(--green-500);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .vet-highlight .catalog__table thead {
+      background: linear-gradient(135deg, var(--green-600), var(--green-700));
+    }
+
+    .vet-section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(76,175,80,0.08);
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--green-700);
+      border-bottom: 1px solid rgba(76,175,80,0.15);
+    }
+
+    .catalog__table .product-desc {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      font-weight: 500;
+      display: block;
+      margin-top: 2px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ========================================
+       HEADER
+       ======================================== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="header__logo" aria-label="Al Toque Raciones - Inicio">
+        <img src="diseño/LOGO SIN FONDO.png" alt="Al Toque Raciones" width="50" height="50">
+        <span class="header__logo-text"><span>Al Toque</span> Raciones</span>
+      </a>
+
+      <nav class="header__nav" id="mainNav" aria-label="Navegación principal">
+        <a href="#categorias">Categorías</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#catalogo" onclick="setTimeout(()=>switchTab('vet-sanitarios'),300)">Veterinaria</a>
+        <a href="#como-funciona">Cómo comprar</a>
+        <a href="#faq">Preguntas</a>
+        <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20consultar%20por%20raciones" class="header__cta" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedí ahora
+        </a>
+      </nav>
+
+      <button class="header__mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================
+       HERO
+       ======================================== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__badge">
+          🐾 Envío gratis a todo Montevideo
+        </div>
+        <h1 class="hero__title">
+          Alimento de calidad para tu <span>mejor amigo</span>, entregado <span class="green">al toque</span>
+        </h1>
+        <p class="hero__subtitle">
+          Las mejores marcas de raciones para perros y gatos, con envío gratis a domicilio. Pedí por WhatsApp y recibí tu pedido el mismo día.
+        </p>
+        <div class="hero__actions">
+          <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20hacer%20un%20pedido" class="btn btn--whatsapp" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Hacer pedido por WhatsApp
+          </a>
+          <a href="#catalogo" class="btn btn--secondary">
+            Ver catálogo completo
+          </a>
+        </div>
+        <div class="hero__trust">
+          <div class="hero__trust-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 5.5l-4 5a.75.75 0 0 1-1.1.1l-2-2a.75.75 0 1 1 1.1-1.1L6.8 8.8l3.5-4.3a.75.75 0 1 1 1.2 1z"/></svg>
+            Entrega en el día
+          </div>
+          <div class="hero__trust-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 5.5l-4 5a.75.75 0 0 1-1.1.1l-2-2a.75.75 0 1 1 1.1-1.1L6.8 8.8l3.5-4.3a.75.75 0 1 1 1.2 1z"/></svg>
+            +500 clientes felices
+          </div>
+          <div class="hero__trust-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 5.5l-4 5a.75.75 0 0 1-1.1.1l-2-2a.75.75 0 1 1 1.1-1.1L6.8 8.8l3.5-4.3a.75.75 0 1 1 1.2 1z"/></svg>
+            Todas las marcas
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__image">
+        <div class="hero__image-wrapper">
+          <div class="hero__image-blob"></div>
+          <img src="diseño/LOGO SIN FONDO.png" alt="Al Toque Raciones - Alimento para perros y gatos" class="hero__image-main">
+          <div class="hero__floating-card hero__floating-card--delivery">
+            <span class="icon">🚚</span>
+            <div>
+              <div class="text-sm">Envío</div>
+              <div class="text-bold">¡Gratis!</div>
+            </div>
+          </div>
+          <div class="hero__floating-card hero__floating-card--rating">
+            <div>
+              <div class="stars">★★★★★</div>
+              <div class="text-sm">+500 clientes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       TRUST BAR
+       ======================================== -->
+  <section class="trust-bar" aria-label="Beneficios">
+    <div class="container">
+      <div class="trust-bar__item">
+        <div class="trust-bar__icon trust-bar__icon--green">🚚</div>
+        <div>
+          <div class="trust-bar__title">Envío Gratis</div>
+          <div class="trust-bar__text">A domicilio, sin costo extra</div>
+        </div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__icon trust-bar__icon--orange">⚡</div>
+        <div>
+          <div class="trust-bar__title">Entrega Rápida</div>
+          <div class="trust-bar__text">Recibí tu pedido en el día</div>
+        </div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__icon trust-bar__icon--yellow">🎁</div>
+        <div>
+          <div class="trust-bar__title">Regalo Incluido</div>
+          <div class="trust-bar__text">Un obsequio con cada ración</div>
+        </div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__icon trust-bar__icon--green">💳</div>
+        <div>
+          <div class="trust-bar__title">Todos los Medios</div>
+          <div class="trust-bar__text">Crédito, débito, efectivo y transferencia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CATEGORIES
+       ======================================== -->
+  <section class="section" id="categorias">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag">🐾 Categorías</div>
+        <h2 class="section__title">Elegí lo mejor para tu <span>mascota</span></h2>
+        <p class="section__subtitle">Tenemos alimento para todas las edades, tamaños y necesidades. Desde opciones premium hasta económicas.</p>
+      </div>
+      <div class="categories__grid">
+        <a href="#catalogo" class="category-card category-card--dog" onclick="switchTab('perros-adultos')">
+          <div class="category-card__visual">
+            <div class="category-card__emoji">🐕</div>
+          </div>
+          <div class="category-card__content">
+            <h3 class="category-card__title">Raciones para Perros</h3>
+            <p class="category-card__desc">Adultos y cachorros. Las mejores marcas: BioFresh, Equilibrio, Frost, Natural Dog y más.</p>
+            <span class="category-card__btn">Ver productos →</span>
+          </div>
+        </a>
+        <a href="#catalogo" class="category-card category-card--cat" onclick="switchTab('gatos')">
+          <div class="category-card__visual">
+            <div class="category-card__emoji">🐈</div>
+          </div>
+          <div class="category-card__content">
+            <h3 class="category-card__title">Raciones para Gatos</h3>
+            <p class="category-card__desc">Adultos y castrados. Pro Plan, Frost, Equilibrio, Nero Cat y opciones para todas las necesidades.</p>
+            <span class="category-card__btn">Ver productos →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FEATURED PRODUCTS
+       ======================================== -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag">⭐ Más vendidos</div>
+        <h2 class="section__title">Los favoritos de nuestros <span>clientes</span></h2>
+        <p class="section__subtitle">Los productos que más eligen los dueños de mascotas. Calidad garantizada y los mejores precios.</p>
+      </div>
+      <div class="featured__grid">
+        <div class="product-card">
+          <span class="product-card__badge product-card__badge--popular">Más vendido</span>
+          <div class="product-card__image">🐕<span class="product-card__type-icon">🏆</span></div>
+          <div class="product-card__info">
+            <div class="product-card__brand">Equilibrio</div>
+            <div class="product-card__name">Equilibrio Pollo</div>
+            <div class="product-card__weight">Adulto · 15+3 kg (18 kg)</div>
+            <div class="product-card__footer">
+              <div class="product-card__price">$3.400</div>
+              <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20pedir%20Equilibrio%20Pollo%2018kg" class="product-card__action" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <span class="product-card__badge product-card__badge--premium">Super Premium</span>
+          <div class="product-card__image">🐕<span class="product-card__type-icon">✨</span></div>
+          <div class="product-card__info">
+            <div class="product-card__brand">BioFresh</div>
+            <div class="product-card__name">BioFresh Medianos</div>
+            <div class="product-card__weight">Adulto · 15 kg · Ingredientes frescos</div>
+            <div class="product-card__footer">
+              <div class="product-card__price">$4.200</div>
+              <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20pedir%20BioFresh%20Medianos" class="product-card__action" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <span class="product-card__badge product-card__badge--popular">Más vendido</span>
+          <div class="product-card__image">🐈<span class="product-card__type-icon">🏆</span></div>
+          <div class="product-card__info">
+            <div class="product-card__brand">Pro Plan</div>
+            <div class="product-card__name">Pro Plan Adult Cat</div>
+            <div class="product-card__weight">Adulto · 7.5 kg</div>
+            <div class="product-card__footer">
+              <div class="product-card__price">$3.400</div>
+              <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20pedir%20Pro%20Plan%20Gato%207.5kg" class="product-card__action" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <span class="product-card__badge product-card__badge--economico">Combo</span>
+          <div class="product-card__image">🐕<span class="product-card__type-icon">📦</span></div>
+          <div class="product-card__info">
+            <div class="product-card__brand">Lager</div>
+            <div class="product-card__name">Lager Premium Combo</div>
+            <div class="product-card__weight">Adulto · 22 kg + 10 kg regalo</div>
+            <div class="product-card__footer">
+              <div class="product-card__price">$2.490</div>
+              <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20pedir%20Lager%20Premium%20Combo%2022%2B10kg" class="product-card__action" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CATALOG
+       ======================================== -->
+  <section class="section" id="catalogo">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag section__tag--green">📋 Catálogo completo</div>
+        <h2 class="section__title">Todos nuestros <span>productos y precios</span></h2>
+        <p class="section__subtitle">Encontrá la ración ideal para tu mascota. Si no ves la marca o el peso que buscás, consultanos.</p>
+      </div>
+
+      <div class="catalog__tabs" role="tablist">
+        <button class="catalog__tab active" onclick="switchTab('perros-adultos')" role="tab" aria-selected="true" data-tab="perros-adultos">🐕 Perros Adultos</button>
+        <button class="catalog__tab" onclick="switchTab('cachorros')" role="tab" aria-selected="false" data-tab="cachorros">🐶 Cachorros</button>
+        <button class="catalog__tab" onclick="switchTab('gatos')" role="tab" aria-selected="false" data-tab="gatos">🐈 Gatos</button>
+        <button class="catalog__tab" onclick="switchTab('accesorios')" role="tab" aria-selected="false" data-tab="accesorios">🧹 Accesorios</button>
+        <button class="catalog__tab catalog__tab--vet" onclick="switchTab('vet-sanitarios')" role="tab" aria-selected="false" data-tab="vet-sanitarios">🏥 Vet y Sanitarios</button>
+      </div>
+
+      <!-- Panel: Perros Adultos -->
+      <div class="catalog__panel active" id="panel-perros-adultos" role="tabpanel">
+        <div class="catalog__table-wrapper">
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Equilibrio Pollo</span></td>
+                <td><span class="product-desc">15+3 kg (18 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Equilibrio Carne</span></td>
+                <td><span class="product-desc">15+3 kg (18 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$2.800</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">BioFresh Gigantes</span></td>
+                <td><span class="product-desc">15 kg · Ingredientes frescos, sin conservantes artificiales</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">BioFresh Medianos</span></td>
+                <td><span class="product-desc">15 kg · Ingredientes frescos, sin conservantes artificiales</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">BioFresh Pequeños</span></td>
+                <td><span class="product-desc">15 kg · Ingredientes frescos, sin conservantes artificiales</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Frost Adulto LB</span></td>
+                <td><span class="product-desc">15 kg · Razas grandes</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Dog Chow Adulto</span></td>
+                <td><span class="product-desc">21 kg · Marca Purina</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$3.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Natural Dog</span></td>
+                <td><span class="product-desc">22 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pedigree Carne</span></td>
+                <td><span class="product-desc">21 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pedigree Razas Pequeñas</span></td>
+                <td><span class="product-desc">21 kg · Croquetas más chicas</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.900</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Lager Premium Combo</span></td>
+                <td><span class="product-desc">22 kg + 10 kg regalo (32 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.490</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Primocao</span></td>
+                <td><span class="product-desc">20+7 kg (27 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.300</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Astro</span></td>
+                <td><span class="product-desc">14+3 kg (17 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$2.000</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Fridy</span></td>
+                <td><span class="product-desc">25 kg · Gran rendimiento</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$1.210</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Keller</span></td>
+                <td><span class="product-desc">22 kg</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$1.300</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Rex</span></td>
+                <td><span class="product-desc">25 kg · Mejor relación precio-peso</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$1.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Toky / Tocky</span></td>
+                <td><span class="product-desc">25 kg</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$999</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">N&D Ancestral Adulto</span></td>
+                <td><span class="product-desc">15 kg · Ultra premium</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$5.000</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">HPM Virbac Adulto</span></td>
+                <td><span class="product-desc">12 kg · Marca veterinaria de prestigio</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$5.000</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pro Plan Adulto Perros</span></td>
+                <td><span class="product-desc">15 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Frost Adulto SB</span></td>
+                <td><span class="product-desc">10.1 kg · Presentación más accesible</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$2.700</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Frost Senior</span></td>
+                <td><span class="product-desc">15 kg · Para perros mayores</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.600</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Balanced Cerdo y Arroz</span></td>
+                <td><span class="product-desc">15+3 kg (18 kg total) · Vitalcan premium</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.600</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Can Feed Adultos</span></td>
+                <td><span class="product-desc">15+3 kg (18 kg total) · Premium accesible</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Maxine Adulto</span></td>
+                <td><span class="product-desc">21 kg · Premium accesible</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.700</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Lager Razas Pequeñas</span></td>
+                <td><span class="product-desc">22 kg · Croquetas más chicas</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.500</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Lager Senior</span></td>
+                <td><span class="product-desc">22 kg · Para perros mayores</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.600</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="catalog__note">Por otras marcas o pesos, consultanos por WhatsApp</p>
+      </div>
+
+      <!-- Panel: Cachorros -->
+      <div class="catalog__panel" id="panel-cachorros" role="tabpanel">
+        <div class="catalog__table-wrapper">
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Equilibrio Cachorro Carne</span></td>
+                <td><span class="product-desc">15+3 kg (18 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">BioFresh Cachorro Gigantes</span></td>
+                <td><span class="product-desc">15 kg · Ingredientes frescos</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">BioFresh Cachorro Medianos</span></td>
+                <td><span class="product-desc">15 kg · Ingredientes frescos</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">BioFresh Cachorro Pequeños</span></td>
+                <td><span class="product-desc">15 kg · Ingredientes frescos</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$4.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Frost Cachorro LB</span></td>
+                <td><span class="product-desc">15 kg · Razas grandes</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Dog Chow Cachorro</span></td>
+                <td><span class="product-desc">21 kg · Marca Purina</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$3.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Dogui Cachorro</span></td>
+                <td><span class="product-desc">21 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Primocao Junior</span></td>
+                <td><span class="product-desc">20 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.800</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Lager Cachorro</span></td>
+                <td><span class="product-desc">22 kg</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$2.300</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Natural Dog Cachorro</span></td>
+                <td><span class="product-desc">14 kg</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$1.800</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="catalog__note">Por otras marcas o pesos, consultanos por WhatsApp</p>
+      </div>
+
+      <!-- Panel: Gatos -->
+      <div class="catalog__panel" id="panel-gatos" role="tabpanel">
+        <div class="catalog__table-wrapper">
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Pro Plan Adult Cat</span></td>
+                <td><span class="product-desc">7.5 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$3.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pro Plan Adult Cat</span></td>
+                <td><span class="product-desc">15 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Super Premium</span></td>
+                <td>$6.000</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Chow Country</span></td>
+                <td><span class="product-desc">15 kg · Marca Purina</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Chow</span></td>
+                <td><span class="product-desc">3 kg · Presentación accesible</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$820</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Frost Gato</span></td>
+                <td><span class="product-desc">7.5 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$3.150</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Equilibrio Gatos</span></td>
+                <td><span class="product-desc">7.5 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$2.000</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Equilibrio Gatos Castrados</span></td>
+                <td><span class="product-desc">7.5 kg · Fórmula para castrados</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$2.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Whiskas</span></td>
+                <td><span class="product-desc">10 kg · Marca icónica</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Nero Cat</span></td>
+                <td><span class="product-desc">20 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Estándar</span></td>
+                <td>$2.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Lager Gato</span></td>
+                <td><span class="product-desc">22 kg</span></td>
+                <td><span class="tier-badge tier-badge--economico">Económico</span></td>
+                <td>$2.600</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Excellent Adult Cat</span></td>
+                <td><span class="product-desc">7.5 kg · Purina premium</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$2.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Frost Kitten</span></td>
+                <td><span class="product-desc">7.5 kg · Gatos cachorro</span></td>
+                <td><span class="tier-badge tier-badge--premium">Premium</span></td>
+                <td>$2.600</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="catalog__note">Por otras marcas o pesos, consultanos por WhatsApp</p>
+      </div>
+
+      <!-- Panel: Accesorios -->
+      <div class="catalog__panel" id="panel-accesorios" role="tabpanel">
+        <div class="catalog__table-wrapper">
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Sanitario Pellets</span></td>
+                <td><span class="product-desc">15 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Sanitario</span></td>
+                <td>$250</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Piedras para gato</span></td>
+                <td><span class="product-desc">~2 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Sanitario</span></td>
+                <td>$250</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Dentastix Razas Medianas</span></td>
+                <td><span class="product-desc">Snack dental · Alta demanda</span></td>
+                <td><span class="tier-badge tier-badge--premium">Snack</span></td>
+                <td>$1.350</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Churu Sticks Gatos</span></td>
+                <td><span class="product-desc">Snack cremoso · 3 variedades</span></td>
+                <td><span class="tier-badge tier-badge--premium">Snack</span></td>
+                <td>$1.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Huesos de Lonja</span></td>
+                <td><span class="product-desc">Snacks naturales · Pack 6 unidades</span></td>
+                <td><span class="tier-badge tier-badge--standard">Snack</span></td>
+                <td>$900</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="catalog__note">Consultanos por más accesorios y productos de higiene</p>
+      </div>
+
+      <!-- Panel: Vet y Sanitarios (DESTACADO) -->
+      <div class="catalog__panel" id="panel-vet-sanitarios" role="tabpanel">
+        <div class="vet-highlight">
+          <!-- Antipulgas -->
+          <div class="vet-section-header">💊 Antipulgas — Comprimidos</div>
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">NexGard</span></td>
+                <td><span class="product-desc">2 a 4 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$380</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard</span></td>
+                <td><span class="product-desc">4 a 10 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$430</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard</span></td>
+                <td><span class="product-desc">10 a 25 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$530</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard</span></td>
+                <td><span class="product-desc">25 a 50 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$750</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard Spectra</span></td>
+                <td><span class="product-desc">XS 2-3.5 kg · Premium</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$490</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard Spectra</span></td>
+                <td><span class="product-desc">S 3.5-7 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$600</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard Spectra</span></td>
+                <td><span class="product-desc">M 7-15 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$770</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard Spectra</span></td>
+                <td><span class="product-desc">L 15-30 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$840</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">NexGard Spectra</span></td>
+                <td><span class="product-desc">XL 30-60 kg</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$950</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Bravecto</span></td>
+                <td><span class="product-desc">2 a 4 kg · 3 meses protección</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$390</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Bravecto</span></td>
+                <td><span class="product-desc">4 a 10 kg · 3 meses protección</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$440</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Bravecto</span></td>
+                <td><span class="product-desc">10 a 20 kg · 3 meses protección</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$520</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Bravecto</span></td>
+                <td><span class="product-desc">20 a 40 kg · 3 meses protección</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$720</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Supraline (Gato)</span></td>
+                <td><span class="product-desc">Comprimido x1</span></td>
+                <td><span class="tier-badge tier-badge--premium">Antipulgas</span></td>
+                <td>$380</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Pipetas -->
+          <div class="vet-section-header">🧴 Pipetas</div>
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal</span></td>
+                <td><span class="product-desc">Hasta 5 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$300</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal</span></td>
+                <td><span class="product-desc">5 a 10 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$310</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal</span></td>
+                <td><span class="product-desc">10 a 25 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$390</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal</span></td>
+                <td><span class="product-desc">25 a 40 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$480</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal</span></td>
+                <td><span class="product-desc">+40 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$620</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal Gato</span></td>
+                <td><span class="product-desc">Gato -4 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$260</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Pipeta Dominal Gato</span></td>
+                <td><span class="product-desc">Gato +4 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Pipeta</span></td>
+                <td>$295</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Revolution</span></td>
+                <td><span class="product-desc">Gatos · Muy buscado</span></td>
+                <td><span class="tier-badge tier-badge--premium">Pipeta</span></td>
+                <td>$780</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Collares -->
+          <div class="vet-section-header">🎀 Collares Antipulgas</div>
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Collar Dominal</span></td>
+                <td><span class="product-desc">Cachorro 0-5 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Collar</span></td>
+                <td>$530</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Collar Dominal</span></td>
+                <td><span class="product-desc">Medianos 5-15 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Collar</span></td>
+                <td>$560</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Collar Dominal</span></td>
+                <td><span class="product-desc">Grande 15-40 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Collar</span></td>
+                <td>$700</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Collar Dominal</span></td>
+                <td><span class="product-desc">Extra Grande +40 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Collar</span></td>
+                <td>$820</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Collar Dominal Gato</span></td>
+                <td><span class="product-desc">Gato</span></td>
+                <td><span class="tier-badge tier-badge--standard">Collar</span></td>
+                <td>$500</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Arenas -->
+          <div class="vet-section-header">🐱 Arenas y Sanitarios</div>
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Cat Litter Bentonita</span></td>
+                <td><span class="product-desc">Funda 4x4 kg (16 kg total) · Varios aromas: lavanda, limón, rosa, sin aroma</span></td>
+                <td><span class="tier-badge tier-badge--standard">Arena</span></td>
+                <td>$1.150</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Litter Bentonita 8kg x2</span></td>
+                <td><span class="product-desc">Funda 2x8 kg (16 kg total)</span></td>
+                <td><span class="tier-badge tier-badge--standard">Arena</span></td>
+                <td>$1.080</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Litter Bentonita</span></td>
+                <td><span class="product-desc">Bolsa 20 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Arena</span></td>
+                <td>$1.200</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Litter Bentonita</span></td>
+                <td><span class="product-desc">Bolsa 24 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Arena</span></td>
+                <td>$1.450</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Sand Silica Gel</span></td>
+                <td><span class="product-desc">Caja 8x3.8 Lt · Premium</span></td>
+                <td><span class="tier-badge tier-badge--premium">Arena</span></td>
+                <td>$2.100</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Cat Litter Tofu</span></td>
+                <td><span class="product-desc">Caja 8x2.5 kg · Ecológica</span></td>
+                <td><span class="tier-badge tier-badge--premium">Arena</span></td>
+                <td>$3.400</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Organicat Diatomea</span></td>
+                <td><span class="product-desc">Funda 10x2 kg · Natural</span></td>
+                <td><span class="tier-badge tier-badge--standard">Arena</span></td>
+                <td>$950</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Organicat</span></td>
+                <td><span class="product-desc">7 kg</span></td>
+                <td><span class="tier-badge tier-badge--standard">Arena</span></td>
+                <td>$300</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Lager Sanitario</span></td>
+                <td><span class="product-desc">2 kg x6 unidades · Suelto $200/u</span></td>
+                <td><span class="tier-badge tier-badge--economico">Arena</span></td>
+                <td>$1.100</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Casillas -->
+          <div class="vet-section-header">🏠 Casillas para Perros</div>
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Casilla Perro N°3</span></td>
+                <td><span class="product-desc">60x42x40 cm · Perros chicos</span></td>
+                <td><span class="tier-badge tier-badge--standard">Casilla</span></td>
+                <td>$1.450</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Casilla Perro N°4</span></td>
+                <td><span class="product-desc">67x46x41 cm</span></td>
+                <td><span class="tier-badge tier-badge--standard">Casilla</span></td>
+                <td>$1.900</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Casilla Perro N°5</span></td>
+                <td><span class="product-desc">74x56x54 cm</span></td>
+                <td><span class="tier-badge tier-badge--standard">Casilla</span></td>
+                <td>$2.700</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Casilla Perro N°6</span></td>
+                <td><span class="product-desc">84x67x61 cm · Perros grandes</span></td>
+                <td><span class="tier-badge tier-badge--standard">Casilla</span></td>
+                <td>$3.600</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Otros -->
+          <div class="vet-section-header">🔧 Otros Productos</div>
+          <table class="catalog__table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="product-name">Shampoo Dominal</span></td>
+                <td><span class="product-desc">250 ml</span></td>
+                <td><span class="tier-badge tier-badge--standard">Higiene</span></td>
+                <td>$450</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Appryl</span></td>
+                <td><span class="product-desc">Caja x240 comprimidos</span></td>
+                <td><span class="tier-badge tier-badge--standard">Salud</span></td>
+                <td>$3.600</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Curamic</span></td>
+                <td><span class="product-desc">440 ml</span></td>
+                <td><span class="tier-badge tier-badge--standard">Salud</span></td>
+                <td>$420</td>
+              </tr>
+              <tr>
+                <td><span class="product-name">Bandeja sanitaria gato</span></td>
+                <td><span class="product-desc">58x38x14 cm</span></td>
+                <td><span class="tier-badge tier-badge--standard">Accesorio</span></td>
+                <td>$330</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="catalog__note">Todos los precios incluyen envío gratis. Consultanos por más productos veterinarios.</p>
+      </div>
+
+      <div class="catalog__cta">
+        <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20hacer%20un%20pedido%20del%20cat%C3%A1logo" class="btn btn--primary" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedí tu ración ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       HOW IT WORKS
+       ======================================== -->
+  <section class="section section--green" id="como-funciona">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag section__tag--green">📦 Super fácil</div>
+        <h2 class="section__title">Comprar es así de <span>simple</span></h2>
+        <p class="section__subtitle">En 3 pasos tenés la ración de tu mascota en la puerta de tu casa.</p>
+      </div>
+      <div class="steps__grid">
+        <div class="step-card">
+          <div class="step-card__number">📱</div>
+          <h3 class="step-card__title">1. Escribinos</h3>
+          <p class="step-card__text">Mandanos un WhatsApp con lo que necesitás. Te asesoramos si tenés dudas sobre marcas o tamaños.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__number">✅</div>
+          <h3 class="step-card__title">2. Confirmamos</h3>
+          <p class="step-card__text">Te confirmamos el pedido, coordinamos la entrega y elegís cómo pagar. Aceptamos todos los medios.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__number">🚚</div>
+          <h3 class="step-card__title">3. Te lo llevamos</h3>
+          <p class="step-card__text">Recibís tu ración en la puerta de tu casa, con envío gratis y un regalo incluido. ¡Al toque!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       WHY US
+       ======================================== -->
+  <section class="section" id="por-que">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag">💪 Nuestros diferenciales</div>
+        <h2 class="section__title">¿Por qué elegir <span>Al Toque</span>?</h2>
+        <p class="section__subtitle">No somos solo una tienda de raciones. Somos tu aliado en el cuidado de tu mascota.</p>
+      </div>
+      <div class="why__grid">
+        <div class="why-card">
+          <div class="why-card__icon">🚀</div>
+          <h3 class="why-card__title">Velocidad Real</h3>
+          <p class="why-card__text">Respondemos rápido y entregamos en el día. No te dejamos esperando ni a vos ni a tu mascota.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🤝</div>
+          <h3 class="why-card__title">Atención Personalizada</h3>
+          <p class="why-card__text">Te asesoramos según la edad, tamaño y necesidades de tu mascota. No vendemos por vender.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🚚</div>
+          <h3 class="why-card__title">Envío Siempre Gratis</h3>
+          <p class="why-card__text">Sin costo de envío, sin mínimo de compra, sin letra chica. El precio que ves es el que pagás.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🎁</div>
+          <h3 class="why-card__title">Regalos con Cada Pedido</h3>
+          <p class="why-card__text">Cada ración viene con un obsequio para tu mascota. Porque se merece un mimo extra.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">💰</div>
+          <h3 class="why-card__title">Los Mejores Precios</h3>
+          <p class="why-card__text">Opciones desde $999 hasta super premium. Hay una ración ideal para cada bolsillo y cada mascota.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">💳</div>
+          <h3 class="why-card__title">Pagá Como Quieras</h3>
+          <p class="why-card__text">Efectivo, transferencia, débito o crédito. Elegí el método que te quede más cómodo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       TESTIMONIALS
+       ======================================== -->
+  <section class="section section--warm" id="testimonios">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag section__tag--green">⭐ Testimonios</div>
+        <h2 class="section__title">Lo que dicen nuestros <span>clientes</span></h2>
+        <p class="section__subtitle">Más de 500 familias ya confían en Al Toque Raciones para alimentar a sus mascotas.</p>
+      </div>
+      <div class="testimonials__grid">
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"</div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">Pedí por primera vez y me sorprendió la rapidez. En menos de 2 horas tenía la ración en casa. Excelente atención y el regalo fue un detalle hermoso.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">M</div>
+            <div>
+              <div class="testimonial-card__name">María G.</div>
+              <div class="testimonial-card__pet">🐕 Dueña de Rocky</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"</div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">Siempre compro BioFresh para mi gata y acá tienen el mejor precio. Además me asesoran re bien cuando tengo dudas. Los recomiendo 100%.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">S</div>
+            <div>
+              <div class="testimonial-card__name">Sebastián R.</div>
+              <div class="testimonial-card__pet">🐈 Dueño de Luna</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"</div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">Llevo meses comprando y nunca tuve un problema. Responden al toque, envío gratis y siempre con un regalito. Ya somos clientes fijos.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">L</div>
+            <div>
+              <div class="testimonial-card__name">Laura M.</div>
+              <div class="testimonial-card__pet">🐕 Dueña de Toby y Max</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PROMO BANNER
+       ======================================== -->
+  <section class="promo-banner">
+    <div class="container">
+      <div class="promo-banner__icon">🎁🐾</div>
+      <h2 class="promo-banner__title">¡Tu mascota se merece lo mejor!</h2>
+      <p class="promo-banner__text">Hacé tu primer pedido hoy y recibí envío gratis + un regalo sorpresa con tu ración. Sin compromisos.</p>
+      <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20hacer%20mi%20primer%20pedido%20%F0%9F%90%BE" class="btn btn--whatsapp" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quiero hacer mi pedido
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FAQ
+       ======================================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__tag">❓ Preguntas frecuentes</div>
+        <h2 class="section__title">¿Tenés <span>dudas</span>?</h2>
+        <p class="section__subtitle">Estas son las preguntas que más nos hacen. Si no encontrás la tuya, escribinos.</p>
+      </div>
+      <div class="faq__list">
+        <div class="faq-item">
+          <button class="faq-item__question" onclick="toggleFaq(this)">
+            ¿El envío es realmente gratis?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-inner">
+              Sí, el envío es 100% gratis a domicilio. No hay costo oculto ni mínimo de compra. El precio que ves en el catálogo es el precio final que pagás.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" onclick="toggleFaq(this)">
+            ¿Cuánto demora la entrega?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-inner">
+              Hacemos entregas en el día para pedidos confirmados temprano. Si pedís por la tarde, coordinamos para que llegue lo antes posible, generalmente en menos de 24 horas.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" onclick="toggleFaq(this)">
+            ¿Qué medios de pago aceptan?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-inner">
+              Aceptamos efectivo, transferencia bancaria, tarjeta de débito y tarjeta de crédito. Elegí el que te quede más cómodo al momento de la entrega.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" onclick="toggleFaq(this)">
+            ¿Qué regalo viene con la ración?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-inner">
+              Cada pedido incluye un obsequio sorpresa para tu mascota. Puede ser un snack, un juguete o un accesorio. ¡Es nuestra forma de agradecer tu confianza!
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" onclick="toggleFaq(this)">
+            ¿Puedo pedir una marca que no está en la lista?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-inner">
+              ¡Por supuesto! Nuestro catálogo tiene las marcas más pedidas, pero podemos conseguir otras marcas y pesos a pedido. Escribinos por WhatsApp y te cotizamos.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER
+       ======================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name"><span>Al Toque</span> Raciones</div>
+          <p class="footer__brand-desc">Alimento de calidad para tus mascotas. Envío gratis, atención personalizada y los mejores precios de Uruguay.</p>
+          <div class="footer__social">
+            <a href="https://www.instagram.com/altoqueraciones.uy" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/59898623158" class="footer__social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__heading">Navegación</h3>
+          <div class="footer__links">
+            <a href="#categorias">Categorías</a>
+            <a href="#catalogo">Catálogo y precios</a>
+            <a href="#como-funciona">Cómo comprar</a>
+            <a href="#por-que">Nosotros</a>
+            <a href="#faq">Preguntas frecuentes</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__heading">Contacto</h3>
+          <div class="footer__contact-item">
+            <span class="icon">📱</span>
+            <div>
+              <a href="https://wa.me/59898623158" target="_blank" rel="noopener">+598 98 623 158</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <span class="icon">📷</span>
+            <div>
+              <a href="https://www.instagram.com/altoqueraciones.uy" target="_blank" rel="noopener">@altoqueraciones.uy</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <span class="icon">🕐</span>
+            <div>Lunes a Sábado<br>9:00 - 20:00</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__heading">Medios de pago</h3>
+          <div class="footer__payment">
+            <span class="footer__payment-badge">💳 Crédito</span>
+            <span class="footer__payment-badge">💳 Débito</span>
+            <span class="footer__payment-badge">💵 Efectivo</span>
+            <span class="footer__payment-badge">🏦 Transferencia</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2025 Al Toque Raciones. Todos los derechos reservados. Hecho con ❤️ en Uruguay.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================
+       WHATSAPP FLOATING BUTTON
+       ======================================== -->
+  <div class="whatsapp-float">
+    <span class="whatsapp-float__tooltip">¿Necesitás ayuda? Escribinos</span>
+    <div class="whatsapp-float__pulse"></div>
+    <a href="https://wa.me/59898623158?text=Hola!%20Quiero%20consultar%20por%20raciones%20%F0%9F%90%BE" class="whatsapp-float__btn" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">↑</button>
+
+  <!-- ========================================
+       JAVASCRIPT
+       ======================================== -->
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mainNav = document.getElementById('mainNav');
+    mobileToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('mobile-open');
+    });
+
+    // Close mobile menu on link click
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('mobile-open');
+      });
+    });
+
+    // Catalog tabs
+    function switchTab(tabName) {
+      document.querySelectorAll('.catalog__tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.tab === tabName);
+        tab.setAttribute('aria-selected', tab.dataset.tab === tabName);
+      });
+      document.querySelectorAll('.catalog__panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'panel-' + tabName);
+      });
+    }
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('open'));
+      // Open clicked (if it wasn't already open)
+      if (!wasOpen) {
+        item.classList.add('open');
+      }
+    }
+
+    // Scroll to top
+    document.getElementById('scrollTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const headerHeight = header.offsetHeight;
+          const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.category-card, .product-card, .step-card, .why-card, .testimonial-card, .faq-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
