@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Bloquear archivos innecesarios para SEO
+Disallow: /diseño/
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Sitemap
+Sitemap: https://altoqueraciones.com/sitemap.xml
