@@ -1,0 +1,63 @@
+# ============================================================
+# altoqueraciones.com — .htaccess
+# SEO: redirects 301 + performance + security headers
+# ============================================================
+
+# -------- Forzar HTTPS + www canónico (sin www) --------
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^www\.altoqueraciones\.com$ [NC]
+RewriteRule ^(.*)$ https://altoqueraciones.com/$1 [L,R=301]
+
+# -------- REDIRECTS 301 SEO --------
+# URLs legacy → nuevas landings optimizadas (transferencia de link equity)
+Redirect 301 /comida-natural-perros.html      /raciones-perros-uruguay.html
+Redirect 301 /comida-natural-gatos.html       /raciones-gatos-uruguay.html
+Redirect 301 /desparasitantes-perros.html     /antipulgas-perros-uruguay.html
+Redirect 301 /pipetas-perros.html             /antipulgas-perros-uruguay.html
+
+# Consolidación por canibalización
+Redirect 301 /pipetas-perros-uruguay.html     /antipulgas-perros-uruguay.html
+Redirect 301 /alimento-gatos-montevideo.html  /raciones-gatos-uruguay.html
+
+# -------- CACHE STATIC ASSETS --------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# -------- COMPRESSION (gzip) --------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# -------- SECURITY HEADERS --------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# -------- ERROR PAGES --------
+ErrorDocument 404 /404.html
+
+# -------- MIME TYPES (manifest PWA + WebP fallback) --------
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+
+# -------- DEFAULT CHARSET --------
+AddDefaultCharset UTF-8
