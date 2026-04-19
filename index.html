@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raciones para Perros y Gatos en Uruguay | Envío Gratis Al Toque Raciones</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0E5C36">
   <meta name="description" content="Raciones para perros y gatos en Uruguay con envío gratis en Montevideo y entrega el mismo día. BioFresh, Equilibrio, Pro Plan, NexGard y más. Pedí por WhatsApp.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://altoqueraciones.com/">
@@ -3360,76 +3366,4 @@
     // Mobile menu toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const mainNav = document.getElementById('mainNav');
-    mobileToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('mobile-open');
-    });
-
-    // Close mobile menu on link click
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('mobile-open');
-      });
-    });
-
-    // Catalog tabs
-    function switchTab(tabName) {
-      document.querySelectorAll('.catalog__tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.tab === tabName);
-        tab.setAttribute('aria-selected', tab.dataset.tab === tabName);
-      });
-      document.querySelectorAll('.catalog__panel').forEach(panel => {
-        panel.classList.toggle('active', panel.id === 'panel-' + tabName);
-      });
-    }
-
-    // FAQ accordion
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const wasOpen = item.classList.contains('open');
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('open'));
-      // Open clicked (if it wasn't already open)
-      if (!wasOpen) {
-        item.classList.add('open');
-      }
-    }
-
-    // Scroll to top
-    document.getElementById('scrollTop').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          const headerHeight = header.offsetHeight;
-          const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
-          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        }
-      });
-    });
-
-    // Intersection Observer for scroll animations
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.category-card, .product-card, .step-card, .why-card, .testimonial-card, .faq-item').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-  </script>
-</body>
-</html>
+    mobileToggle.addEventListener('click

@@ -1,0 +1,13 @@
+{
+  "name": "Al Toque Raciones",
+  "short_name": "Al Toque",
+  "description": "Raciones para perros y gatos en Uruguay con envío gratis en Montevideo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF9E6",
+  "theme_color": "#0E5C36",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
