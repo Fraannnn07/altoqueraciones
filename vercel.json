@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/comida-natural-perros.html",
+      "destination": "/raciones-perros-uruguay.html",
+      "permanent": true
+    },
+    {
+      "source": "/comida-natural-gatos.html",
+      "destination": "/raciones-gatos-uruguay.html",
+      "permanent": true
+    },
+    {
+      "source": "/desparasitantes-perros.html",
+      "destination": "/antipulgas-perros-uruguay.html",
+      "permanent": true
+    },
+    {
+      "source": "/pipetas-perros.html",
+      "destination": "/pipetas-perros-uruguay.html",
+      "permanent": true
+    }
+  ]
+}

@@ -1,10 +1,7 @@
 User-agent: *
 Allow: /
 
-# Bloquear archivos innecesarios para SEO
-Disallow: /diseño/
-Disallow: /*.js$
-Disallow: /*.css$
+# Permitir CSS/JS para que Googlebot pueda renderizar la página
+# (Google penaliza bloquear recursos necesarios para render)
 
-# Sitemap
 Sitemap: https://altoqueraciones.com/sitemap.xml
