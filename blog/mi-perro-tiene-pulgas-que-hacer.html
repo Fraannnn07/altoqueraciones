@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18107703952"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18107703952');
+
+    // Trackear clics en botones de WhatsApp como conversion "Compra"
+    document.addEventListener('DOMContentLoaded', function() {
+      var waLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp"]');
+      waLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18107703952/0iJNCPy-y58cEJDFtrpD',
+            'transaction_id': ''
+          });
+        });
+      });
+    });
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Perro Tiene Pulgas: Qué Hacer Paso a Paso | Uruguay</title>
