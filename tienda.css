@@ -31,7 +31,7 @@
   gap: 8px;
 }
 
-.product-card {
+.atr-card {
   background: #fff;
   border: 1px solid var(--gray-200, #e7e7e7);
   border-radius: 16px;
@@ -42,32 +42,32 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.04);
   transition: transform .15s, box-shadow .15s;
 }
-.product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,.09); }
+.atr-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,.09); }
 
-.product-card__img {
+.atr-card__img {
   width: 100%; aspect-ratio: 1/1; object-fit: cover;
   border-radius: 12px; background: var(--gray-100, #f4f4f4);
 }
-.product-card__badge {
+.atr-card__badge {
   align-self: flex-start;
   font-size: .72rem; font-weight: 700; letter-spacing: .02em;
   padding: 3px 10px; border-radius: 999px;
   background: #eef7ee; color: #2e7d32;
 }
-.product-card__badge--premium { background: #fff3e0; color: #c77700; }
-.product-card__badge--economico { background: #eef2ff; color: #4257b2; }
-.product-card__name {
+.atr-card__badge--premium { background: #fff3e0; color: #c77700; }
+.atr-card__badge--economico { background: #eef2ff; color: #4257b2; }
+.atr-card__name {
   font-family: 'Quicksand', sans-serif; font-weight: 700;
   font-size: 1.05rem; color: var(--ink, #1f2937); line-height: 1.25;
 }
-.product-card__desc { font-size: .85rem; color: var(--gray-600, #666); flex: 1; line-height: 1.4; }
-.product-card__price {
+.atr-card__desc { font-size: .85rem; color: var(--gray-600, #666); flex: 1; line-height: 1.4; }
+.atr-card__price {
   font-size: 1.35rem; font-weight: 800; color: var(--green, #1aa64b);
   font-family: 'Quicksand', sans-serif;
 }
-.product-card__price small { font-size: .8rem; font-weight: 600; color: var(--gray-500, #888); }
+.atr-card__price small { font-size: .8rem; font-weight: 600; color: var(--gray-500, #888); }
 
-.product-card__actions { display: flex; gap: 8px; align-items: center; }
+.atr-card__actions { display: flex; gap: 8px; align-items: center; }
 .qty-stepper { display: flex; align-items: center; border: 1px solid var(--gray-200,#e0e0e0); border-radius: 10px; overflow: hidden; }
 .qty-stepper button {
   width: 32px; height: 36px; border: none; background: var(--gray-100,#f4f4f4);
@@ -163,6 +163,6 @@
 
 @media (max-width: 520px) {
   .store-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-  .product-card { padding: 12px; }
+  .atr-card { padding: 12px; }
   .cart-fab { right: 14px; bottom: 84px; }
 }

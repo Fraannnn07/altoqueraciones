@@ -110,24 +110,24 @@
   }
 
   function cardHtml(p) {
-    var badgeClass = 'product-card__badge';
-    if (p.tier === 'premium') badgeClass += ' product-card__badge--premium';
-    else if (p.tier === 'economico') badgeClass += ' product-card__badge--economico';
+    var badgeClass = 'atr-card__badge';
+    if (p.tier === 'premium') badgeClass += ' atr-card__badge--premium';
+    else if (p.tier === 'economico') badgeClass += ' atr-card__badge--economico';
 
     var img = p.image_url
-      ? '<img class="product-card__img" src="' + esc(p.image_url) + '" alt="' + esc(p.name) +
+      ? '<img class="atr-card__img" src="' + esc(p.image_url) + '" alt="' + esc(p.name) +
         '" loading="lazy">'
       : '';
 
     return '' +
-      '<div class="product-card" data-id="' + p.id + '">' +
+      '<div class="atr-card" data-id="' + p.id + '">' +
         img +
         (p.badge ? '<span class="' + badgeClass + '">' + esc(p.badge) + '</span>' : '') +
-        '<div class="product-card__name">' + esc(p.name) + '</div>' +
-        '<div class="product-card__desc">' + esc(p.description || '') + '</div>' +
-        '<div class="product-card__price">' + money(p.price) +
+        '<div class="atr-card__name">' + esc(p.name) + '</div>' +
+        '<div class="atr-card__desc">' + esc(p.description || '') + '</div>' +
+        '<div class="atr-card__price">' + money(p.price) +
           ' <small>envío gratis</small></div>' +
-        '<div class="product-card__actions">' +
+        '<div class="atr-card__actions">' +
           '<div class="qty-stepper">' +
             '<button type="button" data-act="dec" aria-label="Restar">−</button>' +
             '<input type="number" min="1" max="99" value="1" data-qty aria-label="Cantidad">' +
@@ -142,7 +142,7 @@
   function onStoreClick(e) {
     var btn = e.target.closest('button');
     if (!btn) return;
-    var card = e.target.closest('.product-card');
+    var card = e.target.closest('.atr-card');
     if (!card) return;
     var act = btn.getAttribute('data-act');
     var input = card.querySelector('[data-qty]');
