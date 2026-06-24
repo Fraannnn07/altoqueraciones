@@ -211,7 +211,7 @@
 Entregamos el mismo día, pedís por WhatsApp y encima te va regalo en cada compra. Alimento, antipulgas, pipetas, arena y accesorios — todo lo que tu mascota necesita, al toque.
 
 **CTA principal:**
-`[Pedir por WhatsApp →]` (botón verde, ancla a wa.me/598986231580 con mensaje precargado)
+`[Pedir por WhatsApp →]` (botón verde, ancla a wa.me/59898623158 con mensaje precargado)
 
 **CTA secundario:**
 `Ver raciones para perros` · `Ver raciones para gatos`
@@ -340,7 +340,7 @@ En Al Toque Raciones llevamos raciones para perros y gatos a toda Montevideo con
 
 Además de alimento, tenemos todo lo que tu mascota necesita: antipulgas y pipetas NexGard, Bravecto y Dominal, arena sanitaria para gatos, casillas, comederos y accesorios. Te asesoramos por WhatsApp para que elijas la ración ideal según la edad, el peso y la raza de tu perro o gato.
 
-Si estás en Pocitos, Carrasco, Cordón, Centro, Malvín, Punta Carretas, La Blanqueada o cualquier barrio de Montevideo, te llevamos el pedido sin costo y el mismo día. Si estás en el interior, coordinamos envío por encomienda en el día. **Pedí por WhatsApp al +598 98 623 180 y recibilo al toque.**
+Si estás en Pocitos, Carrasco, Cordón, Centro, Malvín, Punta Carretas, La Blanqueada o cualquier barrio de Montevideo, te llevamos el pedido sin costo y el mismo día. Si estás en el interior, coordinamos envío por encomienda en el día. **Pedí por WhatsApp al +598 98 623 158 y recibilo al toque.**
 
 ---
 
@@ -977,7 +977,7 @@ HOME
       "image": "https://altoqueraciones.com/diseño/LOGO.png",
       "logo": "https://altoqueraciones.com/diseño/LOGO%20SIN%20FONDO.png",
       "url": "https://altoqueraciones.com/",
-      "telephone": "+598986231580",
+      "telephone": "+59898623158",
       "priceRange": "$$",
       "description": "Tienda de raciones, antipulgas, pipetas, arena y accesorios para perros y gatos en Uruguay. Envío gratis en Montevideo y entrega el mismo día.",
       "address": {
@@ -1001,7 +1001,7 @@ HOME
       ],
       "sameAs": [
         "https://www.instagram.com/altoqueraciones.uy",
-        "https://wa.me/598986231580"
+        "https://wa.me/59898623158"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -1287,7 +1287,7 @@ Marcalo y ejecutalo ahora mismo, sin esperar al Día 1:
     <h1>{{H1}}</h1>
     ...
   </main>
-  <aside class="sticky-whatsapp"><a href="https://wa.me/598986231580?text=Hola,%20quiero%20hacer%20un%20pedido">WhatsApp: pedí al toque</a></aside>
+  <aside class="sticky-whatsapp"><a href="https://wa.me/59898623158?text=Hola,%20quiero%20hacer%20un%20pedido">WhatsApp: pedí al toque</a></aside>
   <footer><!-- pilares, marcas, FAQ, políticas --></footer>
 </body>
 </html>

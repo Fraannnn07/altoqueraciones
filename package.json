@@ -1,0 +1,17 @@
+{
+  "name": "altoqueraciones",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tienda online Al Toque Raciones - catálogo dinámico, carrito, MercadoPago y panel admin sobre Vercel + Supabase",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "mercadopago": "^2.0.15"
+  }
+}

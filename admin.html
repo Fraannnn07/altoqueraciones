@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel — Al Toque Raciones</title>
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    :root { --green:#1aa64b; --green-dark:#138a3e; --ink:#1f2937; --line:#e5e7eb; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, 'Segoe UI', sans-serif; background:#f4f6f4; color:var(--ink); }
+    header.top { background:#fff; border-bottom:1px solid var(--line); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
+    header.top h1 { font-size:1.15rem; margin:0; }
+    header.top .muted { color:#888; font-size:.85rem; }
+    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
+    button { font-family:inherit; cursor:pointer; }
+    .btn { background:var(--green); color:#fff; border:none; border-radius:8px; padding:9px 16px; font-weight:700; }
+    .btn:hover { background:var(--green-dark); }
+    .btn--sm { padding:5px 10px; font-size:.82rem; border-radius:6px; }
+    .btn--ghost { background:#eef2ef; color:var(--ink); }
+    .btn--danger { background:#fdecea; color:#c0392b; }
+
+    /* login */
+    .login { max-width:360px; margin:12vh auto; background:#fff; padding:32px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,.06); text-align:center; }
+    .login h2 { margin:0 0 18px; }
+    .login input { width:100%; padding:12px; border:1px solid var(--line); border-radius:10px; font-size:1rem; margin-bottom:12px; }
+    .login .err { color:#c0392b; font-size:.88rem; min-height:18px; }
+
+    /* tabs */
+    .tabs { display:flex; gap:8px; margin-bottom:16px; }
+    .tab { background:#fff; border:1px solid var(--line); border-radius:10px; padding:9px 18px; font-weight:700; color:#666; }
+    .tab.active { background:var(--green); color:#fff; border-color:var(--green); }
+    .view { display:none; }
+    .view.active { display:block; }
+
+    /* tabla productos */
+    .toolbar { display:flex; gap:10px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+    .toolbar input, .toolbar select { padding:8px 10px; border:1px solid var(--line); border-radius:8px; }
+    table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.04); }
+    th, td { padding:9px 10px; text-align:left; border-bottom:1px solid var(--line); font-size:.9rem; vertical-align:middle; }
+    th { background:#fafafa; font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; color:#888; }
+    td input, td select { width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:6px; font-size:.88rem; }
+    td.price input { width:90px; }
+    td.actions { white-space:nowrap; }
+    tr.inactive { opacity:.5; }
+    .pill { font-size:.72rem; padding:2px 8px; border-radius:999px; background:#eef7ee; color:#2e7d32; font-weight:700; }
+    .pill--off { background:#fdecea; color:#c0392b; }
+
+    /* pedidos */
+    .order-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:12px; }
+    .order-card__head { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; align-items:baseline; }
+    .order-card__id { font-weight:800; }
+    .order-card__total { font-weight:800; color:var(--green); font-size:1.1rem; }
+    .order-card__meta { color:#666; font-size:.88rem; margin:6px 0; }
+    .order-card__items { margin:8px 0 0; padding-left:18px; color:#444; font-size:.9rem; }
+    .status { font-size:.74rem; padding:2px 10px; border-radius:999px; font-weight:700; }
+    .status--paid { background:#eef7ee; color:#2e7d32; }
+    .status--pending { background:#fff3e0; color:#c77700; }
+    .status--cancelled { background:#fdecea; color:#c0392b; }
+    .hint { color:#888; font-size:.85rem; }
+  </style>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div class="login" id="login">
+    <h2>🔒 Panel Al Toque</h2>
+    <input type="password" id="pwd" placeholder="Contraseña" autocomplete="current-password">
+    <button class="btn" id="loginBtn" style="width:100%">Entrar</button>
+    <p class="err" id="loginErr"></p>
+  </div>
+
+  <!-- APP -->
+  <div id="app" style="display:none">
+    <header class="top">
+      <h1>🐾 Al Toque — Panel</h1>
+      <div>
+        <span class="muted" id="counts"></span>
+        <button class="btn btn--ghost btn--sm" id="logoutBtn">Salir</button>
+      </div>
+    </header>
+    <div class="wrap">
+      <div class="tabs">
+        <button class="tab active" data-view="products">Productos</button>
+        <button class="tab" data-view="orders">Pedidos</button>
+      </div>
+
+      <!-- PRODUCTOS -->
+      <section class="view active" id="view-products">
+        <div class="toolbar">
+          <input id="search" placeholder="Buscar producto…">
+          <select id="filterCat">
+            <option value="">Todas las categorías</option>
+            <option value="perros_adultos">Perros adultos</option>
+            <option value="cachorros">Cachorros</option>
+            <option value="gatos">Gatos</option>
+            <option value="accesorios">Accesorios</option>
+            <option value="vet">Vet y sanitarios</option>
+          </select>
+          <button class="btn btn--sm" id="newBtn">+ Nuevo producto</button>
+          <span class="hint">Editá precio o datos y tocá <b>Guardar</b>. El interruptor da de alta/baja.</span>
+        </div>
+        <table id="prodTable">
+          <thead>
+            <tr>
+              <th>Nombre</th><th>Descripción</th><th>Categoría</th><th>Etiqueta</th>
+              <th>Precio</th><th>Estado</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="prodBody"></tbody>
+        </table>
+      </section>
+
+      <!-- PEDIDOS -->
+      <section class="view" id="view-orders">
+        <div class="toolbar">
+          <select id="filterStatus">
+            <option value="">Todos los pedidos</option>
+            <option value="paid">Pagados</option>
+            <option value="pending">Pendientes</option>
+            <option value="cancelled">Cancelados</option>
+          </select>
+          <button class="btn btn--sm btn--ghost" id="reloadOrders">Actualizar</button>
+        </div>
+        <div id="ordersList"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var PWD_KEY = 'atr_admin_pwd';
+    var pwd = sessionStorage.getItem(PWD_KEY) || '';
+    var products = [];
+
+    function money(n){ return '$' + Number(n||0).toLocaleString('es-UY'); }
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function headers(){ return { 'Content-Type':'application/json', 'x-admin-password': pwd }; }
+
+    function api(path, opts){
+      opts = opts || {};
+      opts.headers = headers();
+      return fetch(path, opts).then(function(r){
+        if (r.status === 401) { logout(); throw new Error('Contraseña incorrecta'); }
+        return r.json().then(function(j){ if(!r.ok) throw new Error(j.error||'Error'); return j; });
+      });
+    }
+
+    // ---------- login ----------
+    var loginEl = document.getElementById('login');
+    var appEl = document.getElementById('app');
+    document.getElementById('loginBtn').addEventListener('click', doLogin);
+    document.getElementById('pwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+
+    function doLogin(){
+      pwd = document.getElementById('pwd').value;
+      var err = document.getElementById('loginErr');
+      err.textContent = '';
+      // Probamos credenciales pidiendo productos.
+      api('/api/admin/products').then(function(j){
+        sessionStorage.setItem(PWD_KEY, pwd);
+        products = j.products || [];
+        showApp();
+      }).catch(function(e){ err.textContent = e.message; });
+    }
+    function logout(){ sessionStorage.removeItem(PWD_KEY); pwd=''; location.reload(); }
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+
+    function showApp(){
+      loginEl.style.display='none';
+      appEl.style.display='block';
+      renderProducts();
+      updateCounts();
+    }
+
+    // ---------- tabs ----------
+    document.querySelectorAll('.tab').forEach(function(t){
+      t.addEventListener('click', function(){
+        document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+        document.querySelectorAll('.view').forEach(function(x){x.classList.remove('active');});
+        t.classList.add('active');
+        document.getElementById('view-'+t.dataset.view).classList.add('active');
+        if (t.dataset.view==='orders') loadOrders();
+      });
+    });
+
+    // ---------- productos ----------
+    var CATS = [['perros_adultos','Perros adultos'],['cachorros','Cachorros'],['gatos','Gatos'],['accesorios','Accesorios'],['vet','Vet y sanitarios']];
+    var TIERS = [['premium','Premium'],['standard','Estándar'],['economico','Económico']];
+
+    document.getElementById('search').addEventListener('input', renderProducts);
+    document.getElementById('filterCat').addEventListener('change', renderProducts);
+    document.getElementById('newBtn').addEventListener('click', addProduct);
+
+    function updateCounts(){
+      var active = products.filter(function(p){return p.active;}).length;
+      document.getElementById('counts').textContent = active + ' activos · ' + products.length + ' productos';
+    }
+
+    function renderProducts(){
+      var q = (document.getElementById('search').value||'').toLowerCase();
+      var cat = document.getElementById('filterCat').value;
+      var rows = products.filter(function(p){
+        if (cat && p.category!==cat) return false;
+        if (q && (p.name+' '+(p.description||'')).toLowerCase().indexOf(q)===-1) return false;
+        return true;
+      });
+      var body = document.getElementById('prodBody');
+      body.innerHTML = rows.map(function(p){
+        return '<tr data-id="'+p.id+'" class="'+(p.active?'':'inactive')+'">'+
+          '<td><input data-f="name" value="'+esc(p.name)+'"></td>'+
+          '<td><input data-f="description" value="'+esc(p.description||'')+'"></td>'+
+          '<td><select data-f="category">'+CATS.map(function(c){return '<option value="'+c[0]+'"'+(p.category===c[0]?' selected':'')+'>'+c[1]+'</option>';}).join('')+'</select></td>'+
+          '<td><input data-f="badge" value="'+esc(p.badge||'')+'" style="width:90px"></td>'+
+          '<td class="price"><input data-f="price" type="number" value="'+p.price+'"></td>'+
+          '<td><span class="pill '+(p.active?'':'pill--off')+'">'+(p.active?'Activo':'Baja')+'</span></td>'+
+          '<td class="actions">'+
+            '<button class="btn btn--sm" data-act="save">Guardar</button> '+
+            '<button class="btn btn--sm btn--ghost" data-act="toggle">'+(p.active?'Dar de baja':'Reactivar')+'</button> '+
+            '<button class="btn btn--sm btn--danger" data-act="del">✕</button>'+
+          '</td></tr>';
+      }).join('');
+    }
+
+    document.getElementById('prodBody').addEventListener('click', function(e){
+      var btn = e.target.closest('button'); if(!btn) return;
+      var tr = e.target.closest('tr'); var id = Number(tr.dataset.id);
+      var act = btn.dataset.act;
+      if (act==='save') saveRow(tr, id);
+      else if (act==='toggle') toggleRow(id);
+      else if (act==='del') delRow(id);
+    });
+
+    function rowData(tr){
+      var d = {};
+      tr.querySelectorAll('[data-f]').forEach(function(el){ d[el.dataset.f] = el.value; });
+      d.price = parseInt(d.price,10)||0;
+      return d;
+    }
+    function saveRow(tr, id){
+      api('/api/admin/products?id='+id, { method:'PATCH', body: JSON.stringify(rowData(tr)) })
+        .then(function(j){ replaceProduct(j.product); flash('Guardado ✓'); })
+        .catch(function(e){ alert(e.message); });
+    }
+    function toggleRow(id){
+      var p = products.find(function(x){return x.id===id;});
+      api('/api/admin/products?id='+id, { method:'PATCH', body: JSON.stringify({ active: !p.active }) })
+        .then(function(j){ replaceProduct(j.product); renderProducts(); updateCounts(); })
+        .catch(function(e){ alert(e.message); });
+    }
+    function delRow(id){
+      if(!confirm('¿Eliminar este producto definitivamente?')) return;
+      api('/api/admin/products?id='+id, { method:'DELETE' })
+        .then(function(){ products = products.filter(function(x){return x.id!==id;}); renderProducts(); updateCounts(); })
+        .catch(function(e){ alert(e.message); });
+    }
+    function addProduct(){
+      api('/api/admin/products', { method:'POST', body: JSON.stringify({ name:'Nuevo producto', category:'perros_adultos', price:0, badge:'', tier:'standard' }) })
+        .then(function(j){ products.unshift(j.product); renderProducts(); updateCounts(); })
+        .catch(function(e){ alert(e.message); });
+    }
+    function replaceProduct(p){
+      var i = products.findIndex(function(x){return x.id===p.id;});
+      if(i>=0) products[i]=p;
+    }
+    function flash(msg){
+      var c = document.getElementById('counts');
+      var prev = c.textContent; c.textContent = msg;
+      setTimeout(function(){ updateCounts(); }, 1200);
+    }
+
+    // ---------- pedidos ----------
+    document.getElementById('reloadOrders').addEventListener('click', loadOrders);
+    document.getElementById('filterStatus').addEventListener('change', loadOrders);
+
+    function loadOrders(){
+      var status = document.getElementById('filterStatus').value;
+      var list = document.getElementById('ordersList');
+      list.innerHTML = '<p class="hint">Cargando…</p>';
+      api('/api/admin/orders'+(status?('?status='+status):'')).then(function(j){
+        var orders = j.orders||[];
+        if(!orders.length){ list.innerHTML='<p class="hint">No hay pedidos.</p>'; return; }
+        list.innerHTML = orders.map(orderCard).join('');
+      }).catch(function(e){ list.innerHTML='<p class="hint">'+esc(e.message)+'</p>'; });
+    }
+    function orderCard(o){
+      var items = (o.order_items||[]).map(function(it){
+        return '<li>'+it.quantity+'× '+esc(it.product_name)+' — '+money(it.unit_price*it.quantity)+'</li>';
+      }).join('');
+      var d = new Date(o.created_at);
+      var fecha = isNaN(d) ? '' : d.toLocaleString('es-UY');
+      return '<div class="order-card">'+
+        '<div class="order-card__head">'+
+          '<span class="order-card__id">Pedido #'+o.id+' <span class="status status--'+o.status+'">'+o.status+'</span></span>'+
+          '<span class="order-card__total">'+money(o.total)+'</span>'+
+        '</div>'+
+        '<div class="order-card__meta">'+esc(o.customer_name)+' · '+esc(o.customer_phone)+
+          (o.customer_address?(' · '+esc(o.customer_address)):'')+' · '+fecha+
+          (o.notes?('<br>📝 '+esc(o.notes)):'')+
+          (o.mp_payment_id?('<br>💳 Pago: '+esc(o.mp_payment_id)):'')+'</div>'+
+        '<ul class="order-card__items">'+items+'</ul>'+
+      '</div>';
+    }
+
+    // ---------- arranque ----------
+    if (pwd) {
+      api('/api/admin/products').then(function(j){ products=j.products||[]; showApp(); })
+        .catch(function(){ /* sesión inválida: queda el login */ });
+    }
+  })();
+  </script>
+</body>
+</html>

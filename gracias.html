@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Gracias por tu pedido — Al Toque Raciones</title>
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    :root { --green:#1aa64b; --green-dark:#138a3e; --ink:#1f2937; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Nunito', system-ui, sans-serif; background: #f6f9f6;
+      color: var(--ink); display: flex; min-height: 100vh; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,.08);
+      max-width: 480px; width: 100%; padding: 40px 32px; text-align: center;
+    }
+    .emoji { font-size: 3.4rem; line-height: 1; margin-bottom: 10px; }
+    h1 { font-size: 1.6rem; margin: 0 0 10px; }
+    p { color: #555; line-height: 1.6; margin: 0 0 8px; }
+    .order { font-weight: 800; color: var(--green); }
+    .btn {
+      display: inline-block; margin-top: 22px; background: var(--green); color: #fff;
+      text-decoration: none; font-weight: 800; padding: 14px 28px; border-radius: 12px;
+      transition: background .15s;
+    }
+    .btn:hover { background: var(--green-dark); }
+    .btn--ghost { background: #eef7ee; color: var(--green); margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="emoji" id="emoji">⏳</div>
+    <h1 id="title">Procesando…</h1>
+    <p id="msg"></p>
+    <p id="orderline"></p>
+    <div>
+      <a class="btn" href="/catalogo.html">Volver a la tienda</a>
+      <a class="btn btn--ghost" id="wa" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var status = params.get('status') || params.get('collection_status') || '';
+      var order = params.get('order') || params.get('external_reference') || '';
+      var WHATSAPP = '59898623158';
+
+      var emoji = document.getElementById('emoji');
+      var title = document.getElementById('title');
+      var msg = document.getElementById('msg');
+      var orderline = document.getElementById('orderline');
+      var wa = document.getElementById('wa');
+
+      var waText = 'Hola! Acabo de hacer el pedido' + (order ? ' #' + order : '') + ' por la web.';
+      wa.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(waText);
+
+      if (status === 'approved' || status === 'success') {
+        emoji.textContent = '✅';
+        title.textContent = '¡Gracias por tu compra!';
+        msg.textContent = 'Tu pago se aprobó correctamente. Ya recibimos tu pedido y nos vamos a contactar para coordinar la entrega.';
+        // Vaciar el carrito recién acá (pago confirmado).
+        try { localStorage.removeItem('atr_cart_v1'); } catch (e) {}
+      } else if (status === 'pending' || status === 'in_process') {
+        emoji.textContent = '⏳';
+        title.textContent = 'Pago pendiente';
+        msg.textContent = 'Tu pago quedó pendiente de acreditación. Cuando se confirme, procesamos tu pedido. Cualquier duda, escribinos.';
+      } else {
+        emoji.textContent = '⚠️';
+        title.textContent = 'El pago no se completó';
+        msg.textContent = 'No se pudo procesar el pago. Podés volver a intentarlo desde la tienda o escribirnos por WhatsApp y lo coordinamos.';
+      }
+      if (order) orderline.innerHTML = 'Pedido <span class="order">#' + order + '</span>';
+    })();
+  </script>
+</body>
+</html>
