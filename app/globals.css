@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --color-brand-orange: #f5891f;
+  --color-brand-orange-dark: #e07a15;
+  --color-brand-orange-light: #fff3e6;
+  --color-brand-green: #4caf50;
+  --color-brand-green-dark: #2e7d32;
+  --color-brand-green-light: #e8f5e9;
+  --color-brand-warm-white: #fffaf5;
+  --color-brand-warm-gray: #fff8f0;
+}
+
+@theme inline {
+  --color-brand-orange: var(--color-brand-orange);
+  --color-brand-orange-dark: var(--color-brand-orange-dark);
+  --color-brand-orange-light: var(--color-brand-orange-light);
+  --color-brand-green: var(--color-brand-green);
+  --color-brand-green-dark: var(--color-brand-green-dark);
+  --color-brand-green-light: var(--color-brand-green-light);
+  --color-brand-warm-white: var(--color-brand-warm-white);
+  --color-brand-warm-gray: var(--color-brand-warm-gray);
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-quicksand);
+}
+
+body {
+  background: var(--color-brand-warm-white);
+  color: #2d2d2d;
+}
