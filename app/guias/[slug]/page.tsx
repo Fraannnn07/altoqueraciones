@@ -14,6 +14,7 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildArticleJsonLd } from '@/lib/seo/jsonld';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { siteConfig } from '@/lib/site-config';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 
 /** Única guía que necesita la tabla de precio/kg en vivo, para no quedar desactualizada. */
@@ -39,7 +40,7 @@ export async function generateMetadata({
   if (!guide) return {};
   const cover = storageUrl(guide.cover_image_path);
   return buildMetadata({
-    title: guide.meta_title || guide.title,
+    title: `${guide.meta_title || guide.title} | ${siteConfig.name}`,
     description: guide.meta_description || guide.excerpt,
     path: `/guias/${guide.slug}/`,
     image: cover ?? undefined,

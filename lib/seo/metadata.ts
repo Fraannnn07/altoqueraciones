@@ -23,7 +23,8 @@ export function buildMetadata({
   const ogImage = image ?? `${siteConfig.url}/og-default.png`;
 
   return {
-    title,
+    // "absolute": los títulos ya llevan el nombre del sitio; sin esto el template del layout lo duplicaba.
+    title: { absolute: title },
     description,
     alternates: { canonical: url },
     robots: noindex
