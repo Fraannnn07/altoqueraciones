@@ -28,6 +28,7 @@ export function formatPricePerKg(priceUyu: number, netWeightKg: number | null | 
 
 /** Marca + nombre, sin duplicar cuando el nombre del producto ya empieza con la marca (ej. "Lager"). */
 export function brandedProductName(brandName: string, productName: string): string {
-  if (productName.toLowerCase().startsWith(brandName.toLowerCase())) return productName;
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (normalize(productName).startsWith(normalize(brandName))) return productName;
   return `${brandName} ${productName}`;
 }

@@ -94,7 +94,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       />
 
       <div className="mx-auto grid max-w-6xl gap-8 px-4 pt-6 md:grid-cols-2">
-        <div className="relative aspect-square overflow-hidden rounded-2xl bg-brand-warm-gray">
+        <div
+          className={`relative overflow-hidden rounded-2xl bg-brand-warm-gray ${
+            primaryImage?.url ? 'aspect-square' : 'aspect-video md:aspect-square'
+          }`}
+        >
           {primaryImage?.url ? (
             <Image
               src={primaryImage.url}

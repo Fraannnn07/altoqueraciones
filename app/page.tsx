@@ -63,7 +63,7 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-4 py-12">
           <div className="flex items-baseline justify-between">
             <h2 className="font-display text-2xl font-bold text-gray-900">Alimentos disponibles</h2>
-            <Link href="/raciones-perros/" className="text-sm font-semibold text-brand-green-dark hover:underline">
+            <Link href="/raciones-perros/" className="inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline">
               Ver todos
             </Link>
           </div>
@@ -95,7 +95,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/envios/"
-            className="mt-4 inline-block text-sm font-semibold text-brand-green-dark hover:underline"
+            className="mt-3 inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline"
           >
             Ver el listado completo de barrios →
           </Link>
@@ -116,7 +116,7 @@ export default async function HomePage() {
         <section className="mx-auto max-w-6xl px-4 py-12">
           <div className="flex items-baseline justify-between">
             <h2 className="font-display text-2xl font-bold text-gray-900">Guías</h2>
-            <Link href="/guias/" className="text-sm font-semibold text-brand-green-dark hover:underline">
+            <Link href="/guias/" className="inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline">
               Ver todas
             </Link>
           </div>
@@ -139,7 +139,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex items-baseline justify-between">
           <h2 className="font-display text-2xl font-bold text-gray-900">Preguntas frecuentes</h2>
-          <Link href="/preguntas-frecuentes/" className="text-sm font-semibold text-brand-green-dark hover:underline">
+          <Link href="/preguntas-frecuentes/" className="inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline">
             Ver todas
           </Link>
         </div>
