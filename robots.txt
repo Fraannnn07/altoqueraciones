@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-
-# Permitir CSS/JS para que Googlebot pueda renderizar la página
-# (Google penaliza bloquear recursos necesarios para render)
-
-Sitemap: https://altoqueraciones.com/sitemap.xml
