@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/site-config';
-import { brandedProductName } from '@/lib/format';
+import { brandedProductName, formatPricePerKg, formatUyu, nameIncludesPresentation } from '@/lib/format';
+import { deliveryInfo } from '@/lib/delivery';
 
 interface BuildMetadataInput {
   title: string;
@@ -66,11 +67,22 @@ export function brandDescription(name: string) {
 
 export function productTitle(name: string, presentation: string, brandName: string) {
   const label = brandedProductName(brandName, name);
-  const full = presentation ? `${label} ${presentation}` : label;
+  const full = presentation && !nameIncludesPresentation(name, presentation) ? `${label} ${presentation}` : label;
   return `${full} | ${siteConfig.name}`;
 }
 
-export function productDescription(name: string, shortDescription: string) {
-  if (shortDescription) return shortDescription;
-  return `Comprá ${name} en Montevideo. Consultá precio, kilos y disponibilidad por WhatsApp.`;
+/**
+ * Meta description única por producto armada con datos reales (marca, precio,
+ * precio por kilo y política de entregas), en vez de la descripción corta, que
+ * se repite entre las distintas bolsas de una misma línea.
+ */
+export function productDescription(product: {
+  name: string;
+  brandName: string;
+  priceUyu: number;
+  netWeightKg: number | null;
+}) {
+  const perKg = formatPricePerKg(product.priceUyu, product.netWeightKg);
+  const price = `${formatUyu(product.priceUyu)}${perKg ? ` (${perKg})` : ''}`;
+  return `${brandedProductName(product.brandName, product.name)} a ${price} en Montevideo. Envío sin costo de ${deliveryInfo.freeDeliveryDaysLabel} en barrios seleccionados o retiro en ${deliveryInfo.pickup.area}.`;
 }

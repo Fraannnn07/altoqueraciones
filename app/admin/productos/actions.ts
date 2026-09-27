@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { requireAdmin } from '@/lib/admin-auth';
 import { supabase } from '@/lib/supabase';
 import { slugify } from '@/lib/slug';
+import { nameIncludesPresentation } from '@/lib/format';
 import { uniqueSlug } from '@/lib/admin-slug';
 import { revalidateStorefront } from '@/lib/revalidate';
 
@@ -148,7 +149,9 @@ export async function saveProductAction(_prev: ProductFormState, formData: FormD
   const row = { ...data, brand_id: brand.brandId };
 
   if (id === null) {
-    const slug = await uniqueSlug('products', slugify(`${data.name} ${data.presentation}`));
+    const slug = await uniqueSlug('products', slugify(
+      nameIncludesPresentation(data.name, data.presentation) ? data.name : `${data.name} ${data.presentation}`,
+    ));
     const { data: created, error } = await supabase()
       .from('products')
       .insert({ ...row, slug, published_at: new Date().toISOString() })

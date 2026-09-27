@@ -32,3 +32,11 @@ export function brandedProductName(brandName: string, productName: string): stri
   if (normalize(productName).startsWith(normalize(brandName))) return productName;
   return `${brandName} ${productName}`;
 }
+
+/** true si el nombre ya trae los kilos de la presentación ("Lager 22kg" + "22kg"), para no repetirlos. */
+export function nameIncludesPresentation(name: string, presentation: string) {
+  const weight = presentation.toLowerCase().match(/\d+(?:[.,]\d+)?(?:\s*\+\s*\d+(?:[.,]\d+)?)?/)?.[0];
+  if (!weight) return false;
+  const compact = (s: string) => s.toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
+  return compact(name).includes(compact(weight));
+}

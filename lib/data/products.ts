@@ -143,6 +143,12 @@ export async function getAllActiveProductSlugs(): Promise<string[]> {
   return (data ?? []).map((p) => p.slug);
 }
 
+/** Slug + última modificación de los productos activos, para el <lastmod> del sitemap. */
+export async function getActiveProductsForSitemap(): Promise<{ slug: string; updated_at: string }[]> {
+  const { data } = await supabase().from('products').select('slug, updated_at').eq('active', true).order('id');
+  return data ?? [];
+}
+
 export interface FeedProduct {
   slug: string;
   name: string;

@@ -39,7 +39,14 @@ export async function generateMetadata({
   const images = product.images.map((img) => storageUrl(img.storage_path)).filter(Boolean) as string[];
   return buildMetadata({
     title: product.meta_title || productTitle(product.name, product.presentation, product.brand.name),
-    description: product.meta_description || productDescription(product.name, product.short_description),
+    description:
+      product.meta_description ||
+      productDescription({
+        name: product.name,
+        brandName: product.brand.name,
+        priceUyu: product.price_uyu,
+        netWeightKg: product.net_weight_kg,
+      }),
     path: `/producto/${product.slug}/`,
     image: images[0],
   });
@@ -85,7 +92,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           name: product.name,
           slug: product.slug,
           sku: product.sku,
-          short_description: product.short_description,
+          short_description:
+            product.short_description ||
+            productDescription({
+              name: product.name,
+              brandName: product.brand.name,
+              priceUyu: product.price_uyu,
+              netWeightKg: product.net_weight_kg,
+            }),
           price_uyu: product.price_uyu,
           stock_status: product.stock_status,
           brandName: product.brand.name,
