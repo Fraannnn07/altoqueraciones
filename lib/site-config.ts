@@ -12,6 +12,9 @@ export const siteConfig = {
   },
   priceRange: '$$',
   sameAs: ['https://www.instagram.com/altoqueraciones.uy'],
+  googleAnalytics: {
+    id: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
+  },
   googleAds: {
     id: process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || '',
     conversionLabel: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || '',

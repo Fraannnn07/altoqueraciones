@@ -4,7 +4,7 @@ import './globals.css';
 import { siteConfig } from '@/lib/site-config';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/seo/jsonld';
-import { GoogleAdsTag } from '@/components/seo/GoogleAdsTag';
+import { GoogleTag } from '@/components/seo/GoogleTag';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SiteChrome } from '@/components/layout/SiteChrome';
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <>
               <JsonLd data={buildOrganizationJsonLd()} />
               <JsonLd data={buildWebsiteJsonLd()} />
-              <GoogleAdsTag />
+              <GoogleTag />
             </>
           }
         >
