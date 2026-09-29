@@ -3,6 +3,7 @@ import { getActiveRootCategories } from '@/lib/data/categories';
 import { safe } from '@/lib/data/safe';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 import { MobileNav } from '@/components/layout/MobileNav';
+import { SearchForm } from '@/components/search/SearchForm';
 
 export async function Header() {
   const categories = await safe(() => getActiveRootCategories(), []);
@@ -45,6 +46,7 @@ export async function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SearchForm size="compact" placeholder="Buscar productos" className="hidden w-48 lg:block xl:w-56" />
           <a
             href={whatsappUrl}
             target="_blank"

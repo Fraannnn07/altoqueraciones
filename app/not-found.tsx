@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
+import { SearchForm } from '@/components/search/SearchForm';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 
 export default function NotFound() {
@@ -9,10 +10,11 @@ export default function NotFound() {
     <div className="mx-auto flex max-w-xl flex-col items-center px-4 py-24 text-center">
       <h1 className="font-display text-4xl font-bold text-gray-900">Página no encontrada</h1>
       <p className="mt-4 text-gray-600">
-        La página que buscás no existe o cambió de dirección. Volvé al inicio o escribinos por WhatsApp y te
-        ayudamos a encontrar lo que necesitás.
+        La página que buscás no existe o cambió de dirección. Probá con el buscador, volvé al inicio o
+        escribinos por WhatsApp y te ayudamos a encontrar lo que necesitás.
       </p>
-      <div className="mt-8 flex gap-4">
+      <SearchForm className="mt-8 w-full" />
+      <div className="mt-6 flex gap-4">
         <Link
           href="/"
           className="rounded-full border border-brand-green-dark px-6 py-3 text-sm font-bold text-brand-green-dark transition hover:bg-brand-green-light"

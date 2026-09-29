@@ -126,6 +126,25 @@ export async function getAllActiveProducts(): Promise<ProductCard[]> {
   return (data ?? []).map(toCard);
 }
 
+export interface SearchableProduct extends ProductCard {
+  /** Categoría y categoría padre ("Cachorros", "Raciones para Perros"), para que el buscador las tenga en cuenta. */
+  categoryNames: string[];
+}
+
+/** Todos los productos activos con los nombres de su categoría, para el buscador (filtra lib/search.ts). */
+export async function getSearchableProducts(): Promise<SearchableProduct[]> {
+  const { data } = await supabase()
+    .from('products')
+    .select(`${CARD_SELECT}, category:categories(name, parent:parent_id(name))`)
+    .eq('active', true)
+    .order('sort_order');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fila cruda de Supabase, sin tipos generados
+  return (data ?? []).map((row: any) => ({
+    ...toCard(row),
+    categoryNames: [row.category?.name, row.category?.parent?.name].filter(Boolean),
+  }));
+}
+
 /** Si un slug es de un nombre anterior de un producto, devuelve el slug actual (para redirigir con 308). */
 export async function getProductSlugRedirect(oldSlug: string): Promise<string | null> {
   const { data } = await supabase()
