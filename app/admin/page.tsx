@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getDashboardCounts } from '@/lib/admin-data';
-import { getSiteDiscountPercent } from '@/lib/data/site-settings';
+import { getPricingRules } from '@/lib/data/site-settings';
 import { cardClass, primaryButtonClass, secondaryButtonClass } from '@/components/admin/ui';
 
 export default async function AdminDashboardPage() {
   await requireAdmin();
-  const [counts, sitePercent] = await Promise.all([getDashboardCounts(), getSiteDiscountPercent()]);
+  const [counts, { sitePercent }] = await Promise.all([getDashboardCounts(), getPricingRules()]);
 
   const stats = [
     { label: 'Productos activos', value: `${counts.activeProducts} / ${counts.products}` },

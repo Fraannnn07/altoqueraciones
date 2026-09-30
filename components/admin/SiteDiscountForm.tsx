@@ -3,11 +3,11 @@
 import { useActionState, useState } from 'react';
 import { saveSiteDiscountAction, type DiscountFormState } from '@/app/admin/descuentos/actions';
 import { hintClass, inputClass, labelClass, primaryButtonClass } from '@/components/admin/ui';
+import { submitWithoutReset } from '@/components/admin/submit-without-reset';
 import { MAX_DISCOUNT_PERCENT, siteDiscountMessage } from '@/lib/pricing';
 
 export function SiteDiscountForm({ initial }: { initial: { active: boolean; percent: number; message: string } }) {
   const [state, formAction, pending] = useActionState<DiscountFormState, FormData>(saveSiteDiscountAction, {});
-  // Campos controlados: el reset automático del formulario tras guardar no pisa lo que se ve.
   const [active, setActive] = useState(initial.active);
   const [percent, setPercent] = useState(initial.percent > 0 ? String(initial.percent) : '');
   const [message, setMessage] = useState(initial.message);
@@ -17,7 +17,7 @@ export function SiteDiscountForm({ initial }: { initial: { active: boolean; perc
   const preview = siteDiscountMessage(previewPercent, message);
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form onSubmit={submitWithoutReset(formAction)} className="space-y-4">
       <label className="flex items-center gap-2 text-sm font-semibold text-gray-800">
         <input type="checkbox" name="active" checked={active} onChange={(event) => setActive(event.target.checked)} />
         Activar descuento en toda la página

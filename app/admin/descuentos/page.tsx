@@ -3,6 +3,7 @@ import { getAdminProducts } from '@/lib/admin-data';
 import { getSiteDiscount } from '@/lib/data/site-settings';
 import { SiteDiscountForm } from '@/components/admin/SiteDiscountForm';
 import { ProductDiscountsForm } from '@/components/admin/ProductDiscountsForm';
+import { DiscountRoundingForm } from '@/components/admin/DiscountRoundingForm';
 import { cardClass } from '@/components/admin/ui';
 
 export default async function AdminDiscountsPage() {
@@ -42,6 +43,22 @@ export default async function AdminDiscountsPage() {
 
       <section className={`${cardClass} mt-6`}>
         <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="font-display text-lg font-bold text-gray-900">Redondeo</h2>
+          <span
+            className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+              siteDiscount.roundToTen ? 'bg-brand-green-light text-brand-green-dark' : 'bg-gray-200 text-gray-600'
+            }`}
+          >
+            {siteDiscount.roundToTen ? 'A la decena' : 'Al peso'}
+          </span>
+        </div>
+        <div className="mt-3">
+          <DiscountRoundingForm initial={siteDiscount.roundToTen} />
+        </div>
+      </section>
+
+      <section className={`${cardClass} mt-6`}>
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="font-display text-lg font-bold text-gray-900">Descuento por producto</h2>
           <span
             className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
@@ -58,7 +75,7 @@ export default async function AdminDiscountsPage() {
         </p>
         <div className="mt-4">
           <ProductDiscountsForm
-            sitePercent={sitePercent}
+            pricingRules={{ sitePercent, roundToTen: siteDiscount.roundToTen }}
             products={products.map((product) => ({
               id: product.id,
               name: product.name,

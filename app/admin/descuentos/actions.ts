@@ -51,6 +51,27 @@ export async function saveSiteDiscountAction(_prev: DiscountFormState, formData:
   };
 }
 
+// ---------------------------------------------------------------- redondeo
+
+export async function saveDiscountRoundingAction(
+  _prev: DiscountFormState,
+  formData: FormData,
+): Promise<DiscountFormState> {
+  await requireAdmin();
+  const roundToTen = formData.get('round_to_ten') === 'on';
+
+  const { error } = await supabase().from('site_settings').update({ discount_round_to_ten: roundToTen }).eq('id', 1);
+  if (error) return { error: `No se pudo guardar: ${error.message}` };
+
+  revalidateDiscountPages();
+  return {
+    ok: true,
+    message: roundToTen
+      ? 'Listo: los precios con descuento se redondean a la decena.'
+      : 'Listo: los precios con descuento se calculan al peso.',
+  };
+}
+
 // ---------------------------------------------------------------- descuento por producto
 
 /** Recibe un campo `discount_{id}` por producto y guarda solo los que cambiaron. */

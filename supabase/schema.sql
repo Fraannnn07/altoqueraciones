@@ -137,6 +137,10 @@ create table if not exists site_settings (
   updated_at             timestamptz not null default now()
 );
 
+-- Redondear el precio con descuento a la decena, para abajo (apagado = al peso).
+alter table site_settings
+  add column if not exists discount_round_to_ten boolean not null default false;
+
 insert into site_settings (id) values (1) on conflict (id) do nothing;
 
 -- ---------- vistas de apoyo (regla "sin categorías/marcas vacías") ----------

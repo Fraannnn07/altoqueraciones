@@ -1,7 +1,7 @@
 import 'server-only';
 import { supabase } from '@/lib/supabase';
-import { getSiteDiscountPercent } from '@/lib/data/site-settings';
-import { buildPricing, type Pricing } from '@/lib/pricing';
+import { getPricingRules } from '@/lib/data/site-settings';
+import { buildPricing, type Pricing, type PricingRules } from '@/lib/pricing';
 import type { ProductRow, ProductImageRow, BrandRow, CategoryRow } from '@/lib/database.types';
 
 export interface ProductCard {
@@ -33,9 +33,9 @@ export const CARD_SELECT = `
   images:product_images(storage_path, alt_text, is_primary, sort_order)
 `;
 
-/** Arma la ficha a partir de una fila con CARD_SELECT; `sitePercent` es el descuento general vigente. */
+/** Arma la ficha a partir de una fila con CARD_SELECT; `rules` trae el descuento general vigente y el redondeo. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fila cruda de Supabase, sin tipos generados
-export function toCard(row: any, sitePercent: number): ProductCard {
+export function toCard(row: any, rules: PricingRules): ProductCard {
   const images = (row.images ?? []) as ProductImageRow[];
   const primary = images.find((i) => i.is_primary) ?? images.sort((a, b) => a.sort_order - b.sort_order)[0] ?? null;
   return {
@@ -43,7 +43,7 @@ export function toCard(row: any, sitePercent: number): ProductCard {
     slug: row.slug,
     name: row.name,
     presentation: row.presentation,
-    pricing: buildPricing(row.price_uyu, row.discount_percent, sitePercent),
+    pricing: buildPricing(row.price_uyu, row.discount_percent, rules),
     net_weight_kg: row.net_weight_kg,
     tier: row.tier,
     stock_status: row.stock_status,
@@ -55,23 +55,23 @@ export function toCard(row: any, sitePercent: number): ProductCard {
 /** Fichas de producto de una categoría (incluir subcategorías: pasar sus ids también). */
 export async function getProductsByCategoryIds(categoryIds: number[]): Promise<ProductCard[]> {
   if (categoryIds.length === 0) return [];
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase().from('products').select(CARD_SELECT).in('category_id', categoryIds).eq('active', true).order('sort_order'),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
-  return (data ?? []).map((row) => toCard(row, sitePercent));
+  return (data ?? []).map((row) => toCard(row, rules));
 }
 
 export async function getProductsByBrandId(brandId: number): Promise<ProductCard[]> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase().from('products').select(CARD_SELECT).eq('brand_id', brandId).eq('active', true).order('sort_order'),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
-  return (data ?? []).map((row) => toCard(row, sitePercent));
+  return (data ?? []).map((row) => toCard(row, rules));
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductDetail | null> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase()
       .from('products')
       .select(
@@ -83,14 +83,14 @@ export async function getProductBySlug(slug: string): Promise<ProductDetail | nu
       .eq('slug', slug)
       .eq('active', true)
       .maybeSingle(),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
   if (!data) return null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fila cruda de Supabase, sin tipos generados
   const raw = data as any;
   const images = (raw.images ?? []) as ProductImageRow[];
   images.sort((a, b) => a.sort_order - b.sort_order);
-  const pricing = buildPricing(raw.price_uyu, raw.discount_percent, sitePercent);
+  const pricing = buildPricing(raw.price_uyu, raw.discount_percent, rules);
   return { ...raw, images, pricing } as ProductDetail;
 }
 
@@ -99,7 +99,7 @@ export async function getRelatedProducts(
   excludeProductId: number,
   limit = 4,
 ): Promise<ProductCard[]> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase()
       .from('products')
       .select(CARD_SELECT)
@@ -108,9 +108,9 @@ export async function getRelatedProducts(
       .neq('id', excludeProductId)
       .order('sort_order')
       .limit(limit),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
-  return (data ?? []).map((row) => toCard(row, sitePercent));
+  return (data ?? []).map((row) => toCard(row, rules));
 }
 
 /**
@@ -119,28 +119,28 @@ export async function getRelatedProducts(
  * si no, con la tienda entera en oferta todo el catálogo sería destacado.
  */
 export async function getFeaturedProducts(limit = 8): Promise<ProductCard[]> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase()
       .from('products')
       .select(CARD_SELECT)
       .eq('active', true)
       .or('featured.eq.true,discount_percent.gt.0')
       .order('sort_order'),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
   const rows = data ?? [];
   const onSale = rows.filter((row) => row.discount_percent > 0);
   const featured = rows.filter((row) => !(row.discount_percent > 0)).slice(0, Math.max(0, limit - onSale.length));
-  return [...onSale, ...featured].map((row) => toCard(row, sitePercent));
+  return [...onSale, ...featured].map((row) => toCard(row, rules));
 }
 
 /** Todos los productos activos (sin tope), p. ej. para la tabla comparativa de precio por kilo. */
 export async function getAllActiveProducts(): Promise<ProductCard[]> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase().from('products').select(CARD_SELECT).eq('active', true).order('sort_order'),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
-  return (data ?? []).map((row) => toCard(row, sitePercent));
+  return (data ?? []).map((row) => toCard(row, rules));
 }
 
 export interface SearchableProduct extends ProductCard {
@@ -150,17 +150,17 @@ export interface SearchableProduct extends ProductCard {
 
 /** Todos los productos activos con los nombres de su categoría, para el buscador (filtra lib/search.ts). */
 export async function getSearchableProducts(): Promise<SearchableProduct[]> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase()
       .from('products')
       .select(`${CARD_SELECT}, category:categories(name, parent:parent_id(name))`)
       .eq('active', true)
       .order('sort_order'),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fila cruda de Supabase, sin tipos generados
   return (data ?? []).map((row: any) => ({
-    ...toCard(row, sitePercent),
+    ...toCard(row, rules),
     categoryNames: [row.category?.name, row.category?.parent?.name].filter(Boolean),
   }));
 }
@@ -201,7 +201,7 @@ export interface FeedProduct {
 }
 
 export async function getActiveProductsForFeed(): Promise<FeedProduct[]> {
-  const [{ data }, sitePercent] = await Promise.all([
+  const [{ data }, rules] = await Promise.all([
     supabase()
       .from('products')
       .select(
@@ -210,7 +210,7 @@ export async function getActiveProductsForFeed(): Promise<FeedProduct[]> {
         images:product_images(storage_path, is_primary, sort_order)`,
       )
       .eq('active', true),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fila cruda de Supabase, sin tipos generados
   return (data ?? []).map((row: any) => {
@@ -222,7 +222,7 @@ export async function getActiveProductsForFeed(): Promise<FeedProduct[]> {
       presentation: row.presentation,
       short_description: row.short_description,
       long_description: row.long_description,
-      pricing: buildPricing(row.price_uyu, row.discount_percent, sitePercent),
+      pricing: buildPricing(row.price_uyu, row.discount_percent, rules),
       stock_status: row.stock_status,
       brand: row.brand,
       primaryImage: primary ? { storage_path: primary.storage_path } : null,

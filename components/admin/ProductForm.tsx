@@ -4,7 +4,7 @@ import { useActionState, useState } from 'react';
 import { saveProductAction, type ProductFormState } from '@/app/admin/productos/actions';
 import { cardClass, hintClass, inputClass, labelClass, primaryButtonClass } from '@/components/admin/ui';
 import { formatPricePerKg, formatUyu } from '@/lib/format';
-import { MAX_DISCOUNT_PERCENT, buildPricing, isOnSale, parseDiscountPercent } from '@/lib/pricing';
+import { MAX_DISCOUNT_PERCENT, buildPricing, isOnSale, parseDiscountPercent, type PricingRules } from '@/lib/pricing';
 
 export interface ProductFormInitial {
   id: number;
@@ -33,11 +33,12 @@ interface Props {
   initial: ProductFormInitial | null;
   brands: { id: number; name: string }[];
   categories: { id: number; label: string }[];
-  /** Descuento general vigente (0 si está apagado), para la vista previa del precio final. */
-  sitePercent: number;
+  /** Descuento general vigente y redondeo, para la vista previa del precio final. */
+  pricingRules: PricingRules;
 }
 
-export function ProductForm({ initial, brands, categories, sitePercent }: Props) {
+export function ProductForm({ initial, brands, categories, pricingRules }: Props) {
+  const { sitePercent } = pricingRules;
   const [state, formAction, pending] = useActionState<ProductFormState, FormData>(saveProductAction, {});
   const values = state.values;
 
@@ -63,7 +64,7 @@ export function ProductForm({ initial, brands, categories, sitePercent }: Props)
   const ownDiscount = parseDiscountPercent(discount);
   const pricingPreview =
     price !== '' && Number.isFinite(priceNumber) && ownDiscount !== null
-      ? buildPricing(priceNumber, ownDiscount, sitePercent)
+      ? buildPricing(priceNumber, ownDiscount, pricingRules)
       : null;
 
   return (

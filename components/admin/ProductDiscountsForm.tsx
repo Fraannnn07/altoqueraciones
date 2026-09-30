@@ -3,8 +3,9 @@
 import { useActionState, useState } from 'react';
 import { saveProductDiscountsAction, type DiscountFormState } from '@/app/admin/descuentos/actions';
 import { primaryButtonClass, secondaryButtonClass } from '@/components/admin/ui';
+import { submitWithoutReset } from '@/components/admin/submit-without-reset';
 import { formatUyu } from '@/lib/format';
-import { MAX_DISCOUNT_PERCENT, buildPricing, isOnSale, parseDiscountPercent } from '@/lib/pricing';
+import { MAX_DISCOUNT_PERCENT, buildPricing, isOnSale, parseDiscountPercent, type PricingRules } from '@/lib/pricing';
 
 export interface DiscountProduct {
   id: number;
@@ -23,9 +24,15 @@ function normalize(value: string) {
   return value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 }
 
-export function ProductDiscountsForm({ products, sitePercent }: { products: DiscountProduct[]; sitePercent: number }) {
+export function ProductDiscountsForm({
+  products,
+  pricingRules,
+}: {
+  products: DiscountProduct[];
+  pricingRules: PricingRules;
+}) {
+  const { sitePercent } = pricingRules;
   const [state, formAction, pending] = useActionState<DiscountFormState, FormData>(saveProductDiscountsAction, {});
-  // Campos controlados: el reset automático del formulario tras guardar no pisa lo que se ve.
   const [values, setValues] = useState<Record<number, string>>(() =>
     Object.fromEntries(products.map((product) => [product.id, String(product.discount_percent)])),
   );
@@ -53,7 +60,7 @@ export function ProductDiscountsForm({ products, sitePercent }: { products: Disc
   return (
     // noValidate: un campo inválido puede estar oculto por el filtro y el navegador no podría mostrarlo;
     // se valida acá (borde rojo, botón deshabilitado) y de nuevo en el servidor.
-    <form action={formAction} noValidate>
+    <form onSubmit={submitWithoutReset(formAction)} noValidate>
       <div className="flex flex-wrap items-end gap-3">
         <div className="min-w-48 flex-1">
           <label htmlFor="discount_search" className="block text-sm font-semibold text-gray-800">
@@ -113,7 +120,7 @@ export function ProductDiscountsForm({ products, sitePercent }: { products: Disc
       <ul className="mt-2 divide-y divide-black/5">
         {products.map((product) => {
           const own = percentOf(product.id);
-          const pricing = buildPricing(product.price_uyu, own ?? 0, sitePercent);
+          const pricing = buildPricing(product.price_uyu, own ?? 0, pricingRules);
           const siteWins = sitePercent > 0 && sitePercent >= (own ?? 0);
           return (
             // Los ocultos por el filtro siguen en el formulario y se envían igual.

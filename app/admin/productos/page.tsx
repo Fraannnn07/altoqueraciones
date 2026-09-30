@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getAdminProducts } from '@/lib/admin-data';
-import { getSiteDiscountPercent } from '@/lib/data/site-settings';
+import { getPricingRules } from '@/lib/data/site-settings';
 import { formatUyu, formatPricePerKg } from '@/lib/format';
 import { buildPricing, isOnSale } from '@/lib/pricing';
 import { toggleProductActiveAction } from './actions';
@@ -9,7 +9,7 @@ import { cardClass, primaryButtonClass, secondaryButtonClass } from '@/component
 
 export default async function AdminProductsPage() {
   await requireAdmin();
-  const [products, sitePercent] = await Promise.all([getAdminProducts(), getSiteDiscountPercent()]);
+  const [products, pricingRules] = await Promise.all([getAdminProducts(), getPricingRules()]);
 
   return (
     <div>
@@ -25,7 +25,7 @@ export default async function AdminProductsPage() {
       ) : (
         <ul className="mt-6 space-y-3">
           {products.map((product) => {
-            const pricing = buildPricing(product.price_uyu, product.discount_percent, sitePercent);
+            const pricing = buildPricing(product.price_uyu, product.discount_percent, pricingRules);
             const perKg = formatPricePerKg(pricing.final, product.net_weight_kg);
             return (
               <li key={product.id} className={`${cardClass} flex flex-wrap items-center justify-between gap-3`}>

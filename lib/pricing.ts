@@ -17,15 +17,29 @@ export interface Pricing {
   discountPercent: number;
 }
 
-/** Precio con un porcentaje de descuento, redondeado al peso. */
-export function applyDiscount(price: number, percent: number): number {
-  if (percent <= 0) return price;
-  return Math.round((price * (100 - percent)) / 100);
+/** Configuración general que afecta a todos los precios (sale de site_settings). */
+export interface PricingRules {
+  /** Descuento general vigente, o 0 si está apagado. */
+  sitePercent: number;
+  /** Redondear el precio con descuento a la decena. */
+  roundToTen: boolean;
 }
 
-export function buildPricing(regular: number, productPercent: number, sitePercent: number): Pricing {
-  const discountPercent = Math.max(productPercent || 0, sitePercent || 0);
-  return { regular, final: applyDiscount(regular, discountPercent), discountPercent };
+export const NO_PRICING_RULES: PricingRules = { sitePercent: 0, roundToTen: false };
+
+/**
+ * Precio con un porcentaje de descuento: al peso, o a la decena para abajo si `roundToTen`
+ * (para abajo, así el descuento real nunca es menor al porcentaje que se anuncia).
+ */
+export function applyDiscount(price: number, percent: number, roundToTen = false): number {
+  if (percent <= 0) return price;
+  const cents = price * (100 - percent); // precio × 100, entero
+  return roundToTen ? Math.floor(cents / 1000) * 10 : Math.round(cents / 100);
+}
+
+export function buildPricing(regular: number, productPercent: number, rules: PricingRules): Pricing {
+  const discountPercent = Math.max(productPercent || 0, rules.sitePercent || 0);
+  return { regular, final: applyDiscount(regular, discountPercent, rules.roundToTen), discountPercent };
 }
 
 export function isOnSale(pricing: Pricing): boolean {

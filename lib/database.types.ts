@@ -340,6 +340,7 @@ export type Database = {
       }
       site_settings: {
         Row: {
+          discount_round_to_ten: boolean
           id: number
           site_discount_active: boolean
           site_discount_message: string
@@ -347,6 +348,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          discount_round_to_ten?: boolean
           id?: number
           site_discount_active?: boolean
           site_discount_message?: string
@@ -354,6 +356,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          discount_round_to_ten?: boolean
           id?: number
           site_discount_active?: boolean
           site_discount_message?: string

@@ -9,6 +9,7 @@ import {
   type UndoPriceChangeResult,
 } from '@/app/admin/precios/actions';
 import { hintClass, inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from '@/components/admin/ui';
+import { submitWithoutReset } from '@/components/admin/submit-without-reset';
 import { formatUyu } from '@/lib/format';
 import { MAX_PRICE_CHANGE_PERCENT, PRICE_ROUNDING_STEPS, changePrice, parsePriceChangePercent } from '@/lib/pricing';
 
@@ -84,7 +85,7 @@ export function PriceChangeForm({ products }: { products: PriceProduct[] }) {
   const percentLabel = percentValue === null ? '' : `${percentValue > 0 ? '+' : ''}${String(percentValue).replace('.', ',')}%`;
 
   return (
-    <form action={formAction}>
+    <form onSubmit={submitWithoutReset(formAction)}>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="price_percent" className={labelClass}>

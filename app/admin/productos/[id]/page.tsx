@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getAdminBrands, getAdminProduct, getCategoryOptions } from '@/lib/admin-data';
-import { getSiteDiscountPercent } from '@/lib/data/site-settings';
+import { getPricingRules } from '@/lib/data/site-settings';
 import { storageUrl } from '@/lib/storage';
 import { ProductForm } from '@/components/admin/ProductForm';
 import { ImageManager } from '@/components/admin/ImageManager';
@@ -23,11 +23,11 @@ export default async function EditProductPage({
   const id = Number(idParam);
   if (!Number.isInteger(id) || id <= 0) notFound();
 
-  const [product, brands, categories, sitePercent] = await Promise.all([
+  const [product, brands, categories, pricingRules] = await Promise.all([
     getAdminProduct(id),
     getAdminBrands(),
     getCategoryOptions(),
-    getSiteDiscountPercent(),
+    getPricingRules(),
   ]);
   if (!product) notFound();
 
@@ -88,7 +88,7 @@ export default async function EditProductPage({
           }}
           brands={brands.map((b) => ({ id: b.id, name: b.name }))}
           categories={categories}
-          sitePercent={sitePercent}
+          pricingRules={pricingRules}
         />
 
         <ImageManager productId={product.id} defaultAlt={defaultAlt} images={images} />
