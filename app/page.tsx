@@ -4,7 +4,7 @@ import { getFeaturedProducts } from '@/lib/data/products';
 import { getPublishedGuides } from '@/lib/data/guides';
 import { safe } from '@/lib/data/safe';
 import { ProductCard } from '@/components/commerce/ProductCard';
-import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
+import { HomeHero } from '@/components/home/HomeHero';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { siteConfig } from '@/lib/site-config';
@@ -26,47 +26,18 @@ export default async function HomePage() {
     getFeaturedProducts(),
     safe(() => getPublishedGuides(), []),
   ]);
-  const whatsappUrl = buildGeneralWhatsAppUrl();
   const homeFaq = siteFaq.slice(0, 4);
 
   return (
     <div className="pb-16">
-      {/* Propuesta */}
-      <section className="bg-brand-green-light">
-        <div className="mx-auto max-w-6xl px-4 py-14 text-center sm:py-16">
-          <h1 className="font-display text-4xl font-bold text-brand-green-dark sm:text-5xl">
-            Alimento para perros y gatos, al toque
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-700">
-            Combos y presentaciones con precio y kilos siempre visibles. Consultás por WhatsApp y coordinamos
-            envío o retiro.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/raciones-perros/"
-              className="rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark"
-            >
-              Raciones para perros
-            </Link>
-            <Link
-              href="/raciones-gatos/"
-              className="rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark"
-            >
-              Raciones para gatos
-            </Link>
-            <WhatsAppCtaButton
-              href={whatsappUrl}
-              className="rounded-full border-2 border-brand-green px-6 py-3 text-sm font-bold text-brand-green-dark transition hover:bg-white"
-            >
-              Consultar por WhatsApp
-            </WhatsAppCtaButton>
-          </div>
-        </div>
-      </section>
+      <HomeHero
+        productsHref={featured.length > 0 ? '#alimentos' : '/raciones-perros/'}
+        whatsappUrl={buildGeneralWhatsAppUrl('Hola, quiero hacer un pedido.')}
+      />
 
       {/* Combos destacados */}
       {featured.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-4 py-12">
+        <section id="alimentos" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-12">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4">
             <h2 className="font-display text-2xl font-bold text-gray-900">Alimentos disponibles</h2>
             <div className="flex gap-4">

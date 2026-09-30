@@ -21,13 +21,13 @@ export async function DiscountTicker() {
   const duration = Math.round((repetitions * itemWidth) / SPEED_PX_PER_SECOND);
 
   return (
-    <div className="atr-ticker overflow-hidden bg-brand-sale text-white">
+    <div className="atr-marquee overflow-hidden bg-brand-sale text-white">
       <p className="sr-only">{message}</p>
       {/* Dos copias iguales: la animación corre la mitad del ancho y el loop no se nota. */}
       <div
-        className="atr-ticker-track flex w-max"
+        className="atr-marquee-track flex w-max"
         aria-hidden="true"
-        style={{ '--atr-ticker-duration': `${duration}s` } as CSSProperties}
+        style={{ '--atr-marquee-duration': `${duration}s` } as CSSProperties}
       >
         {[0, 1].map((copy) => (
           <div key={copy} className="flex shrink-0">

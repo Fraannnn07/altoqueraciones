@@ -12,6 +12,11 @@
   --color-brand-warm-gray: #fff8f0;
   /* Ofertas: naranja más oscuro que el de marca para que el precio y el texto blanco se lean bien (contraste AA). */
   --color-brand-sale: #c2410c;
+  /* Hero del inicio: verde bosque y ámbar de la maqueta; el crema es exactamente el fondo de la foto. */
+  --color-brand-forest: #134b32;
+  --color-brand-forest-dark: #0d3a26;
+  --color-brand-amber: #e09a33;
+  --color-brand-cream: #f9f6ee;
 }
 
 @theme inline {
@@ -24,6 +29,10 @@
   --color-brand-warm-white: var(--color-brand-warm-white);
   --color-brand-warm-gray: var(--color-brand-warm-gray);
   --color-brand-sale: var(--color-brand-sale);
+  --color-brand-forest: var(--color-brand-forest);
+  --color-brand-forest-dark: var(--color-brand-forest-dark);
+  --color-brand-amber: var(--color-brand-amber);
+  --color-brand-cream: var(--color-brand-cream);
   --font-sans: var(--font-nunito);
   --font-display: var(--font-quicksand);
 }
@@ -33,10 +42,10 @@ body {
   color: #2d2d2d;
 }
 
-/* Barra animada del descuento general ("trencito"): el recorrido tiene el mensaje dos veces y se
-   desplaza la mitad de su ancho, así el corte no se nota. Se frena al pasar el mouse y queda quieta
-   si el sistema pide menos movimiento. */
-@keyframes atr-ticker {
+/* Cintas animadas (barra del descuento general y carrusel de marcas del footer): el recorrido tiene
+   el contenido dos veces y se desplaza la mitad de su ancho, así el corte no se nota. Se frenan con
+   el mouse o el foco del teclado y quedan quietas si el sistema pide menos movimiento. */
+@keyframes atr-marquee {
   from {
     transform: translateX(0);
   }
@@ -45,16 +54,32 @@ body {
   }
 }
 
-.atr-ticker-track {
-  animation: atr-ticker var(--atr-ticker-duration, 40s) linear infinite;
+.atr-marquee-track {
+  animation: atr-marquee var(--atr-marquee-duration, 40s) linear infinite;
 }
 
-.atr-ticker:hover .atr-ticker-track {
+.atr-marquee:hover .atr-marquee-track,
+.atr-marquee:focus-within .atr-marquee-track {
   animation-play-state: paused;
 }
 
+/* Bordes que se desvanecen, para que los logos entren y salgan suave. */
+.atr-marquee-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .atr-ticker-track {
+  .atr-marquee-track {
     animation: none;
+  }
+
+  /* Quieto, el carrusel de marcas se recorre deslizando y sin la copia repetida. */
+  .atr-marquee-scroll {
+    overflow-x: auto;
+  }
+
+  .atr-marquee-scroll .atr-marquee-copy + .atr-marquee-copy {
+    display: none;
   }
 }

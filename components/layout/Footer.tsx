@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site-config';
 import { deliverySummary } from '@/lib/delivery';
+import { BrandMarquee } from '@/components/layout/BrandMarquee';
 
 const links = [
   { href: '/raciones-perros/', label: 'Raciones para perros' },
@@ -17,6 +18,7 @@ const links = [
 export function Footer() {
   return (
     <footer className="mt-16 border-t border-black/5 bg-white">
+      <BrandMarquee />
       <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-gray-600">
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           {links.map((link) => (
