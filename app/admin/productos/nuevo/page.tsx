@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getAdminBrands, getCategoryOptions } from '@/lib/admin-data';
+import { getSiteDiscountPercent } from '@/lib/data/site-settings';
 import { ProductForm } from '@/components/admin/ProductForm';
 
 export default async function NewProductPage() {
   await requireAdmin();
-  const [brands, categories] = await Promise.all([getAdminBrands(), getCategoryOptions()]);
+  const [brands, categories, sitePercent] = await Promise.all([
+    getAdminBrands(),
+    getCategoryOptions(),
+    getSiteDiscountPercent(),
+  ]);
 
   return (
     <div>
@@ -18,6 +23,7 @@ export default async function NewProductPage() {
           initial={null}
           brands={brands.filter((b) => b.active).map((b) => ({ id: b.id, name: b.name }))}
           categories={categories}
+          sitePercent={sitePercent}
         />
       </div>
     </div>

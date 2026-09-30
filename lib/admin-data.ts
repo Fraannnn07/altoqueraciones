@@ -8,6 +8,8 @@ export interface AdminProductListItem {
   name: string;
   presentation: string;
   price_uyu: number;
+  /** Descuento propio del producto (el general no se suma acá). */
+  discount_percent: number;
   net_weight_kg: number | null;
   active: boolean;
   featured: boolean;
@@ -21,7 +23,7 @@ export async function getAdminProducts(): Promise<AdminProductListItem[]> {
   const { data } = await supabase()
     .from('products')
     .select(
-      `id, slug, name, presentation, price_uyu, net_weight_kg, active, featured, stock_status,
+      `id, slug, name, presentation, price_uyu, discount_percent, net_weight_kg, active, featured, stock_status,
       brand:brands(name), category:categories(name), images:product_images(id)`,
     )
     .order('sort_order')
@@ -33,6 +35,7 @@ export async function getAdminProducts(): Promise<AdminProductListItem[]> {
     name: row.name,
     presentation: row.presentation,
     price_uyu: row.price_uyu,
+    discount_percent: row.discount_percent,
     net_weight_kg: row.net_weight_kg,
     active: row.active,
     featured: row.featured,

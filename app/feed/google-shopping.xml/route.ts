@@ -1,6 +1,7 @@
 import { getActiveProductsForFeed } from '@/lib/data/products';
 import { storageUrl } from '@/lib/storage';
 import { siteConfig } from '@/lib/site-config';
+import { isOnSale } from '@/lib/pricing';
 
 export const revalidate = 3600;
 
@@ -26,6 +27,10 @@ export async function GET() {
       const description = stripMarkdown(product.short_description || product.long_description || title);
       const imageUrl = storageUrl(product.primaryImage?.storage_path);
       if (!imageUrl) return '';
+      // Con descuento, g:price queda en el precio de lista y el final va en g:sale_price (Google lo muestra tachado).
+      const salePrice = isOnSale(product.pricing)
+        ? `\n      <g:sale_price>${product.pricing.final} UYU</g:sale_price>`
+        : '';
 
       return `
     <item>
@@ -35,7 +40,7 @@ export async function GET() {
       <link>${siteConfig.url}/producto/${product.slug}/</link>
       <g:image_link>${imageUrl}</g:image_link>
       <g:availability>${product.stock_status === 'in_stock' ? 'in stock' : 'out of stock'}</g:availability>
-      <g:price>${product.price_uyu} UYU</g:price>
+      <g:price>${product.pricing.regular} UYU</g:price>${salePrice}
       <g:brand>${xmlEscape(product.brand.name)}</g:brand>
       <g:condition>new</g:condition>
       <g:identifier_exists>no</g:identifier_exists>

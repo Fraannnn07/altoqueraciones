@@ -3,7 +3,8 @@
 import { useActionState, useState } from 'react';
 import { saveProductAction, type ProductFormState } from '@/app/admin/productos/actions';
 import { cardClass, hintClass, inputClass, labelClass, primaryButtonClass } from '@/components/admin/ui';
-import { formatPricePerKg } from '@/lib/format';
+import { formatPricePerKg, formatUyu } from '@/lib/format';
+import { MAX_DISCOUNT_PERCENT, buildPricing, isOnSale, parseDiscountPercent } from '@/lib/pricing';
 
 export interface ProductFormInitial {
   id: number;
@@ -14,6 +15,7 @@ export interface ProductFormInitial {
   presentation: string;
   net_weight_kg: number | null;
   price_uyu: number;
+  discount_percent: number;
   short_description: string;
   long_description: string;
   benefits: string[];
@@ -31,9 +33,11 @@ interface Props {
   initial: ProductFormInitial | null;
   brands: { id: number; name: string }[];
   categories: { id: number; label: string }[];
+  /** Descuento general vigente (0 si está apagado), para la vista previa del precio final. */
+  sitePercent: number;
 }
 
-export function ProductForm({ initial, brands, categories }: Props) {
+export function ProductForm({ initial, brands, categories, sitePercent }: Props) {
   const [state, formAction, pending] = useActionState<ProductFormState, FormData>(saveProductAction, {});
   const values = state.values;
 
@@ -47,12 +51,19 @@ export function ProductForm({ initial, brands, categories }: Props) {
   );
   const [price, setPrice] = useState(text('price_uyu', initial?.price_uyu));
   const [kg, setKg] = useState(text('net_weight_kg', initial?.net_weight_kg));
+  const [discount, setDiscount] = useState(text('discount_percent', initial?.discount_percent ?? 0));
 
   const priceNumber = Number(price.replace(/[$\s.]/g, ''));
   const kgNumber = Number(kg.replace(',', '.'));
   const perKgPreview =
     price !== '' && kg !== '' && Number.isFinite(priceNumber) && Number.isFinite(kgNumber)
       ? formatPricePerKg(priceNumber, kgNumber)
+      : null;
+
+  const ownDiscount = parseDiscountPercent(discount);
+  const pricingPreview =
+    price !== '' && Number.isFinite(priceNumber) && ownDiscount !== null
+      ? buildPricing(priceNumber, ownDiscount, sitePercent)
       : null;
 
   return (
@@ -179,6 +190,32 @@ export function ProductForm({ initial, brands, categories }: Props) {
               placeholder="Ej.: 2700"
             />
             {perKgPreview ? <p className={hintClass}>Precio por kilo: {perKgPreview}</p> : null}
+          </div>
+          <div>
+            <label htmlFor="discount_percent" className={labelClass}>
+              Descuento propio (%)
+            </label>
+            <input
+              id="discount_percent"
+              name="discount_percent"
+              type="number"
+              min={0}
+              max={MAX_DISCOUNT_PERCENT}
+              step={1}
+              inputMode="numeric"
+              value={discount}
+              onChange={(event) => setDiscount(event.target.value)}
+              className={inputClass}
+              placeholder="0"
+            />
+            <p className={hintClass}>
+              {pricingPreview && isOnSale(pricingPreview)
+                ? `Se ve a ${formatUyu(pricingPreview.final)} en vez de ${formatUyu(pricingPreview.regular)}${
+                    sitePercent > 0 && sitePercent >= (ownDiscount ?? 0) ? ` (por el descuento general del ${sitePercent}%)` : ''
+                  }. `
+                : ''}
+              0 = sin descuento. Con descuento propio, el producto aparece solo en los destacados del inicio.
+            </p>
           </div>
           <div>
             <label htmlFor="stock_status" className={labelClass}>
@@ -321,7 +358,7 @@ export function ProductForm({ initial, brands, categories }: Props) {
             </label>
             <label className="flex items-center gap-2 text-sm text-gray-800">
               <input type="checkbox" name="featured" defaultChecked={flag('featured', initial?.featured ?? true)} />
-              Destacado en el inicio
+              Destacado en el inicio{ownDiscount ? ' (ya entra por el descuento)' : ''}
             </label>
           </div>
         </div>

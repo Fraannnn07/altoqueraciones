@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getDashboardCounts } from '@/lib/admin-data';
+import { getSiteDiscountPercent } from '@/lib/data/site-settings';
 import { cardClass, primaryButtonClass, secondaryButtonClass } from '@/components/admin/ui';
 
 export default async function AdminDashboardPage() {
   await requireAdmin();
-  const counts = await getDashboardCounts();
+  const [counts, sitePercent] = await Promise.all([getDashboardCounts(), getSiteDiscountPercent()]);
 
   const stats = [
     { label: 'Productos activos', value: `${counts.activeProducts} / ${counts.products}` },
@@ -27,6 +28,15 @@ export default async function AdminDashboardPage() {
         ))}
       </div>
 
+      {sitePercent > 0 ? (
+        <p className="mt-6 rounded-xl bg-brand-sale p-4 text-sm font-semibold text-white">
+          Descuento general activo: {sitePercent}% en toda la página.{' '}
+          <Link href="/admin/descuentos/" className="underline">
+            Cambiarlo
+          </Link>
+        </p>
+      ) : null}
+
       {counts.missingImages > 0 ? (
         <p className="mt-6 rounded-xl bg-brand-orange-light p-4 text-sm text-gray-800">
           Hay {counts.missingImages} producto{counts.missingImages === 1 ? '' : 's'} activo
@@ -44,6 +54,12 @@ export default async function AdminDashboardPage() {
         </Link>
         <Link href="/admin/marcas/" className={secondaryButtonClass}>
           Marcas
+        </Link>
+        <Link href="/admin/precios/" className={secondaryButtonClass}>
+          Cambio masivo de precios
+        </Link>
+        <Link href="/admin/descuentos/" className={secondaryButtonClass}>
+          Descuentos
         </Link>
       </div>
     </div>

@@ -74,6 +74,13 @@ create table if not exists products (
   published_at       timestamptz
 );
 
+-- Descuento propio de cada producto (0 = sin descuento). Si también hay descuento general
+-- (site_settings), se aplica el mayor de los dos. Con descuento propio, el producto entra
+-- solo a los destacados del inicio.
+alter table products
+  add column if not exists discount_percent integer not null default 0
+  check (discount_percent between 0 and 90);
+
 create index if not exists idx_products_active_category on products (category_id) where active;
 create index if not exists idx_products_active_brand on products (brand_id) where active;
 create index if not exists idx_products_slug on products (slug);
@@ -120,6 +127,18 @@ create table if not exists guide_related_products (
   primary key (guide_id, product_id)
 );
 
+-- ---------- site_settings (configuración general, una sola fila) ----------
+
+create table if not exists site_settings (
+  id                     smallint primary key default 1 check (id = 1),
+  site_discount_active   boolean not null default false,
+  site_discount_percent  integer not null default 0 check (site_discount_percent between 0 and 90),
+  site_discount_message  text not null default '',   -- texto de la barra animada del inicio ('' = automático)
+  updated_at             timestamptz not null default now()
+);
+
+insert into site_settings (id) values (1) on conflict (id) do nothing;
+
 -- ---------- vistas de apoyo (regla "sin categorías/marcas vacías") ----------
 
 create or replace view category_active_product_counts as
@@ -160,6 +179,10 @@ drop trigger if exists trg_guides_updated_at on guides;
 create trigger trg_guides_updated_at before update on guides
   for each row execute function set_updated_at();
 
+drop trigger if exists trg_site_settings_updated_at on site_settings;
+create trigger trg_site_settings_updated_at before update on site_settings
+  for each row execute function set_updated_at();
+
 -- ---------- Row Level Security ----------
 -- Todo el acceso (lectura y escritura) pasa por el cliente de service role en el
 -- servidor (Next.js Server Components / Server Actions). Esta app nunca expone una
@@ -172,6 +195,7 @@ alter table products enable row level security;
 alter table product_images enable row level security;
 alter table guides enable row level security;
 alter table guide_related_products enable row level security;
+alter table site_settings enable row level security;
 
 -- ---------- categorías iniciales (estructura fija del sitio) ----------
 -- Solo inserta si la tabla está vacía, para no duplicar al re-ejecutar.

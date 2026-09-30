@@ -11,10 +11,11 @@ import {
 import { safe } from '@/lib/data/safe';
 import { storageUrl } from '@/lib/storage';
 import { buildProductWhatsAppUrl } from '@/lib/whatsapp';
-import { formatPricePerKg, formatUyu } from '@/lib/format';
+import { formatPricePerKg } from '@/lib/format';
 import { deliverySummary } from '@/lib/delivery';
 import { ProductCard } from '@/components/commerce/ProductCard';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
+import { Price } from '@/components/commerce/Price';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildProductJsonLd } from '@/lib/seo/jsonld';
@@ -63,7 +64,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const related = await getRelatedProducts(product.category_id, product.id);
   const whatsappUrl = buildProductWhatsAppUrl(product);
-  const pricePerKg = formatPricePerKg(product.price_uyu, product.net_weight_kg);
+  const pricePerKg = formatPricePerKg(product.pricing.final, product.net_weight_kg);
   const images = product.images.map((img) => ({
     url: storageUrl(img.storage_path),
     alt: img.alt_text || product.name,
@@ -100,7 +101,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               priceUyu: product.price_uyu,
               netWeightKg: product.net_weight_kg,
             }),
-          price_uyu: product.price_uyu,
+          pricing: product.pricing,
           stock_status: product.stock_status,
           brandName: product.brand.name,
           images: images.map((i) => i.url).filter(Boolean) as string[],
@@ -137,7 +138,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <p className="text-sm text-gray-500">{product.net_weight_kg} kg en total</p>
           ) : null}
 
-          <p className="mt-4 text-3xl font-bold text-gray-900">{formatUyu(product.price_uyu)}</p>
+          <Price pricing={product.pricing} size="detail" className="mt-4" />
           {pricePerKg ? <p className="text-sm text-gray-500">{pricePerKg}</p> : null}
 
           {product.stock_status === 'out_of_stock' ? (

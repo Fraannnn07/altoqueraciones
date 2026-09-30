@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/lib/admin-auth';
 import { getAdminProducts } from '@/lib/admin-data';
+import { getSiteDiscountPercent } from '@/lib/data/site-settings';
 import { formatUyu, formatPricePerKg } from '@/lib/format';
+import { buildPricing, isOnSale } from '@/lib/pricing';
 import { toggleProductActiveAction } from './actions';
 import { cardClass, primaryButtonClass, secondaryButtonClass } from '@/components/admin/ui';
 
 export default async function AdminProductsPage() {
   await requireAdmin();
-  const products = await getAdminProducts();
+  const [products, sitePercent] = await Promise.all([getAdminProducts(), getSiteDiscountPercent()]);
 
   return (
     <div>
@@ -23,7 +25,8 @@ export default async function AdminProductsPage() {
       ) : (
         <ul className="mt-6 space-y-3">
           {products.map((product) => {
-            const perKg = formatPricePerKg(product.price_uyu, product.net_weight_kg);
+            const pricing = buildPricing(product.price_uyu, product.discount_percent, sitePercent);
+            const perKg = formatPricePerKg(pricing.final, product.net_weight_kg);
             return (
               <li key={product.id} className={`${cardClass} flex flex-wrap items-center justify-between gap-3`}>
                 <div className="min-w-0">
@@ -31,7 +34,15 @@ export default async function AdminProductsPage() {
                     {product.name} <span className="font-normal text-gray-500">— {product.presentation || 'sin presentación'}</span>
                   </p>
                   <p className="mt-1 text-sm text-gray-600">
-                    {product.brandName} · {product.categoryName} · {formatUyu(product.price_uyu)}
+                    {product.brandName} · {product.categoryName} ·{' '}
+                    {isOnSale(pricing) ? (
+                      <>
+                        <s className="text-gray-400">{formatUyu(pricing.regular)}</s>{' '}
+                        <span className="font-semibold text-brand-sale">{formatUyu(pricing.final)}</span>
+                      </>
+                    ) : (
+                      formatUyu(pricing.regular)
+                    )}
                     {perKg ? ` (${perKg})` : ''}
                     {product.net_weight_kg ? ` · ${product.net_weight_kg} kg` : ' · sin kilos cargados'}
                   </p>
@@ -46,9 +57,14 @@ export default async function AdminProductsPage() {
                     {product.stock_status === 'out_of_stock' ? (
                       <span className="rounded-full bg-red-50 px-2 py-0.5 font-semibold text-red-700">Sin stock</span>
                     ) : null}
-                    {product.featured ? (
+                    {product.discount_percent > 0 ? (
+                      <span className="rounded-full bg-brand-sale px-2 py-0.5 font-semibold text-white">
+                        -{product.discount_percent}%
+                      </span>
+                    ) : null}
+                    {product.featured || product.discount_percent > 0 ? (
                       <span className="rounded-full bg-brand-orange-light px-2 py-0.5 font-semibold text-brand-orange-dark">
-                        Destacado
+                        {product.featured ? 'Destacado' : 'Destacado por descuento'}
                       </span>
                     ) : null}
                     <span

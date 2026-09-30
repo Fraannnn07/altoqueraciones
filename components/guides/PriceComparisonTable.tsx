@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getAllActiveProducts } from '@/lib/data/products';
 import { brandedProductName, formatUyu, pricePerKg } from '@/lib/format';
+import { isOnSale } from '@/lib/pricing';
 
 const pricePerKgFormatter = new Intl.NumberFormat('es-UY', {
   style: 'currency',
@@ -25,7 +26,7 @@ function detailLine(presentation: string, netWeightKg: number | null): string {
 export async function PriceComparisonTable() {
   const products = await getAllActiveProducts();
   const withPriceKg = products
-    .map((p) => ({ ...p, kgPrice: pricePerKg(p.price_uyu, p.net_weight_kg) }))
+    .map((p) => ({ ...p, kgPrice: pricePerKg(p.pricing.final, p.net_weight_kg) }))
     .filter((p) => p.kgPrice !== null)
     .sort((a, b) => (a.kgPrice as number) - (b.kgPrice as number));
 
@@ -66,7 +67,22 @@ export async function PriceComparisonTable() {
                   {detailLine(product.presentation, product.net_weight_kg)}
                 </span>
               </td>
-              <td className="whitespace-nowrap px-3 py-3 align-top text-gray-700">{formatUyu(product.price_uyu)}</td>
+              <td className="whitespace-nowrap px-3 py-3 align-top text-gray-700">
+                {isOnSale(product.pricing) ? (
+                  <>
+                    <span className="block text-xs text-gray-500">
+                      <span className="sr-only">Antes: </span>
+                      <s>{formatUyu(product.pricing.regular)}</s>
+                    </span>
+                    <span className="font-semibold text-brand-sale">
+                      <span className="sr-only">Ahora: </span>
+                      {formatUyu(product.pricing.final)}
+                    </span>
+                  </>
+                ) : (
+                  formatUyu(product.pricing.regular)
+                )}
+              </td>
               <td className="whitespace-nowrap px-3 py-3 align-top font-semibold text-brand-green-dark">
                 {pricePerKgFormatter.format(product.kgPrice as number)}
               </td>

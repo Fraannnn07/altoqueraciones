@@ -10,6 +10,8 @@
   --color-brand-green-light: #e8f5e9;
   --color-brand-warm-white: #fffaf5;
   --color-brand-warm-gray: #fff8f0;
+  /* Ofertas: naranja más oscuro que el de marca para que el precio y el texto blanco se lean bien (contraste AA). */
+  --color-brand-sale: #c2410c;
 }
 
 @theme inline {
@@ -21,6 +23,7 @@
   --color-brand-green-light: var(--color-brand-green-light);
   --color-brand-warm-white: var(--color-brand-warm-white);
   --color-brand-warm-gray: var(--color-brand-warm-gray);
+  --color-brand-sale: var(--color-brand-sale);
   --font-sans: var(--font-nunito);
   --font-display: var(--font-quicksand);
 }
@@ -28,4 +31,30 @@
 body {
   background: var(--color-brand-warm-white);
   color: #2d2d2d;
+}
+
+/* Barra animada del descuento general ("trencito"): el recorrido tiene el mensaje dos veces y se
+   desplaza la mitad de su ancho, así el corte no se nota. Se frena al pasar el mouse y queda quieta
+   si el sistema pide menos movimiento. */
+@keyframes atr-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.atr-ticker-track {
+  animation: atr-ticker var(--atr-ticker-duration, 40s) linear infinite;
+}
+
+.atr-ticker:hover .atr-ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atr-ticker-track {
+    animation: none;
+  }
 }

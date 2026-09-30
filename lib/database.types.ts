@@ -247,6 +247,7 @@ export type Database = {
           category_id: number
           characteristics: Json
           created_at: string
+          discount_percent: number
           featured: boolean
           id: number
           long_description: string
@@ -273,6 +274,7 @@ export type Database = {
           category_id: number
           characteristics?: Json
           created_at?: string
+          discount_percent?: number
           featured?: boolean
           id?: never
           long_description?: string
@@ -299,6 +301,7 @@ export type Database = {
           category_id?: number
           characteristics?: Json
           created_at?: string
+          discount_percent?: number
           featured?: boolean
           id?: never
           long_description?: string
@@ -334,6 +337,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      site_settings: {
+        Row: {
+          id: number
+          site_discount_active: boolean
+          site_discount_message: string
+          site_discount_percent: number
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          site_discount_active?: boolean
+          site_discount_message?: string
+          site_discount_percent?: number
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          site_discount_active?: boolean
+          site_discount_message?: string
+          site_discount_percent?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
     }
     Views: {
@@ -416,6 +443,8 @@ export type ProductRow = Omit<
 };
 
 export type ProductImageRow = DefaultSchema['Tables']['product_images']['Row'];
+
+export type SiteSettingsRow = DefaultSchema['Tables']['site_settings']['Row'];
 
 export type GuideRow = Omit<DefaultSchema['Tables']['guides']['Row'], 'status'> & {
   status: GuideStatus;

@@ -1,4 +1,5 @@
 import { siteConfig } from '@/lib/site-config';
+import { isOnSale, type Pricing } from '@/lib/pricing';
 import { deliveryZones } from '@/lib/delivery';
 
 export interface BreadcrumbItem {
@@ -65,7 +66,7 @@ export function buildProductJsonLd(product: {
   slug: string;
   sku: string | null;
   short_description: string;
-  price_uyu: number;
+  pricing: Pricing;
   stock_status: 'in_stock' | 'out_of_stock';
   brandName: string;
   images: string[];
@@ -85,7 +86,16 @@ export function buildProductJsonLd(product: {
       '@type': 'Offer',
       url: `${siteConfig.url}/producto/${product.slug}/`,
       priceCurrency: 'UYU',
-      price: product.price_uyu,
+      price: product.pricing.final,
+      // Con descuento, Google puede mostrar el precio de lista tachado.
+      priceSpecification: isOnSale(product.pricing)
+        ? {
+            '@type': 'UnitPriceSpecification',
+            priceType: 'https://schema.org/StrikethroughPrice',
+            price: product.pricing.regular,
+            priceCurrency: 'UYU',
+          }
+        : undefined,
       availability:
         product.stock_status === 'in_stock'
           ? 'https://schema.org/InStock'

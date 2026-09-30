@@ -5,6 +5,8 @@ const links = [
   { href: '/admin/', label: 'Panel' },
   { href: '/admin/productos/', label: 'Productos' },
   { href: '/admin/marcas/', label: 'Marcas' },
+  { href: '/admin/precios/', label: 'Precios' },
+  { href: '/admin/descuentos/', label: 'Descuentos' },
 ];
 
 export function AdminNav() {

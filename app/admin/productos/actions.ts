@@ -9,6 +9,7 @@ import { slugify } from '@/lib/slug';
 import { nameIncludesPresentation } from '@/lib/format';
 import { uniqueSlug } from '@/lib/admin-slug';
 import { revalidateStorefront } from '@/lib/revalidate';
+import { MAX_DISCOUNT_PERCENT, parseDiscountPercent } from '@/lib/pricing';
 
 const BUCKET = 'product-images';
 const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
@@ -98,6 +99,11 @@ const productSchema = z.object({
     .int('El precio tiene que ser un número entero.')
     .min(0, 'El precio no puede ser negativo.')
     .max(10_000_000, 'El precio parece demasiado alto.'),
+  discount_percent: z
+    .number({ error: `El descuento tiene que ser un número entero entre 0 y ${MAX_DISCOUNT_PERCENT}.` })
+    .int()
+    .min(0)
+    .max(MAX_DISCOUNT_PERCENT),
   short_description: z.string().trim().max(300, 'La descripción corta admite hasta 300 caracteres.'),
   long_description: z.string().trim().max(10_000, 'La descripción larga es demasiado extensa.'),
   benefits: z.array(z.string().max(200)).max(20, 'Máximo 20 beneficios.'),
@@ -128,6 +134,7 @@ export async function saveProductAction(_prev: ProductFormState, formData: FormD
     presentation: formData.get('presentation') ?? '',
     net_weight_kg: parseDecimal(formData.get('net_weight_kg')),
     price_uyu: parsePrice(formData.get('price_uyu')),
+    discount_percent: parseDiscountPercent(formData.get('discount_percent')) ?? undefined,
     short_description: formData.get('short_description') ?? '',
     long_description: formData.get('long_description') ?? '',
     benefits: parseLines(formData.get('benefits')),
@@ -190,6 +197,7 @@ export async function saveProductAction(_prev: ProductFormState, formData: FormD
 
   revalidateStorefront();
   revalidatePath('/admin/productos');
+  revalidatePath('/admin/descuentos');
   return { ok: true, values };
 }
 

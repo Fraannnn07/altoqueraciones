@@ -8,6 +8,7 @@ import { GoogleTag } from '@/components/seo/GoogleTag';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SiteChrome } from '@/components/layout/SiteChrome';
+import { DiscountTicker } from '@/components/layout/DiscountTicker';
 
 const nunito = Nunito({
   variable: '--font-nunito',
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteChrome
           header={<Header />}
           footer={<Footer />}
+          homeAnnouncement={<DiscountTicker />}
           extras={
             <>
               <JsonLd data={buildOrganizationJsonLd()} />
