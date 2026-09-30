@@ -13,7 +13,7 @@ export function generateMetadata(): Metadata {
   return buildMetadata({
     title: `Marcas de Alimento para Mascotas en Uruguay | ${siteConfig.name}`,
     description:
-      'Todas las marcas de raciones y accesorios para perros y gatos disponibles en Uruguay: Equilibrio, BioFresh, Pro Plan, NexGard y más.',
+      'Marcas de raciones para perros y gatos en Montevideo: Equilibrio, Pro Plan, Pedigree, Lager, Frost, BioFresh y más, con precio y kilos visibles.',
     path: '/marcas/',
   });
 }

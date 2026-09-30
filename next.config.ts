@@ -12,10 +12,6 @@ function supabaseHostname(): string | null {
 // o falta escribir la guía). Van a lo más cercano con redirect TEMPORAL para no mandar a nadie a un 404;
 // cuando exista el destino final (indicado a la derecha), pasar a permanente y apuntar ahí.
 const pendingRedirects = [
-  ['/raciones-cachorros-uruguay.html', '/raciones-perros/'], // -> /raciones-perros/cachorros/
-  ['/raciones-gatos-uruguay.html', '/'], // -> /raciones-gatos/
-  ['/alimento-gatos-montevideo.html', '/'], // -> /raciones-gatos/
-  ['/comida-natural-gatos.html', '/'], // -> /raciones-gatos/
   ['/antipulgas-perros-uruguay.html', '/'], // -> /antipulgas/
   ['/desparasitantes-perros.html', '/'], // -> /antipulgas/
   ['/pipetas-perros.html', '/'], // -> /antipulgas/
@@ -82,8 +78,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Páginas del sitio anterior que hoy tienen equivalente: redirect permanente.
+      { source: '/index.html', destination: '/', permanent: true },
       { source: '/raciones-perros-uruguay.html', destination: '/raciones-perros/', permanent: true },
+      { source: '/raciones-cachorros-uruguay.html', destination: '/raciones-perros/cachorros/', permanent: true },
       { source: '/comida-natural-perros.html', destination: '/raciones-perros/', permanent: true },
+      { source: '/raciones-gatos-uruguay.html', destination: '/raciones-gatos/', permanent: true },
+      { source: '/alimento-gatos-montevideo.html', destination: '/raciones-gatos/', permanent: true },
+      { source: '/comida-natural-gatos.html', destination: '/raciones-gatos/', permanent: true },
       { source: '/alimento-perros-montevideo.html', destination: '/envios/', permanent: true },
       { source: '/biofresh-uruguay.html', destination: '/marcas/biofresh/', permanent: true },
       { source: '/equilibrio-uruguay.html', destination: '/marcas/equilibrio/', permanent: true },

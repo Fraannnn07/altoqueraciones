@@ -15,7 +15,7 @@ export const revalidate = 3600;
 
 export function generateMetadata(): Metadata {
   return buildMetadata({
-    title: `Alimento para Perros en Montevideo | ${siteConfig.name}`,
+    title: `Alimento para Perros y Gatos en Montevideo | ${siteConfig.name}`,
     description: siteConfig.description,
     path: '/',
   });
@@ -35,7 +35,7 @@ export default async function HomePage() {
       <section className="bg-brand-green-light">
         <div className="mx-auto max-w-6xl px-4 py-14 text-center sm:py-16">
           <h1 className="font-display text-4xl font-bold text-brand-green-dark sm:text-5xl">
-            Alimento para tu perro, al toque
+            Alimento para perros y gatos, al toque
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-700">
             Combos y presentaciones con precio y kilos siempre visibles. Consultás por WhatsApp y coordinamos
@@ -46,7 +46,13 @@ export default async function HomePage() {
               href="/raciones-perros/"
               className="rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark"
             >
-              Ver alimentos
+              Raciones para perros
+            </Link>
+            <Link
+              href="/raciones-gatos/"
+              className="rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark"
+            >
+              Raciones para gatos
             </Link>
             <WhatsAppCtaButton
               href={whatsappUrl}
@@ -61,11 +67,16 @@ export default async function HomePage() {
       {/* Combos destacados */}
       {featured.length > 0 ? (
         <section className="mx-auto max-w-6xl px-4 py-12">
-          <div className="flex items-baseline justify-between">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4">
             <h2 className="font-display text-2xl font-bold text-gray-900">Alimentos disponibles</h2>
-            <Link href="/raciones-perros/" className="inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline">
-              Ver todos
-            </Link>
+            <div className="flex gap-4">
+              <Link href="/raciones-perros/" className="inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline">
+                Para perros
+              </Link>
+              <Link href="/raciones-gatos/" className="inline-block py-1 text-sm font-semibold text-brand-green-dark hover:underline">
+                Para gatos
+              </Link>
+            </div>
           </div>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {featured.map((product) => (
@@ -106,7 +117,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="font-display text-2xl font-bold text-gray-900">Sobre {siteConfig.name}</h2>
         <p className="mt-3 max-w-2xl text-gray-700">
-          Vendemos alimento para perros en Montevideo, con el precio y los kilos siempre visibles en cada
+          Vendemos alimento para perros y gatos en Montevideo, con el precio y los kilos siempre visibles en cada
           ficha. Coordinamos cada pedido por WhatsApp para que la consulta y la compra sean simples.
         </p>
       </section>

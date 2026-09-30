@@ -24,7 +24,7 @@ const quicksand = Quicksand({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Alimento para Perros en Montevideo | ${siteConfig.name}`,
+    default: `Alimento para Perros y Gatos en Montevideo | ${siteConfig.name}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,

@@ -8,7 +8,7 @@ import { deliverySummary } from '@/lib/delivery';
 export function generateMetadata(): Metadata {
   return buildMetadata({
     title: `Nosotros | ${siteConfig.name}`,
-    description: `Conocé ${siteConfig.name}, venta de alimento para perros en ${siteConfig.address.locality} por WhatsApp.`,
+    description: `Conocé ${siteConfig.name}, venta de alimento para perros y gatos en ${siteConfig.address.locality} por WhatsApp.`,
     path: '/nosotros/',
   });
 }
@@ -21,7 +21,7 @@ export default function AboutPage() {
         <h1 className="font-display text-3xl font-bold text-gray-900">Nosotros</h1>
         <div className="prose prose-neutral mt-6 max-w-none">
           <p>
-            {siteConfig.name} vende alimento para perros en {siteConfig.address.locality}. Trabajamos con
+            {siteConfig.name} vende alimento para perros y gatos en {siteConfig.address.locality}. Trabajamos con
             combos y presentaciones de distintas marcas, con el precio y los kilos siempre visibles en cada
             ficha para que puedas comparar antes de decidir.
           </p>

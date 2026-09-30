@@ -3,7 +3,8 @@ import { siteConfig } from '@/lib/site-config';
 import { deliverySummary } from '@/lib/delivery';
 
 const links = [
-  { href: '/raciones-perros/', label: 'Alimentos' },
+  { href: '/raciones-perros/', label: 'Raciones para perros' },
+  { href: '/raciones-gatos/', label: 'Raciones para gatos' },
   { href: '/guias/', label: 'Guías' },
   { href: '/nosotros/', label: 'Nosotros' },
   { href: '/contacto/', label: 'Contacto' },
