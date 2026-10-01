@@ -37,6 +37,9 @@ const pendingRedirects = [
 const nextConfig: NextConfig = {
   // Canonical, sitemap y redirects usan URLs con barra final (/raciones-perros/).
   trailingSlash: true,
+  // Apple Wallet llama a /api/wallet/apple/... sin barra final y no sigue redirecciones.
+  // La barra de las páginas la agrega proxy.ts (salvo /api y archivos).
+  skipTrailingSlashRedirect: true,
 
   experimental: {
     // Las imágenes se comprimen a WebP en el navegador antes de subirse, pero dejamos margen.
@@ -71,6 +74,14 @@ const nextConfig: NextConfig = {
       {
         source: '/admin/:path*',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
+        // El panel de sellos del local escanea el QR del cliente con la cámara (pisa el camera=() de arriba).
+        source: '/fidelidad/admin/:path*',
+        headers: [
+          { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=(self)' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
       },
     ];
   },
