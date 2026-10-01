@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import logo from '@/assets/logo-al-toque.webp';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
 import { InstagramIcon, MapPinIcon, TruckIcon, WhatsAppIcon } from '@/components/icons';
 import { BrandMarquee } from '@/components/layout/BrandMarquee';
@@ -44,7 +42,7 @@ const socialClassName =
 
 /**
  * Pie del sitio: carrusel de marcas y, sobre verde bosque, una franja con envío, retiro y WhatsApp
- * (los datos salen de lib/delivery.ts), el logo con las redes y tres columnas de links.
+ * (los datos salen de lib/delivery.ts), el nombre con las redes y tres columnas de links.
  */
 export function Footer() {
   const whatsappUrl = buildGeneralWhatsAppUrl();
@@ -93,26 +91,23 @@ export function Footer() {
           </ul>
 
           <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-12">
-            {/* En tablet, el logo al lado del texto; en celular y escritorio, uno debajo del otro. */}
-            <div className="sm:flex sm:items-center sm:gap-8 lg:block">
-              <Link href="/" className="inline-block shrink-0 rounded-2xl bg-brand-cream px-4 py-3">
-                <Image src={logo} alt={siteConfig.name} sizes="128px" className="h-auto w-28 sm:w-32" />
+            <div>
+              <Link href="/" className="inline-block py-1 font-display text-2xl font-bold">
+                {siteConfig.name}
               </Link>
-              <div>
-                <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75 sm:mt-0 lg:mt-5">
-                  Alimento para perros y gatos en Montevideo, con el precio y los kilos siempre a la vista.
-                  Coordinamos cada pedido por WhatsApp.
-                </p>
-                <div className="mt-5 flex gap-3">
-                  <WhatsAppCtaButton href={whatsappUrl} className={socialClassName}>
-                    <WhatsAppIcon className="h-5 w-5" />
-                    <span className="sr-only">WhatsApp</span>
-                  </WhatsAppCtaButton>
-                  <a href={siteConfig.sameAs[0]} target="_blank" rel="noopener noreferrer" className={socialClassName}>
-                    <InstagramIcon className="h-5 w-5" />
-                    <span className="sr-only">Instagram</span>
-                  </a>
-                </div>
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/75">
+                Alimento para perros y gatos en Montevideo, con el precio y los kilos siempre a la vista.
+                Coordinamos cada pedido por WhatsApp.
+              </p>
+              <div className="mt-5 flex gap-3">
+                <WhatsAppCtaButton href={whatsappUrl} className={socialClassName}>
+                  <WhatsAppIcon className="h-5 w-5" />
+                  <span className="sr-only">WhatsApp</span>
+                </WhatsAppCtaButton>
+                <a href={siteConfig.sameAs[0]} target="_blank" rel="noopener noreferrer" className={socialClassName}>
+                  <InstagramIcon className="h-5 w-5" />
+                  <span className="sr-only">Instagram</span>
+                </a>
               </div>
             </div>
 
