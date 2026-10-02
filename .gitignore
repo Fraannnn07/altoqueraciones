@@ -34,6 +34,15 @@ yarn-error.log*
 .env*
 !.env.example
 
+# credenciales (cuentas de servicio de Google, certificados de Apple Wallet) y el zip de la tarjeta de sellos
+altoqueraciones-wallet-*.json
+wallet.json
+*service-account*.json
+*.key
+*.p12
+*.cer
+/fidelidad-altoqueraciones.zip
+
 # vercel
 .vercel
 
