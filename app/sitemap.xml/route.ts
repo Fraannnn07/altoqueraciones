@@ -20,6 +20,7 @@ const STATIC_PATHS = [
   'medios-de-pago',
   'cambios-y-devoluciones',
   'preguntas-frecuentes',
+  'soporte',
 ];
 
 interface Entry {

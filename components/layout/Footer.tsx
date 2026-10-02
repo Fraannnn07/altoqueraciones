@@ -22,6 +22,7 @@ const columns = [
       { href: '/medios-de-pago/', label: 'Medios de pago' },
       { href: '/cambios-y-devoluciones/', label: 'Cambios y devoluciones' },
       { href: '/preguntas-frecuentes/', label: 'Preguntas frecuentes' },
+      { href: '/soporte/', label: 'Soporte' },
     ],
   },
   {
