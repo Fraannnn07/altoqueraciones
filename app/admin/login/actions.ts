@@ -33,7 +33,7 @@ export async function loginAction(_prev: LoginState, formData: FormData): Promis
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
-    path: '/admin',
+    path: '/',
     maxAge: ADMIN_SESSION_SECONDS,
   });
   redirect('/admin/');
