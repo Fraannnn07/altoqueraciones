@@ -1,6 +1,9 @@
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 
-export const ADMIN_COOKIE = 'atr_admin';
+// Path "/" (antes "/admin"): el link del QR de la tarjeta de sellos (/fidelidad/<id>/) también tiene que saber
+// si quien lo abre es el admin. El nombre cambió junto con el path para que una cookie vieja con path /admin
+// no siga viva después de "Salir" (dos cookies con el mismo nombre y distinto path no se pueden borrar juntas).
+export const ADMIN_COOKIE = 'atr_admin_s';
 export const ADMIN_SESSION_SECONDS = 60 * 60 * 24 * 7;
 
 // La clave de firma se deriva de ADMIN_PASSWORD + SUPABASE_SERVICE_ROLE_KEY (ambas ya

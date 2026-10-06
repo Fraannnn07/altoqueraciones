@@ -4,21 +4,22 @@ Tarjeta de fidelización con huellitas que vive en Apple Wallet y Google Wallet.
 
 ## Cómo funciona
 
-1. El cliente escanea el QR del cartel (`cartel-qr-mostrador.png`) y entra a `altoqueraciones.com/fidelidad/`.
-2. Pone nombre y celular. Se crea su tarjeta y la guarda en Apple Wallet o Google Wallet.
-3. Cuando compra, escaneás el QR de su pase con la cámara del celular del local y tocás **Sumar sello**.
-4. El pase se actualiza solo en su celular (en iPhone le llega aviso en la pantalla bloqueada).
-5. Al completar la tarjeta aparece **Canjear premio**, que la reinicia.
+1. **El admin asigna la tarjeta.** En `/admin/` (misma contraseña del panel de productos) → **Fidelidad** → **Asignar tarjeta nueva**: nombre y celular del cliente. Se crea la tarjeta y un código de acceso de 6 caracteres que se muestra una sola vez (en la base queda solo el hash). Con **Enviar por WhatsApp** le llega al cliente un link que ya trae su celular y su código.
+2. **El cliente entra a su tarjeta** en `altoqueraciones.com/fidelidad/` con su celular y el código. La sesión dura 180 días en ese navegador. No hay alta abierta: sin código no se puede ver ninguna tarjeta.
+3. **Sellar:** en el admin, **Fidelidad** → **Escanear tarjeta** (lee el QR de la tarjeta del cliente) o buscar por nombre, celular o código `ATR-…` y tocar **Sumar sello**. También sirve la cámara común del celular: el QR abre `/fidelidad/<id>/`, que manda al admin a la tarjeta en el panel y a cualquier otro a `/fidelidad/`.
+4. Al completar la tarjeta aparece **Canjear premio**, que la reinicia. Cada sello, resta y canje queda en el historial de la tarjeta.
+5. **Código perdido:** desde la tarjeta en el admin, **Generar código nuevo**. El anterior deja de funcionar y se cierra la sesión del cliente. Después de 8 intentos fallidos seguidos la tarjeta queda bloqueada 15 minutos (generar un código nuevo la desbloquea).
+6. **Google Wallet / Apple Wallet (opcional, hoy sin configurar):** cuando estén las variables, el cliente ve los botones en su tarjeta y el admin tiene el link de Google Wallet en la ficha de cada tarjeta para mandárselo.
 
-Sellar desde el celular del local: entrá una vez a `altoqueraciones.com/fidelidad/admin/` con el PIN. Desde ahí ese celular queda habilitado y tenés tres formas de sellar: con la cámara común del celular (abrís el link del QR del cliente y aparecen los botones), con el botón **Escanear tarjeta** del panel, o buscando por celular (útil para pedidos con envío).
+**El cartel del mostrador (`cartel-qr-mostrador.png`) quedó desactualizado:** dice "escaneá y guardá tu tarjeta en Apple Wallet o Google Wallet", pero ahora la tarjeta la asigna el local. Hay que rehacerlo antes de imprimirlo.
 
 ## 1. Copiar archivos
 
 Copiá todo en la raíz del proyecto (si usás `src/`, poné `app/`, `lib/` y `proxy.ts` dentro de `src/`):
 
 ```
-app/fidelidad/…                  páginas (alta, tarjeta, panel del local)
-app/api/fidelidad/…              alta y acciones del panel
+app/fidelidad/…                  ingreso del cliente y su tarjeta
+app/admin/fidelidad/…            panel del admin (asignar, sellar, códigos)
 app/api/wallet/…                 Apple Wallet, Google Wallet e imagen de sellos
 lib/fidelidad/…                  lógica
 public/wallet/google-logo.png    logo para Google Wallet
@@ -47,7 +48,7 @@ El `proxy.ts` incluido sigue agregando la barra en todas las páginas (para Goog
 
 ## 4. Base de datos (Supabase)
 
-Corré `supabase/migrations/20261001000000_fidelidad.sql` en el SQL Editor de Supabase. Crea `loyalty_cards`, `loyalty_events` (historial de cada sello) y `apple_wallet_registrations`, con RLS activado y sin acceso público.
+Corré `supabase/migrations/20261001000000_fidelidad.sql` en el SQL Editor de Supabase. Crea `loyalty_cards`, `loyalty_events` (historial de cada sello) y `apple_wallet_registrations`, con RLS activado y sin acceso público. Después corré `supabase/migrations/20261006000000_fidelidad_login.sql` (código de acceso del cliente y bloqueo por intentos fallidos).
 
 ## 5. Apple Wallet (USD 99/año, Apple Developer Program)
 
@@ -98,7 +99,7 @@ curl -i -X POST https://altoqueraciones.com/api/wallet/apple/v1/log -H "content-
 https://altoqueraciones.com/api/wallet/strip/6/3/
 ```
 
-Después: creá una tarjeta tuya en `/fidelidad/`, guardala en el Wallet, entrá a `/fidelidad/admin/`, escaneala y sumá un sello. En 5 a 30 segundos el pase se actualiza.
+Después: asignate una tarjeta desde `/admin/fidelidad/`, entrá con el código en `/fidelidad/`, guardala en el Wallet, escaneala desde el admin y sumá un sello. En 5 a 30 segundos el pase se actualiza.
 
 ## Ajustes rápidos
 

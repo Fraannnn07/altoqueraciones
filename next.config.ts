@@ -76,8 +76,8 @@ const nextConfig: NextConfig = {
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
       },
       {
-        // El panel de sellos del local escanea el QR del cliente con la cámara (pisa el camera=() de arriba).
-        source: '/fidelidad/admin/:path*',
+        // El panel de sellos escanea el QR del cliente con la cámara (pisa el camera=() de arriba).
+        source: '/admin/fidelidad/:path*',
         headers: [
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=(self)' },
           { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
@@ -104,6 +104,8 @@ const nextConfig: NextConfig = {
       { source: '/admin.html', destination: '/admin/', permanent: true },
       { source: '/blog', destination: '/guias/', permanent: true },
       { source: '/blog/index.html', destination: '/guias/', permanent: true },
+      // El panel de sellos con PIN se reemplazó por la sección Fidelidad del admin.
+      { source: '/fidelidad/admin', destination: '/admin/fidelidad/', permanent: false },
       ...pendingRedirects,
     ];
   },

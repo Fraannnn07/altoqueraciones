@@ -7,6 +7,7 @@ const links = [
   { href: '/admin/marcas/', label: 'Marcas' },
   { href: '/admin/precios/', label: 'Precios' },
   { href: '/admin/descuentos/', label: 'Descuentos' },
+  { href: '/admin/fidelidad/', label: 'Fidelidad' },
 ];
 
 export function AdminNav() {

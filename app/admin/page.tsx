@@ -61,6 +61,9 @@ export default async function AdminDashboardPage() {
         <Link href="/admin/descuentos/" className={secondaryButtonClass}>
           Descuentos
         </Link>
+        <Link href="/admin/fidelidad/" className={secondaryButtonClass}>
+          Tarjetas de sellos
+        </Link>
       </div>
     </div>
   );
