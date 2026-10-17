@@ -6,11 +6,16 @@ import { deliveryInfo } from '@/lib/delivery';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 
+// Barrios más buscados para nombrar en la descripción; se filtran contra la lista real de zonas
+// para que nunca se mencione uno al que no llegamos.
+const highlightedZones = ['Pocitos', 'Centro', 'Cordón', 'Tres Cruces', 'Parque Batlle'].filter((zone) =>
+  (deliveryInfo.zones as readonly string[]).includes(zone),
+);
+
 export function generateMetadata(): Metadata {
   return buildMetadata({
-    title: `Envíos y Retiros | ${siteConfig.name}`,
-    description:
-      'Envío sin costo lunes a miércoles en barrios seleccionados de Montevideo. Retiro sin costo jueves y viernes en zona Mercado Modelo.',
+    title: `Envío Gratis de Raciones en Montevideo | ${siteConfig.name}`,
+    description: `Delivery de raciones sin costo de ${deliveryInfo.freeDeliveryDaysLabel} en ${highlightedZones.join(', ')} y más barrios de Montevideo. Retiro ${deliveryInfo.pickup.daysLabel} en ${deliveryInfo.pickup.area}.`,
     path: '/envios/',
   });
 }
@@ -22,7 +27,12 @@ export default function ShippingPage() {
     <div className="pb-16">
       <Breadcrumbs items={[{ name: 'Inicio', url: '/' }, { name: 'Envíos y retiros', url: '/envios/' }]} />
       <div className="mx-auto max-w-3xl px-4 pt-6">
-        <h1 className="font-display text-3xl font-bold text-gray-900">Envíos y retiros</h1>
+        <h1 className="font-display text-3xl font-bold text-gray-900">Envío de raciones en Montevideo</h1>
+        <p className="mt-3 text-gray-700">
+          Te llevamos la ración a tu casa sin costo, {deliveryInfo.freeDeliveryDaysLabel}, en {deliveryInfo.zones.length}{' '}
+          barrios de Montevideo. Si preferís, también podés retirarla sin costo {deliveryInfo.pickup.daysLabel} en zona{' '}
+          {deliveryInfo.pickup.area}.
+        </p>
 
         <section className="mt-8">
           <h2 className="font-display text-xl font-bold text-gray-900">Envío sin costo</h2>
