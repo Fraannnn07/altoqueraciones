@@ -5,6 +5,16 @@ import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { SearchForm } from '@/components/search/SearchForm';
 
+// Nombres cortos para la barra de escritorio, donde no entran los nombres completos de todas las
+// categorías; el menú desplegable y los títulos de las páginas siguen usando el nombre completo.
+const SHORT_LABELS: Record<string, string> = {
+  'raciones-perros': 'Perros',
+  'raciones-gatos': 'Gatos',
+  antipulgas: 'Antipulgas',
+  'arena-gatos': 'Arena',
+  'accesorios-perros': 'Accesorios',
+};
+
 export async function Header() {
   const categories = await safe(() => getActiveRootCategories(), []);
   const whatsappUrl = buildGeneralWhatsAppUrl();
@@ -24,14 +34,15 @@ export async function Header() {
           Al Toque Raciones
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-semibold text-gray-700 md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-semibold text-gray-700 lg:flex">
           {categories.map((category) => (
             <Link
               key={category.id}
               href={`/${category.slug}/`}
+              title={category.name}
               className="transition hover:text-brand-green-dark"
             >
-              {category.name}
+              {SHORT_LABELS[category.slug] ?? category.name}
             </Link>
           ))}
           <Link href="/marcas/" className="transition hover:text-brand-green-dark">
@@ -46,7 +57,7 @@ export async function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <SearchForm size="compact" placeholder="Buscar productos" className="hidden w-48 lg:block xl:w-56" />
+          <SearchForm size="compact" placeholder="Buscar productos" className="hidden w-44 xl:block" />
           <a
             href={whatsappUrl}
             target="_blank"

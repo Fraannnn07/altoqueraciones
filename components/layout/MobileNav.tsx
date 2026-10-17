@@ -32,7 +32,7 @@ export function MobileNav({ links }: { links: { href: string; label: string }[] 
   const toggle = (panel: Panel) => setOpenState(open === panel ? null : { panel, path: pathname });
 
   return (
-    <div className="flex items-center gap-2 lg:hidden">
+    <div className="flex items-center gap-2 xl:hidden">
       <button
         ref={searchButtonRef}
         type="button"
@@ -51,7 +51,7 @@ export function MobileNav({ links }: { links: { href: string; label: string }[] 
         aria-controls="mobile-menu"
         aria-label={open === 'menu' ? 'Cerrar menú' : 'Abrir menú'}
         onClick={() => toggle('menu')}
-        className={`${toggleClassName} md:hidden`}
+        className={`${toggleClassName} lg:hidden`}
       >
         {open === 'menu' ? (
           <CloseIcon />
@@ -84,7 +84,7 @@ export function MobileNav({ links }: { links: { href: string; label: string }[] 
         <nav
           id="mobile-menu"
           aria-label="Menú principal"
-          className="absolute left-0 right-0 top-full border-b border-black/5 bg-white shadow-md md:hidden"
+          className="absolute left-0 right-0 top-full border-b border-black/5 bg-white shadow-md lg:hidden"
         >
           <ul className="mx-auto max-w-6xl px-4 py-2">
             {links.map((link) => (

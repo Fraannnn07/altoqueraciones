@@ -8,7 +8,7 @@ import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 
 // Barrios más buscados para nombrar en la descripción; se filtran contra la lista real de zonas
 // para que nunca se mencione uno al que no llegamos.
-const highlightedZones = ['Pocitos', 'Centro', 'Cordón', 'Tres Cruces', 'Parque Batlle'].filter((zone) =>
+const highlightedZones = ['Pocitos', 'Malvín', 'Carrasco', 'Centro', 'Cordón'].filter((zone) =>
   (deliveryInfo.zones as readonly string[]).includes(zone),
 );
 
@@ -30,8 +30,8 @@ export default function ShippingPage() {
         <h1 className="font-display text-3xl font-bold text-gray-900">Envío de raciones en Montevideo</h1>
         <p className="mt-3 text-gray-700">
           Te llevamos la ración a tu casa sin costo, {deliveryInfo.freeDeliveryDaysLabel}, en {deliveryInfo.zones.length}{' '}
-          barrios de Montevideo. Si preferís, también podés retirarla sin costo {deliveryInfo.pickup.daysLabel} en zona{' '}
-          {deliveryInfo.pickup.area}.
+          barrios de Montevideo, y llegamos al resto de Montevideo con costo de envío. Si preferís, también podés retirarla
+          sin costo {deliveryInfo.pickup.daysLabel} en zona {deliveryInfo.pickup.area}.
         </p>
 
         <section className="mt-8">
@@ -59,7 +59,7 @@ export default function ShippingPage() {
         <section className="mt-10">
           <h2 className="font-display text-xl font-bold text-gray-900">¿Tu barrio no está en la lista?</h2>
           <p className="mt-2 text-gray-700">
-            Escribinos por WhatsApp y te confirmamos si podemos llegar a tu zona y qué costo tendría.
+            Llegamos a todo Montevideo. Escribinos por WhatsApp y te confirmamos el costo de envío a tu zona.
           </p>
           <div className="mt-4">
             <WhatsAppCtaButton href={whatsappUrl}>Consultar por mi zona</WhatsAppCtaButton>

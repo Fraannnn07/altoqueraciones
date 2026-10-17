@@ -1,6 +1,8 @@
 // Fuente única de las preguntas frecuentes: se usa en /preguntas-frecuentes/
 // completa y en un extracto en el home, para no duplicar contenido.
 
+import { deliveryZones } from '@/lib/delivery';
+
 export interface FaqEntry {
   question: string;
   answer: string;
@@ -9,8 +11,7 @@ export interface FaqEntry {
 export const siteFaq: FaqEntry[] = [
   {
     question: '¿En qué barrios tienen envío gratis?',
-    answer:
-      'El envío sin costo está disponible en Reducto, Jacinto Vera, La Blanqueada, Parque Batlle, Pocitos, Punta Carretas, Cordón, Tres Cruces, La Comercial, Aguada, Centro, Palermo, Ciudad Vieja, Parque Rodó, Barrio Sur y Villa Española.',
+    answer: `El envío sin costo está disponible en ${deliveryZones.slice(0, -1).join(', ')} y ${deliveryZones[deliveryZones.length - 1]}.`,
   },
   {
     question: '¿Qué días realizan entregas?',
@@ -33,6 +34,7 @@ export const siteFaq: FaqEntry[] = [
   },
   {
     question: '¿Puedo consultar por entregas fuera de los barrios indicados?',
-    answer: 'Sí, escribinos por WhatsApp y te confirmamos disponibilidad y costo de envío para tu zona.',
+    answer:
+      'Sí, llegamos a todo Montevideo. Fuera de los barrios con envío sin costo, escribinos por WhatsApp y te confirmamos el costo de envío para tu zona.',
   },
 ];

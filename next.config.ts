@@ -12,9 +12,7 @@ function supabaseHostname(): string | null {
 // o falta escribir la guía). Van a lo más cercano con redirect TEMPORAL para no mandar a nadie a un 404;
 // cuando exista el destino final (indicado a la derecha), pasar a permanente y apuntar ahí.
 const pendingRedirects = [
-  ['/desparasitantes-perros.html', '/'], // -> /antipulgas/
   ['/accesorios-perros.html', '/'], // -> /accesorios-perros/
-  ['/nexgard-uruguay.html', '/marcas/'], // -> /marcas/nexgard/
   ['/blog/biofresh-vs-equilibrio.html', '/guias/'],
   ['/blog/cada-cuanto-desparasitar-perro.html', '/guias/'],
   ['/blog/casillas-perros.html', '/guias/'],
@@ -98,14 +96,16 @@ const nextConfig: NextConfig = {
       { source: '/admin.html', destination: '/admin/', permanent: true },
       { source: '/blog', destination: '/guias/', permanent: true },
       { source: '/blog/index.html', destination: '/guias/', permanent: true },
-      // Páginas viejas de productos que hoy no están en el catálogo: van a la guía del tema
-      // (documentado en guides.legacy_urls). Si se cargan productos, la guía puede enlazar a la categoría.
+      // Antipulgas, arena y snacks: los artículos y las páginas de pipetas van a la guía del tema
+      // (documentado en guides.legacy_urls; cada guía enlaza a su categoría) y las de venta, a la categoría.
       { source: '/blog/dentastix-perros.html', destination: '/guias/dentastix-para-perros/', permanent: true },
       { source: '/pipetas-perros.html', destination: '/guias/pipetas-para-perros-como-elegirlas-y-aplicarlas/', permanent: true },
       { source: '/pipetas-perros-uruguay.html', destination: '/guias/pipetas-para-perros-como-elegirlas-y-aplicarlas/', permanent: true },
-      { source: '/antipulgas-perros-uruguay.html', destination: '/guias/pipetas-para-perros-como-elegirlas-y-aplicarlas/', permanent: true },
-      { source: '/arena-para-gatos-uruguay.html', destination: '/guias/arena-para-gatos-como-elegirla/', permanent: true },
       { source: '/blog/arenas-gatos.html', destination: '/guias/arena-para-gatos-como-elegirla/', permanent: true },
+      { source: '/antipulgas-perros-uruguay.html', destination: '/antipulgas/', permanent: true },
+      { source: '/desparasitantes-perros.html', destination: '/antipulgas/', permanent: true },
+      { source: '/arena-para-gatos-uruguay.html', destination: '/arena-gatos/', permanent: true },
+      { source: '/nexgard-uruguay.html', destination: '/marcas/nexgard/', permanent: true },
       // El panel de sellos con PIN se reemplazó por la sección Fidelidad del admin.
       { source: '/fidelidad/admin', destination: '/admin/fidelidad/', permanent: false },
       ...pendingRedirects,

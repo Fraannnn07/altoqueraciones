@@ -12,6 +12,9 @@ const columns = [
     links: [
       { href: '/raciones-perros/', label: 'Raciones para perros' },
       { href: '/raciones-gatos/', label: 'Raciones para gatos' },
+      { href: '/antipulgas/', label: 'Antipulgas' },
+      { href: '/arena-gatos/', label: 'Arena para gatos' },
+      { href: '/snacks/', label: 'Snacks' },
       { href: '/marcas/', label: 'Marcas' },
     ],
   },

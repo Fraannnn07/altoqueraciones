@@ -19,6 +19,8 @@ export const deliveryZones = [
   'Parque Rodó',
   'Barrio Sur',
   'Villa Española',
+  'Malvín',
+  'Carrasco',
 ] as const;
 
 export const deliveryInfo = {
