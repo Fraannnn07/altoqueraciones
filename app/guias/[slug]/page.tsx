@@ -39,8 +39,11 @@ export async function generateMetadata({
   const guide = await getGuideBySlug(slug);
   if (!guide) return {};
   const cover = storageUrl(guide.cover_image_path);
+  // Con la marca, los títulos de las guías pasaban los 60 caracteres y Google los cortaba: si no entra, va sin marca.
+  const baseTitle = guide.meta_title || guide.title;
+  const brandedTitle = `${baseTitle} | ${siteConfig.name}`;
   return buildMetadata({
-    title: `${guide.meta_title || guide.title} | ${siteConfig.name}`,
+    title: brandedTitle.length <= 60 ? brandedTitle : baseTitle,
     description: guide.meta_description || guide.excerpt,
     path: `/guias/${guide.slug}/`,
     image: cover ?? undefined,
@@ -73,6 +76,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           excerpt: guide.excerpt,
           coverImage: cover,
           publishedAt: guide.published_at,
+          updatedAt: guide.updated_at,
         })}
       />
 

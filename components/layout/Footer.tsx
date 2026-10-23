@@ -100,8 +100,8 @@ export function Footer() {
                 {siteConfig.name}
               </Link>
               <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/75">
-                Alimento para perros y gatos en Montevideo, con el precio y los kilos siempre a la vista.
-                Coordinamos cada pedido por WhatsApp.
+                Alimento para perros y gatos en Montevideo, con el precio y los kilos siempre a la vista. Te lo
+                llevamos a la puerta en {deliveryInfo.leadTimeLabel}, con regalo en cada pedido.
               </p>
               <div className="mt-5 flex gap-3">
                 <WhatsAppCtaButton href={whatsappUrl} className={socialClassName}>

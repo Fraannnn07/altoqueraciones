@@ -3,7 +3,8 @@ export function JsonLd({ data }: { data: object | null }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // "<" escapado: un texto cargado en la base con "</script>" no puede cortar el bloque.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
     />
   );
 }

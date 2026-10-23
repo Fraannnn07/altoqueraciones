@@ -3,6 +3,7 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { siteConfig } from '@/lib/site-config';
 import { deliveryInfo } from '@/lib/delivery';
+import { StorePromises } from '@/components/commerce/StorePromises';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 
@@ -15,7 +16,7 @@ const highlightedZones = ['Pocitos', 'Malvín', 'Carrasco', 'Centro', 'Cordón']
 export function generateMetadata(): Metadata {
   return buildMetadata({
     title: `Envío Gratis de Raciones en Montevideo | ${siteConfig.name}`,
-    description: `Delivery de raciones sin costo de ${deliveryInfo.freeDeliveryDaysLabel} en ${highlightedZones.join(', ')} y más barrios de Montevideo. Retiro ${deliveryInfo.pickup.daysLabel} en ${deliveryInfo.pickup.area}.`,
+    description: `Delivery de raciones en Montevideo: te la llevamos a la puerta en ${deliveryInfo.leadTimeLabel}. Sin costo de ${deliveryInfo.freeDeliveryDaysLabel} en ${highlightedZones.slice(0, 3).join(', ')} y más barrios.`,
     path: '/envios/',
   });
 }
@@ -29,10 +30,12 @@ export default function ShippingPage() {
       <div className="mx-auto max-w-3xl px-4 pt-6">
         <h1 className="font-display text-3xl font-bold text-gray-900">Envío de raciones en Montevideo</h1>
         <p className="mt-3 text-gray-700">
-          Te llevamos la ración a tu casa sin costo, {deliveryInfo.freeDeliveryDaysLabel}, en {deliveryInfo.zones.length}{' '}
-          barrios de Montevideo, y llegamos al resto de Montevideo con costo de envío. Si preferís, también podés retirarla
-          sin costo {deliveryInfo.pickup.daysLabel} en zona {deliveryInfo.pickup.area}.
+          Te llevamos la ración a la puerta de tu casa en {deliveryInfo.leadTimeLabel}. El envío es sin costo de{' '}
+          {deliveryInfo.freeDeliveryDaysLabel} en {deliveryInfo.zones.length} barrios de Montevideo, y llegamos al resto de
+          Montevideo con costo de envío. Si preferís, también podés retirarla sin costo {deliveryInfo.pickup.daysLabel} en
+          zona {deliveryInfo.pickup.area}.
         </p>
+        <StorePromises className="mt-5" />
 
         <section className="mt-8">
           <h2 className="font-display text-xl font-bold text-gray-900">Envío sin costo</h2>

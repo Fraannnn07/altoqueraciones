@@ -3,16 +3,18 @@ import Link from 'next/link';
 import type { ProductCard as ProductCardType } from '@/lib/data/products';
 import { storageUrl } from '@/lib/storage';
 import { buildProductWhatsAppUrl } from '@/lib/whatsapp';
-import { formatPricePerKg } from '@/lib/format';
+import { formatPricePerKg, nameIncludesPresentation } from '@/lib/format';
 import { isOnSale } from '@/lib/pricing';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
 import { Price } from '@/components/commerce/Price';
 
-export function ProductCard({ product }: { product: ProductCardType }) {
+/** `eager`: para las primeras tarjetas de una grilla, cuya foto es lo más grande que se ve al entrar (LCP). */
+export function ProductCard({ product, eager = false }: { product: ProductCardType; eager?: boolean }) {
   const imageUrl = storageUrl(product.primaryImage?.storage_path);
   const whatsappUrl = buildProductWhatsAppUrl(product);
   const pricePerKg = formatPricePerKg(product.pricing.final, product.net_weight_kg);
   const onSale = isOnSale(product.pricing);
+  const showPresentation = product.presentation && !nameIncludesPresentation(product.name, product.presentation);
 
   return (
     <article className="atr-card flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition hover:shadow-md">
@@ -24,6 +26,8 @@ export function ProductCard({ product }: { product: ProductCardType }) {
               alt={product.primaryImage?.alt_text || product.name}
               fill
               sizes="(min-width: 768px) 25vw, 50vw"
+              loading={eager ? 'eager' : undefined}
+              fetchPriority={eager ? 'high' : undefined}
               className="object-contain p-4"
             />
           ) : (
@@ -45,9 +49,7 @@ export function ProductCard({ product }: { product: ProductCardType }) {
           <h3 className="mt-1 line-clamp-2 font-display text-base font-semibold text-gray-900">
             {product.name}
           </h3>
-          {product.presentation ? (
-            <p className="mt-0.5 text-sm text-gray-500">{product.presentation}</p>
-          ) : null}
+          {showPresentation ? <p className="mt-0.5 text-sm text-gray-500">{product.presentation}</p> : null}
           <Price pricing={product.pricing} className="mt-2" />
           {pricePerKg ? <p className="text-xs text-gray-500">{pricePerKg}</p> : null}
         </div>
@@ -55,7 +57,7 @@ export function ProductCard({ product }: { product: ProductCardType }) {
       <div className="mt-auto px-4 pb-4">
         <WhatsAppCtaButton
           href={whatsappUrl}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-green px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-green-dark"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-green-dark px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-forest"
         />
       </div>
     </article>

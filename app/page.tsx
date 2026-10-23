@@ -4,6 +4,7 @@ import { getFeaturedProducts } from '@/lib/data/products';
 import { getPublishedGuides } from '@/lib/data/guides';
 import { safe } from '@/lib/data/safe';
 import { ProductCard } from '@/components/commerce/ProductCard';
+import { StorePromises } from '@/components/commerce/StorePromises';
 import { HomeHero } from '@/components/home/HomeHero';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 import { buildMetadata } from '@/lib/seo/metadata';
@@ -15,7 +16,7 @@ export const revalidate = 3600;
 
 export function generateMetadata(): Metadata {
   return buildMetadata({
-    title: `Alimento para Perros y Gatos en Montevideo | ${siteConfig.name}`,
+    title: `Raciones a Domicilio en Montevideo | ${siteConfig.name}`,
     description: siteConfig.description,
     path: '/',
   });
@@ -34,6 +35,12 @@ export default async function HomePage() {
         productsHref={featured.length > 0 ? '#alimentos' : '/raciones-perros/'}
         whatsappUrl={buildGeneralWhatsAppUrl('Hola, quiero hacer un pedido.')}
       />
+
+      {/* Lo que va con cada pedido */}
+      <section className="mx-auto max-w-6xl px-4 pt-8">
+        <h2 className="sr-only">Lo que va con cada pedido</h2>
+        <StorePromises variant="cards" />
+      </section>
 
       {/* Combos destacados */}
       {featured.length > 0 ? (
@@ -63,9 +70,10 @@ export default async function HomePage() {
           <h2 className="font-display text-2xl font-bold text-gray-900">Envíos y retiros</h2>
           <div className="mt-4 grid gap-6 sm:grid-cols-2">
             <div>
-              <h3 className="font-semibold text-gray-900">Envío sin costo</h3>
+              <h3 className="font-semibold text-gray-900">Envío a domicilio</h3>
               <p className="mt-1 text-sm text-gray-600">
-                {deliveryInfo.freeDeliveryDaysLabel}, en barrios seleccionados de Montevideo.
+                Te lo llevamos a la puerta en {deliveryInfo.leadTimeLabel}, sin costo de{' '}
+                {deliveryInfo.freeDeliveryDaysLabel} en barrios seleccionados de Montevideo.
               </p>
             </div>
             <div>

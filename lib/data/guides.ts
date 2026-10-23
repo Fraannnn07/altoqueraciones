@@ -5,7 +5,7 @@ import { CARD_SELECT, toCard, type ProductCard } from '@/lib/data/products';
 import { getPricingRules } from '@/lib/data/site-settings';
 
 const GUIDE_SELECT =
-  'id, slug, title, excerpt, body_markdown, cover_image_path, meta_title, meta_description, status, legacy_urls, published_at';
+  'id, slug, title, excerpt, body_markdown, cover_image_path, meta_title, meta_description, status, legacy_urls, published_at, updated_at';
 
 export async function getPublishedGuides(): Promise<GuideRow[]> {
   const { data } = await supabase()

@@ -3,6 +3,7 @@ import { getActiveRootCategories } from '@/lib/data/categories';
 import { safe } from '@/lib/data/safe';
 import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 import { MobileNav } from '@/components/layout/MobileNav';
+import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
 import { SearchForm } from '@/components/search/SearchForm';
 
 // Nombres cortos para la barra de escritorio, donde no entran los nombres completos de todas las
@@ -58,14 +59,12 @@ export async function Header() {
 
         <div className="flex items-center gap-2">
           <SearchForm size="compact" placeholder="Buscar productos" className="hidden w-44 xl:block" />
-          <a
+          <WhatsAppCtaButton
             href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-brand-green px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark"
+            className="rounded-full bg-brand-green-dark px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-brand-forest"
           >
             Escribinos
-          </a>
+          </WhatsAppCtaButton>
           <MobileNav links={links} />
         </div>
       </div>

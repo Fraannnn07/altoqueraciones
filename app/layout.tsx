@@ -5,6 +5,7 @@ import { siteConfig } from '@/lib/site-config';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/seo/jsonld';
 import { GoogleTag } from '@/components/seo/GoogleTag';
+import { AdVisitTracker } from '@/components/seo/AdVisitTracker';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SiteChrome } from '@/components/layout/SiteChrome';
@@ -25,7 +26,7 @@ const quicksand = Quicksand({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Alimento para Perros y Gatos en Montevideo | ${siteConfig.name}`,
+    default: `Raciones a Domicilio en Montevideo | ${siteConfig.name}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <JsonLd data={buildOrganizationJsonLd()} />
               <JsonLd data={buildWebsiteJsonLd()} />
               <GoogleTag />
+              <AdVisitTracker />
             </>
           }
         >

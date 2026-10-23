@@ -1,6 +1,6 @@
 'use client';
 
-import { trackWhatsAppConversion } from '@/lib/gtag-client';
+import { tagWhatsAppLinkForAds, trackWhatsAppConversion } from '@/lib/gtag-client';
 
 export function WhatsAppCtaButton({
   href,
@@ -16,10 +16,13 @@ export function WhatsAppCtaButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={trackWhatsAppConversion}
+      onClick={(event) => {
+        tagWhatsAppLinkForAds(event.currentTarget);
+        trackWhatsAppConversion();
+      }}
       className={
         className ??
-        'inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark'
+        'inline-flex items-center justify-center gap-2 rounded-full bg-brand-green-dark px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-forest'
       }
     >
       {children}

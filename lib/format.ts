@@ -40,3 +40,16 @@ export function nameIncludesPresentation(name: string, presentation: string) {
   const compact = (s: string) => s.toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
   return compact(name).includes(compact(weight));
 }
+
+/**
+ * Nombre con la presentación cuando el nombre no la trae: "Dominal Pipeta para Perros" + "10 a 25 kg" →
+ * "Dominal Pipeta para Perros 10 a 25 kg"; "Lager 22kg" queda igual. Distingue las variantes de un producto.
+ */
+export function productDisplayName(name: string, presentation: string | null | undefined) {
+  return presentation && !nameIncludesPresentation(name, presentation) ? `${name} ${presentation}` : name;
+}
+
+/** Marca + nombre + presentación, sin repetir ninguna ("Equilibrio" + "Equilibrio gato adulto 7.5kg"). */
+export function productFullName(brandName: string, name: string, presentation: string | null | undefined) {
+  return brandedProductName(brandName, productDisplayName(name, presentation));
+}

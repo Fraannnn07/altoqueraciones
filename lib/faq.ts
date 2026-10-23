@@ -1,7 +1,8 @@
 // Fuente única de las preguntas frecuentes: se usa en /preguntas-frecuentes/
 // completa y en un extracto en el home, para no duplicar contenido.
 
-import { deliveryZones } from '@/lib/delivery';
+import { deliveryInfo, deliveryZones } from '@/lib/delivery';
+import { rewardsSummary } from '@/lib/store-promises';
 
 export interface FaqEntry {
   question: string;
@@ -10,12 +11,20 @@ export interface FaqEntry {
 
 export const siteFaq: FaqEntry[] = [
   {
+    question: '¿Cuánto tarda en llegar mi pedido?',
+    answer: `Te lo llevamos a la puerta de tu casa en ${deliveryInfo.leadTimeLabel}. Coordinamos la entrega por WhatsApp cuando confirmás el pedido.`,
+  },
+  {
+    question: '¿Tienen regalos o descuentos?',
+    answer: `Sí. ${rewardsSummary}`,
+  },
+  {
     question: '¿En qué barrios tienen envío gratis?',
     answer: `El envío sin costo está disponible en ${deliveryZones.slice(0, -1).join(', ')} y ${deliveryZones[deliveryZones.length - 1]}.`,
   },
   {
-    question: '¿Qué días realizan entregas?',
-    answer: 'Entregamos de lunes a miércoles en los barrios con envío sin costo.',
+    question: '¿Qué días el envío es sin costo?',
+    answer: `De ${deliveryInfo.freeDeliveryDaysLabel}, en los barrios con envío sin costo.`,
   },
   {
     question: '¿Dónde y cuándo puedo retirar mi pedido?',

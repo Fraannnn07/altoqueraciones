@@ -67,6 +67,52 @@ export function MapPinIcon({ className }: IconProps) {
   );
 }
 
+/** Caja de regalo con el moño en ámbar. */
+export function GiftIcon({ className }: IconProps) {
+  return (
+    <svg
+      {...base}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M3.5 9h17v4h-17zM5 13v8h14v-8M12 9v12" />
+      <path
+        d="M12 9C10.5 5.5 6.5 4.5 6 6.8 5.6 8.6 9 9 12 9Zm0 0c1.5-3.5 5.5-4.5 6-2.2.4 1.8-3 2.2-6 2.2Z"
+        stroke="var(--color-brand-amber)"
+      />
+    </svg>
+  );
+}
+
+/** Etiqueta de precio con un "%" en ámbar. */
+export function DiscountTagIcon({ className }: IconProps) {
+  return (
+    <svg
+      {...base}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M3 4.5v6.3c0 .5.2 1 .6 1.4l8.7 8.7a2 2 0 0 0 2.8 0l5.5-5.5a2 2 0 0 0 0-2.8L11.9 3.9a2 2 0 0 0-1.4-.6H4.2A1.2 1.2 0 0 0 3 4.5Z" />
+      <circle cx="7.2" cy="7.5" r="1.2" />
+      <g stroke="var(--color-brand-amber)">
+        <path d="m10.5 16.5 5-5" />
+        <circle cx="11.2" cy="12.2" r=".9" />
+        <circle cx="14.8" cy="15.8" r=".9" />
+      </g>
+    </svg>
+  );
+}
+
 export function ArrowRightIcon({ className }: IconProps) {
   return (
     <svg

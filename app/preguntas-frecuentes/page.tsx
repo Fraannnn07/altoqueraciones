@@ -9,7 +9,8 @@ import { siteFaq } from '@/lib/faq';
 export function generateMetadata(): Metadata {
   return buildMetadata({
     title: `Preguntas Frecuentes | ${siteConfig.name}`,
-    description: 'Zonas de envío, días de entrega y retiro, y cómo consultar por un alimento en Al Toque Raciones.',
+    description:
+      'Cuánto tarda la entrega, regalos y descuentos, barrios con envío gratis, retiro y cómo pedir tu ración en Al Toque Raciones.',
     path: '/preguntas-frecuentes/',
   });
 }

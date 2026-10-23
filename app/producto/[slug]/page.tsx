@@ -11,9 +11,10 @@ import {
 import { safe } from '@/lib/data/safe';
 import { storageUrl } from '@/lib/storage';
 import { buildProductWhatsAppUrl } from '@/lib/whatsapp';
-import { formatPricePerKg } from '@/lib/format';
+import { formatPricePerKg, productDisplayName, productFullName } from '@/lib/format';
 import { deliverySummary } from '@/lib/delivery';
 import { ProductCard } from '@/components/commerce/ProductCard';
+import { StorePromises } from '@/components/commerce/StorePromises';
 import { WhatsAppCtaButton } from '@/components/commerce/WhatsAppCtaButton';
 import { Price } from '@/components/commerce/Price';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
@@ -44,8 +45,9 @@ export async function generateMetadata({
       product.meta_description ||
       productDescription({
         name: product.name,
+        presentation: product.presentation,
         brandName: product.brand.name,
-        priceUyu: product.price_uyu,
+        priceUyu: product.pricing.final,
         netWeightKg: product.net_weight_kg,
       }),
     path: `/producto/${product.slug}/`,
@@ -70,6 +72,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     alt: img.alt_text || product.name,
   }));
   const primaryImage = images[0];
+  // Las variantes ("NexGard Perro" 2 a 4 kg, 4 a 10 kg…) comparten nombre: la presentación las distingue.
+  const displayName = productDisplayName(product.name, product.presentation);
+  const categoryPath = product.category.parent
+    ? `${product.category.parent.name} > ${product.category.name}`
+    : product.category.name;
 
   const breadcrumbItems = [
     { name: 'Inicio', url: '/' },
@@ -82,7 +89,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           },
         ]
       : [{ name: product.category.name, url: `/${product.category.slug}/` }]),
-    { name: product.name, url: `/producto/${product.slug}/` },
+    { name: displayName, url: `/producto/${product.slug}/` },
   ];
 
   return (
@@ -90,21 +97,26 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <Breadcrumbs items={breadcrumbItems} />
       <JsonLd
         data={buildProductJsonLd({
-          name: product.name,
+          id: product.id,
+          name: productFullName(product.brand.name, product.name, product.presentation),
           slug: product.slug,
           sku: product.sku,
-          short_description:
+          description:
             product.short_description ||
             productDescription({
               name: product.name,
+              presentation: product.presentation,
               brandName: product.brand.name,
-              priceUyu: product.price_uyu,
+              priceUyu: product.pricing.final,
               netWeightKg: product.net_weight_kg,
             }),
           pricing: product.pricing,
           stock_status: product.stock_status,
           brandName: product.brand.name,
           images: images.map((i) => i.url).filter(Boolean) as string[],
+          category: categoryPath,
+          presentation: product.presentation,
+          netWeightKg: product.net_weight_kg,
         })}
       />
 
@@ -132,8 +144,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-green-dark">
             {product.brand.name}
           </p>
-          <h1 className="mt-1 font-display text-3xl font-bold text-gray-900">{product.name}</h1>
-          {product.presentation ? <p className="mt-1 text-gray-500">{product.presentation}</p> : null}
+          <h1 className="mt-1 font-display text-3xl font-bold text-gray-900">{displayName}</h1>
           {product.net_weight_kg ? (
             <p className="text-sm text-gray-500">{product.net_weight_kg} kg en total</p>
           ) : null}
@@ -148,8 +159,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           )}
 
           <div className="mt-6">
-            <WhatsAppCtaButton href={whatsappUrl}>{`Consultar por ${product.name}`}</WhatsAppCtaButton>
+            <WhatsAppCtaButton href={whatsappUrl}>{`Consultar por ${displayName}`}</WhatsAppCtaButton>
           </div>
+
+          <StorePromises className="mt-5" />
 
           <div className="mt-4 rounded-xl bg-brand-warm-gray p-4 text-sm text-gray-700">
             {deliverySummary}{' '}

@@ -15,6 +15,22 @@ export async function getBrandBySlug(slug: string): Promise<BrandRow | null> {
   return (data as BrandRow) ?? null;
 }
 
+/** Categorías raíz donde la marca tiene productos activos, en el orden del menú (para el resumen de la marca). */
+export async function getBrandRootCategories(brandId: number): Promise<{ name: string; slug: string }[]> {
+  const { data } = await supabase()
+    .from('products')
+    .select('category:categories(name, slug, sort_order, parent:parent_id(name, slug, sort_order))')
+    .eq('brand_id', brandId)
+    .eq('active', true);
+  const roots = new Map<string, { name: string; slug: string; sort_order: number }>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fila cruda de Supabase, sin tipos generados
+  for (const row of (data ?? []) as any[]) {
+    const root = row.category?.parent ?? row.category;
+    if (root) roots.set(root.slug, root);
+  }
+  return [...roots.values()].sort((a, b) => a.sort_order - b.sort_order).map(({ name, slug }) => ({ name, slug }));
+}
+
 /** Marcas activas con al menos un producto activo, para /marcas/ y nav. */
 export async function getActiveBrandsWithProducts(): Promise<(BrandRow & { productCount: number })[]> {
   const db = supabase();

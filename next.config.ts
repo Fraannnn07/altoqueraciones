@@ -8,23 +8,28 @@ function supabaseHostname(): string | null {
   }
 }
 
-// Páginas del sitio anterior cuyo destino final todavía no existe (no hay productos en esa categoría
-// o falta escribir la guía). Van a lo más cercano con redirect TEMPORAL para no mandar a nadie a un 404;
-// cuando exista el destino final (indicado a la derecha), pasar a permanente y apuntar ahí.
+// Páginas del sitio anterior cuyo destino final todavía no existe (no hay productos en esa categoría).
+// Van a lo más cercano con redirect TEMPORAL para no mandar a nadie a un 404; cuando exista el destino
+// final (indicado a la derecha), pasar a permanente y apuntar ahí.
 const pendingRedirects = [
   ['/accesorios-perros.html', '/'], // -> /accesorios-perros/
-  ['/blog/biofresh-vs-equilibrio.html', '/guias/'],
-  ['/blog/cada-cuanto-desparasitar-perro.html', '/guias/'],
-  ['/blog/casillas-perros.html', '/guias/'],
-  ['/blog/como-elegir-racion-perro.html', '/guias/'],
-  ['/blog/cuanta-comida-darle-perro.html', '/guias/'],
-  ['/landings/cuanta-comida-darle-perro.html', '/guias/'],
-  ['/blog/dieta-barf-perros.html', '/guias/'],
-  ['/blog/mi-perro-tiene-pulgas-que-hacer.html', '/guias/'],
-  ['/blog/pro-plan-gatos.html', '/guias/'],
-  ['/landings/guia-desparasitacion-mascotas.html', '/guias/'],
-  ['/landings/pulgas-garrapatas-perros.html', '/guias/'],
 ].map(([source, destination]) => ({ source, destination, permanent: false }));
+
+// Artículos del blog viejo: van a la página actual que responde lo mismo (desde el 2026-10-22, cuando las
+// categorías pasaron a tener texto y preguntas frecuentes). BARF y casillas no se venden: van a las guías.
+const blogRedirects = [
+  ['/blog/como-elegir-racion-perro.html', '/raciones-perros/'],
+  ['/blog/cuanta-comida-darle-perro.html', '/guias/como-elegir-el-tamano-de-bolsa-segun-el-consumo-de-tu-perro/'],
+  ['/landings/cuanta-comida-darle-perro.html', '/guias/como-elegir-el-tamano-de-bolsa-segun-el-consumo-de-tu-perro/'],
+  ['/blog/cada-cuanto-desparasitar-perro.html', '/antipulgas/'],
+  ['/blog/mi-perro-tiene-pulgas-que-hacer.html', '/antipulgas/'],
+  ['/landings/guia-desparasitacion-mascotas.html', '/antipulgas/'],
+  ['/landings/pulgas-garrapatas-perros.html', '/antipulgas/'],
+  ['/blog/pro-plan-gatos.html', '/marcas/pro-plan/'],
+  ['/blog/biofresh-vs-equilibrio.html', '/marcas/'],
+  ['/blog/dieta-barf-perros.html', '/guias/'],
+  ['/blog/casillas-perros.html', '/guias/'],
+].map(([source, destination]) => ({ source, destination, permanent: true }));
 
 const nextConfig: NextConfig = {
   // Canonical, sitemap y redirects usan URLs con barra final (/raciones-perros/).
@@ -108,6 +113,7 @@ const nextConfig: NextConfig = {
       { source: '/nexgard-uruguay.html', destination: '/marcas/nexgard/', permanent: true },
       // El panel de sellos con PIN se reemplazó por la sección Fidelidad del admin.
       { source: '/fidelidad/admin', destination: '/admin/fidelidad/', permanent: false },
+      ...blogRedirects,
       ...pendingRedirects,
     ];
   },

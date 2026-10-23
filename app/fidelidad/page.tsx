@@ -6,8 +6,10 @@ import IngresoForm from "./IngresoForm";
 import MiTarjeta from "./MiTarjeta";
 
 export const metadata: Metadata = {
-  title: "Tarjeta de sellos | Al Toque Raciones",
+  title: "Tarjeta de sellos",
   description: `Cada compra suma un sello. Con ${META_SELLOS} sellos: ${PREMIO}.`,
+  // Es el acceso de los clientes a su tarjeta: no aporta nada en Google.
+  robots: { index: false, follow: true },
 };
 
 // Con sesión muestra la tarjeta del cliente; sin sesión, qué es y el ingreso con celular + código.

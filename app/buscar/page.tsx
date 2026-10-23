@@ -87,7 +87,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
             </p>
             <WhatsAppCtaButton
               href={buildGeneralWhatsAppUrl(`Hola, busqué "${q}" en la web y no lo encontré. ¿Me pueden ayudar?`)}
-              className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-green-dark"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-brand-green-dark px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-forest"
             />
           </div>
         ) : null}

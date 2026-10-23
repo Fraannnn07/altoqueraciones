@@ -24,6 +24,8 @@ export const deliveryZones = [
 ] as const;
 
 export const deliveryInfo = {
+  /** Plazo de entrega a domicilio (confirmado por el dueño el 2026-10-22). */
+  leadTimeLabel: '24 horas',
   freeDeliveryDaysLabel: 'lunes a miércoles',
   zones: deliveryZones,
   pickup: {
@@ -35,4 +37,4 @@ export const deliveryInfo = {
 
 /** Resumen corto para hero/tarjetas. */
 export const deliverySummary =
-  'Envío sin costo lunes a miércoles en barrios seleccionados de Montevideo. Retiro sin costo jueves y viernes en zona Mercado Modelo, previa coordinación.';
+  'Te lo llevamos a la puerta de tu casa en 24 horas. Envío sin costo de lunes a miércoles en barrios seleccionados de Montevideo, o retiro sin costo jueves y viernes en zona Mercado Modelo, previa coordinación.';
