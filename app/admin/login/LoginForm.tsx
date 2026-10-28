@@ -2,13 +2,31 @@
 
 import { useActionState } from 'react';
 import { loginAction, type LoginState } from './actions';
+import { submitWithoutReset } from '@/components/admin/submit-without-reset';
 import { inputClass, labelClass, primaryButtonClass } from '@/components/admin/ui';
 
 export function LoginForm() {
   const [state, formAction, pending] = useActionState<LoginState, FormData>(loginAction, {});
 
   return (
-    <form action={formAction} className="mt-6 space-y-4">
+    // Sin el reset de React 19: si la contraseña está mal, el usuario queda escrito.
+    <form onSubmit={submitWithoutReset(formAction)} className="mt-6 space-y-4">
+      <div>
+        <label htmlFor="username" className={labelClass}>
+          Usuario
+        </label>
+        <input
+          id="username"
+          name="username"
+          required
+          autoFocus
+          autoComplete="username"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          className={inputClass}
+        />
+      </div>
       <div>
         <label htmlFor="password" className={labelClass}>
           Contraseña
@@ -18,7 +36,6 @@ export function LoginForm() {
           name="password"
           type="password"
           required
-          autoFocus
           autoComplete="current-password"
           className={inputClass}
         />

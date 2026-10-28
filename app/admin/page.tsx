@@ -46,7 +46,10 @@ export default async function AdminDashboardPage() {
       ) : null}
 
       <div className="mt-8 flex flex-wrap gap-3">
-        <Link href="/admin/productos/nuevo/" className={primaryButtonClass}>
+        <Link href="/admin/ventas/nueva/" className={primaryButtonClass}>
+          Nueva venta
+        </Link>
+        <Link href="/admin/productos/nuevo/" className={secondaryButtonClass}>
           Agregar producto
         </Link>
         <Link href="/admin/productos/" className={secondaryButtonClass}>
@@ -63,6 +66,9 @@ export default async function AdminDashboardPage() {
         </Link>
         <Link href="/admin/fidelidad/" className={secondaryButtonClass}>
           Tarjetas de sellos
+        </Link>
+        <Link href="/admin/ventas/caja/" className={secondaryButtonClass}>
+          Caja
         </Link>
       </div>
     </div>

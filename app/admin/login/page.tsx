@@ -6,7 +6,7 @@ export default function AdminLoginPage() {
     <div className="mx-auto mt-10 max-w-sm">
       <div className={cardClass}>
         <h1 className="font-display text-2xl font-bold text-gray-900">Admin</h1>
-        <p className="mt-1 text-sm text-gray-600">Al Toque Raciones — panel de productos</p>
+        <p className="mt-1 text-sm text-gray-600">Al Toque Raciones — panel de administración</p>
         <LoginForm />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { isAdmin } from '@/lib/admin-auth';
+import { adminUser } from '@/lib/admin-auth';
 import { AdminNav } from '@/components/admin/AdminNav';
 
 export const metadata: Metadata = {
@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const authed = await isAdmin();
+  const user = await adminUser();
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {authed ? <AdminNav /> : null}
+      {user ? <AdminNav user={user} /> : null}
       <div className="mx-auto max-w-5xl px-4 py-6">{children}</div>
     </div>
   );

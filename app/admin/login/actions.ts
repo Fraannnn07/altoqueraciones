@@ -2,12 +2,7 @@
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import {
-  ADMIN_COOKIE,
-  ADMIN_SESSION_SECONDS,
-  createSessionToken,
-  isAdminPasswordValid,
-} from '@/lib/admin-session';
+import { ADMIN_COOKIE, ADMIN_SESSION_SECONDS, createSessionToken, verifyAdminLogin } from '@/lib/admin-session';
 
 export interface LoginState {
   error?: string;
@@ -18,14 +13,16 @@ export async function loginAction(_prev: LoginState, formData: FormData): Promis
     return { error: 'Falta configurar ADMIN_PASSWORD en las variables de entorno del servidor.' };
   }
 
-  const password = String(formData.get('password') ?? '');
-  if (!isAdminPasswordValid(password)) {
+  const username = String(formData.get('username') ?? '').slice(0, 60);
+  const password = String(formData.get('password') ?? '').slice(0, 200);
+  const user = await verifyAdminLogin(username, password);
+  if (!user) {
     // Frena un poco los intentos por fuerza bruta.
     await new Promise((resolve) => setTimeout(resolve, 800));
-    return { error: 'Contraseña incorrecta.' };
+    return { error: 'Usuario o contraseña incorrectos.' };
   }
 
-  const token = createSessionToken();
+  const token = createSessionToken(user);
   if (!token) return { error: 'No se pudo iniciar la sesión (falta configuración del servidor).' };
 
   const store = await cookies();

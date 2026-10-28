@@ -3,6 +3,7 @@ import { logoutAction } from '@/app/admin/actions';
 
 const links = [
   { href: '/admin/', label: 'Panel' },
+  { href: '/admin/ventas/', label: 'Ventas' },
   { href: '/admin/productos/', label: 'Productos' },
   { href: '/admin/marcas/', label: 'Marcas' },
   { href: '/admin/precios/', label: 'Precios' },
@@ -10,7 +11,7 @@ const links = [
   { href: '/admin/fidelidad/', label: 'Fidelidad' },
 ];
 
-export function AdminNav() {
+export function AdminNav({ user }: { user: string }) {
   return (
     <header className="border-b border-black/5 bg-white">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
@@ -25,8 +26,9 @@ export function AdminNav() {
             Ver sitio ↗
           </a>
         </nav>
-        <form action={logoutAction}>
-          <button type="submit" className="text-sm font-semibold text-gray-500 hover:text-red-700">
+        <form action={logoutAction} className="flex items-center gap-3 text-sm">
+          <span className="capitalize text-gray-500">{user}</span>
+          <button type="submit" className="font-semibold text-gray-500 hover:text-red-700">
             Salir
           </button>
         </form>
